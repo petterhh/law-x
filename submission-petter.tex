@@ -1,0 +1,229 @@
+%
+% File acl2016.tex
+%
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% Based on the style files for ACL-2013, which were, in turn,
+%% Based on the style files for ACL-2012, which were, in turn,
+%% based on the style files for ACL-2011, which were, in turn,
+%% based on the style files for ACL-2010, which were, in turn,
+%% based on the style files for ACL-IJCNLP-2009, which were, in turn,
+%% based on the style files for EACL-2009 and IJCNLP-2008...
+
+%% Based on the style files for EACL 2006 by
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{acl2016}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage{booktabs}
+
+%\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+
+%% Greit å vite:
+
+%% Siteringer:
+%% Med parentes rundt hele: \cite{Gusfield:97}
+%% Eller med parentes kun rundt år:  \newcite{Gusfield:97}
+%% Flere på en gang: \cite{Gusfield:97,Aho:72}
+
+
+%% Fra instruksjonene, om \aclfinalcopy :
+
+%% By uncommenting {\small\verb|\aclfinalcopy|} at the top of this document, it
+%% will compile to produce an example of the camera-ready formatting; by leaving
+%% it commented out, the document will be anonymized for initial submission.  When
+%% you first create your submission on softconf, please fill in your submitted
+%% paper ID where {\small\verb|***|} appears in the
+%% {\small\verb|\def\aclpaperid{***}|} definition at the top.
+
+%% The review process is double-blind, so do not include any author information
+%% (names, addresses) when submitting a paper for review.  However, you should
+%% maintain space for names and addresses so that they will fit in the final
+%% (accepted) version.  The ACL 2016 \LaTeX\ style will create a titlebox space of
+%% 2.5in for you when {\small\verb|\aclfinalcopy|} is commented out.
+
+%% \subsection{The Ruler}
+%% The ACL 2016 style defines a printed ruler which should be presented in the
+%% version submitted for review.  The ruler is provided in order that
+%% reviewers may comment on particular lines in the paper without
+%% circumlocution.  If you are preparing a document without the provided
+%% style files, please arrange for an equivalent ruler to
+%% appear on the final output pages.  The presence or absence of the ruler
+%% should not change the appearance of any other content on the page.  The
+%% camera ready copy should not contain a ruler. (\LaTeX\ users may uncomment
+%% the {\small\verb|\aclfinalcopy|} command in the document preamble.)
+
+
+\title{The greatest PoS tags, just the best really}
+
+\author{First Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  {\tt email@domain} \\\And
+  Second Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  {\tt email@domain}  \\\And
+  Third Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  {\tt email@domain} \\}
+
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Abstraction ensues.
+\end{abstract}
+
+%\section{Credits}
+
+
+\section{Introduction}
+\label{sec:intro}
+
+\section{Previous/Related work}
+\label{sec:prev}
+
+Megyesi, Swedish
+
+MacKinlay, English
+
+OBT, Norwegian
+
+\section{Data}
+\label{sec:data}
+\subsection{The Norwegian Dependency Treebank}
+The newly developed Norwegian Dependency Treebank (NDT) \cite{Sol:Skj:Ovr:14}
+is the first publicly available treebank for Norwegian. The treebank was used
+for training and evaluation in our experiments. The tag set consists of 12
+morphosyntactic PoS tags, with 7 additional tags for punctuation and symbols.
+
+\paragraph{PoS Tag Set}
+\paragraph{Dependency Relations}
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Tagger}
+TnT \cite{Bra:00}
+
+\paragraph{Parser}
+In choosing a syntactic parser for our experiments, we considered previous work
+on dependency parsing of Norwegian, specifically that of \cite{Sol:Skj:Ovr:14}.
+They found the Mate parser \cite{Boh:10} to be the most successful parser for
+the parsing of NDT. Recent dependency parser comparisons \cite{Cho:Tet:Ste:15}
+also showed that Mate performed very well on parsing of the English portion of
+the OntoNotes 5 corpus, beating a range of contemporary state-of-the-art
+parsers.
+
+\paragraph{Tag Set Mapping}
+In order to alter the tag set of NDT, we created a mapping for carrying out the
+tag set modifications. We created a mapping for carrying out the tag set
+modifications that maps the relevant existing tags to new, more fine-grained
+tags including more relevant morphological features for the applicable tokens.
+
+\paragraph{Baseline}
+It is common practice to compare the performance of PoS taggers to a
+pre-computed baseline for an initial point of comparison.
+For PoS tagging, a commonly used baseline is the Most Frequent Tag (MFT)
+baseline, which we use in our experiments. This involves labeling each word
+with the tag it was assigned most frequently in the training. All unknown
+words, i.e., words not seen in the training data, are assigned the tag most
+frequently assigned to words seen only once in the training. Unknown and
+infrequent words have in common that they rarely occur, and we might therefore
+expect them to have similar properties.
+%, there are two main
+%approaches: assign it the most frequent tag overall in the training data, or
+%the tag most frequently assigned to words seen only once in the training data.
+%We adopted the latter approach for our baseline tagger, as we believe that
+%unknown words may have much in common with words that occur only once in the
+%training, more so than simply words of the most frequent part-of-speech. The
+%reason for this is that unknown and infrequent words have in common that they
+%rarely occur, and we might therefore expect them to have similar properties.
+
+\paragraph{Tags \& Features}
+As we seek to quantify the effects of PoS tagging in a realistic setting, we
+want to run the parser on automatically assigned PoS tags. For the training of
+the parser, however, we have two options: using either gold standard or
+automatically assigned tags. In order to settle on a configuration, we
+conducted experiments with gold standard and automatically assigned tags to see
+how they differ with respect to performance. The results of our experiments
+reveal that the combination of training and testing on automatic tags is
+superior to training on gold standard tags and testing on automatic tags,
+surprisingly. Consequently, the parser was both trained and tested on
+automatically assigned tags in our experiments.
+
+Note that it is absolutely crucial that the morphological features in the
+treebank are removed when using automatic tags, as they are still gold
+standard. For instance, if a verb token is erroneously tagged as a noun, we
+could potentially have a noun token with verbal features such as tense, which
+markedly obfuscates the training and parsing. Another important factor is that
+we want to isolate the effect of PoS tags, necessitating the exclusion of
+morphological features.
+
+\section{Tag Set Optimization}
+\label{sec:optimization}
+
+%\begin{table}
+    %\centering
+    %%\smaller[0.5]
+    %\begin{tabular}{@{}ll@{}}
+        %\toprule
+        %\textbf{Tag} & \textbf{Description} \\
+        %\midrule
+        %\texttt{adj|komp} & Comparative adjective \\
+        %\texttt{adj|pos} & Positive adjective \\
+        %\texttt{adj|sup} & Superlative adjective \\
+        %\texttt{det|be} & Definite determiner \\
+        %\texttt{det|ub} & Indefinite determiner \\
+        %\texttt{pron|pers} & Personal pronoun \\
+        %\texttt{pron|pers|akk} & Personal pronoun, accusative \\
+        %\texttt{pron|pers|nom} & Personal pronoun, nominative \\
+        %\texttt{pron|refl} & Reflexive pronoun \\
+        %\texttt{pron|res} & Reciprocal pronoun \\
+        %\texttt{pron|sp} & Interrogative pronoun \\
+        %\texttt{subst|appell} & Common noun \\
+        %\texttt{subst|appell|be} & Common noun, definite \\
+        %\texttt{subst|appell|be|gen} & Common noun, definite, genitive \\
+        %\texttt{subst|appell|ub} & Common noun, indefinite \\
+        %\texttt{subst|appell|ub|gen} & Common noun, indefinite, genitive \\
+        %\texttt{subst|prop} & Proper noun \\
+        %\texttt{subst|prop|gen} & Proper noun, genitive \\
+        %\texttt{verb|fin} & Finite verb \\
+        %\texttt{verb|infin} & Nonfinite verb \\
+        %\bottomrule
+    %\end{tabular}
+    %\caption{The optimized tag set.}
+    %\label{optimizedtagset}
+%\end{table}
+
+\section{Optimized Pipeline}
+\label{sec:pipeline}
+
+\section{Summary/Conclusion and Future Work}
+\label{sec:summary}
+
+% \section*{Acknowledgments}
+
+\bibliographystyle{acl2016}
+\bibliography{references}
+% \appendix
+%\section{Supplemental Material}
+%\label{sec:supplemental}
+
+\end{document}

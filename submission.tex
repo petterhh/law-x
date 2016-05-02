@@ -6,12 +6,12 @@
 %% Based on the style files for ACL-2014, which were, in turn,
 %% Based on the style files for ACL-2013, which were, in turn,
 %% Based on the style files for ACL-2012, which were, in turn,
-%% based on the style files for ACL-2011, which were, in turn, 
-%% based on the style files for ACL-2010, which were, in turn, 
+%% based on the style files for ACL-2011, which were, in turn,
+%% based on the style files for ACL-2010, which were, in turn,
 %% based on the style files for ACL-IJCNLP-2009, which were, in turn,
 %% based on the style files for EACL-2009 and IJCNLP-2008...
 
-%% Based on the style files for EACL 2006 by 
+%% Based on the style files for EACL 2006 by
 %%e.agirre@ehu.es or Sergi.Balari@uab.es
 %% and that of ACL 08 by Joakim Nivre and Noah Smith
 
@@ -30,15 +30,12 @@
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
 
-\newcommand\BibTeX{B{\sc ib}\TeX}
-
-
 
 %% Greit å vite:
 
 %% Siteringer:
-%% Med parentes rundt hele: \cite{Gusfield:97} 
-%% Eller med parentes kun rundt år:  \newcite{Gusfield:97} 
+%% Med parentes rundt hele: \cite{Gusfield:97}
+%% Eller med parentes kun rundt år:  \newcite{Gusfield:97}
 %% Flere på en gang: \cite{Gusfield:97,Aho:72}
 
 
@@ -66,12 +63,10 @@
 %% appear on the final output pages.  The presence or absence of the ruler
 %% should not change the appearance of any other content on the page.  The
 %% camera ready copy should not contain a ruler. (\LaTeX\ users may uncomment
-%% the {\small\verb|\aclfinalcopy|} command in the document preamble.)  
+%% the {\small\verb|\aclfinalcopy|} command in the document preamble.)
 
 
-
-
-\title{The greatest PoS tags, just the best really}
+\title{The greatest PoS tags, just the best really, I have the best words}
 
 \author{First Author \\
   Affiliation / Address line 1 \\
@@ -91,7 +86,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-
+Abstraction ensues.
 \end{abstract}
 
 %\section{Credits}
@@ -100,33 +95,57 @@
 \section{Introduction}
 \label{sec:intro}
 
-\section{Previous work}
+\section{Previous/Related work}
 \label{sec:prev}
+
+Megyesi, Swedish
+
+MacKinlay, English
+
+OBT, Norwegian
 
 \section{Data}
 \label{sec:data}
 
-\section{Experimental set-up}
+\subsection{The Norwegian Dependency Treebank}
+\paragraph{PoS Tag Set}
+\paragraph{Dependency Relations}
+
+\section{Experimental Setup}
 \label{sec:setup}
 
-\section{Tag-set optimization}
-\label{sec:setup}
+\paragraph{Tagger}
+TnT \cite{Bra:00}
+\paragraph{Parser}
+Mate \cite{Boh:10}
 
-\section{Optimized pipeline}
+\paragraph{Tag Set Mapping}
+map.
+
+\paragraph{Evaluation}
+eval.
+
+\paragraph{Baseline}
+drop the baseline.
+
+\paragraph{Tags \& Features}
+tags, but also features.
+
+\section{Tag Set Optimization}
+\label{sec:optimization}
+
+\section{Optimized Pipeline}
 \label{sec:pipeline}
 
-\section{Summary and future work}
+\section{Summary/Conclusion and Future Work}
 \label{sec:summary}
 
 % \section*{Acknowledgments}
 
-
-\bibliography{acl2016}
 \bibliographystyle{acl2016}
-
+\bibliography{references}
 % \appendix
 %\section{Supplemental Material}
 %\label{sec:supplemental}
-
 
 \end{document}
