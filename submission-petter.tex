@@ -21,6 +21,7 @@
 \usepackage{url}
 \usepackage{latexsym}
 \usepackage{booktabs}
+\usepackage{relsize}
 
 %\aclfinalcopy % Uncomment this line for the final submission
 %\def\aclpaperid{***} %  Enter the acl Paper ID here
@@ -92,42 +93,74 @@ Abstraction ensues.
 
 %\section{Credits}
 
-
 \section{Introduction}
 \label{sec:intro}
 
 \section{Previous/Related work}
 \label{sec:prev}
-Previous work related to our experiments with tag set modifications include
-investigating the effects of PoS tag sets on tagging of Swedish
-\cite{Meg:01,Meg:02,Meg:09} and English \cite{Mac:05}. The important difference
-is that they investigate the effects of PoS tags on tagging, while we assess
-its effects on a downstream application, namely syntactic parsing.
+The lack of previous efforts on extrinsic evaluation of the effects of PoS
+tag sets on downstream applications is considerable. We will, instead/however,
+consider(/noe annet, considerable...consider)  papers that evaluate the effects
+of PoS tag set granularity on PoS tagging.  This includes investigating the
+effects of PoS tag sets on tagging of Swedish \cite{Meg:01,Meg:02,Meg:09} and
+English \cite{Mac:05}. Increases in tagger accuracy does not readily translate
+to improved parsing.
+
+
 
 \section{Data}
 \label{sec:data}
 \subsection{The Norwegian Dependency Treebank}
 We used the newly developed Norwegian Dependency Treebank (NDT)
 \cite{Sol:Skj:Ovr:14}, which is the first publicly available treebank for
-Norwegian (for our experiments). It was developed at the National Library of
-Norway in collaboration with the University of Oslo, and contains manual
-syntactic and morphological annotation. The treebank contains 311 000 tokens
-of Bokmål and 303 000 tokens of Nynorsk, the morphological annotation of which
-follows that of the Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00,Sol:13}, which in
-turn is largely based on the work of \newcite{Faa:Lie:Van:97}. The annotated
-texts are mostly newspaper text, but also include government reports,
-parliament transcripts and excerpts from blogs. The annotation process of the
-treebank was supported by the Oslo-Bergen Tagger and then manually corrected by
-annotators.
+Norwegian. It was developed at the National Library of Norway in collaboration
+with the University of Oslo, and contains manual syntactic and morphological
+annotation. The treebank contains 311 000 tokens of Bokmål and 303 000 tokens
+of Nynorsk.  The annotated texts are mostly newspaper text, but also include
+government reports, parliament transcripts and excerpts from blogs. The
+annotation process of the treebank was supported by the Oslo-Bergen Tagger and
+then manually corrected by annotators.
 
 Noe om OBT? hmmm
 
-\paragraph{PoS Tag Set}
-The tag set consists of 12 morphosyntactic PoS tags, with 7 additional tags for
-punctuation and symbols. The tag set is thus rather coarse-grained, with broad
-categories such as \texttt{subst} (noun) and \texttt{verb} (verb).
+Linguistic motivation, insight, utility...
 
-\paragraph{Dependency Relations}
+\paragraph{Morphological Annotation}
+The morphological annotation follows that of the Oslo-Bergen Tagger
+\cite{Hag:Joh:Nok:00,Sol:13}, which in turn is largely based on the work of
+\newcite{Faa:Lie:Van:97}. The tag set of NDT is based on the tag set of the
+Oslo-Bergen Tagger. The PoS tags are complemented by a set of available
+morphological features, such as definiteness, number and tense. These features
+are used in our tag set modifications, where the coarse PoS tag of relevant
+tokens are concatenated with one or more of these features.  This allows us to
+include more linguistic information in the tags. The tag set consists of 12
+morphosyntactic PoS tags, with 7 additional tags for punctuation and symbols.
+The tag set is thus rather coarse-grained, with broad categories such as
+\texttt{subst} (noun) and \texttt{verb} (verb).
+
+\paragraph{Syntactic Annotation} The syntactic annotation choices in NDT are
+largely based on the Norwegian Reference Grammar \cite{Faa:Lie:Van:97}. The
+annotation choices are outlined in Table \ref{ndtannotation}, taken from
+\newcite{Sol:Skj:Ovr:14}, providing overview of the analyses of syntactic
+constructions that often distinguish dependency treebanks, such as coordination
+and the treatment of auxiliary and main verbs.
+
+\begin{table} \centering
+    %\smaller[0.5]
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Head} & \textbf{Dependent} \\
+        \midrule
+        Preposition & Prepositional complement \\
+        Finite verb & Complementizer \\
+        First conjunct & Subsequent conjuncts \\
+        Finite auxiliary & Lexical/main verb \\
+        Noun & Determiner \\
+        \bottomrule
+    \end{tabular}
+    \caption{Annotation choices in NDT.}
+    \label{ndtannotation}
+\end{table}
 
 \section{Experimental Setup}
 \label{sec:setup}
@@ -221,36 +254,93 @@ linguistic utility, in order to see how the features might interact.
 
 %\begin{table}
     %\centering
-    %%\smaller[0.5]
-    %\begin{tabular}{@{}ll@{}}
+    %\smaller[0.5]
+    %\begin{tabular}{@{}lllll@{}}
         %\toprule
-        %\textbf{Tag} & \textbf{Description} \\
+        %\textbf{Tag Set} & \textbf{MFT} & \textbf{Accuracy} &
+        %\textbf{LAS} & \textbf{UAS} \\
         %\midrule
-        %\texttt{adj|komp} & Comparative adjective \\
-        %\texttt{adj|pos} & Positive adjective \\
-        %\texttt{adj|sup} & Superlative adjective \\
-        %\texttt{det|be} & Definite determiner \\
-        %\texttt{det|ub} & Indefinite determiner \\
-        %\texttt{pron|pers} & Personal pronoun \\
-        %\texttt{pron|pers|akk} & Personal pronoun, accusative \\
-        %\texttt{pron|pers|nom} & Personal pronoun, nominative \\
-        %\texttt{pron|refl} & Reflexive pronoun \\
-        %\texttt{pron|res} & Reciprocal pronoun \\
-        %\texttt{pron|sp} & Interrogative pronoun \\
-        %\texttt{subst|appell} & Common noun \\
-        %\texttt{subst|appell|be} & Common noun, definite \\
-        %\texttt{subst|appell|be|gen} & Common noun, definite, genitive \\
-        %\texttt{subst|appell|ub} & Common noun, indefinite \\
-        %\texttt{subst|appell|ub|gen} & Common noun, indefinite, genitive \\
-        %\texttt{subst|prop} & Proper noun \\
-        %\texttt{subst|prop|gen} & Proper noun, genitive \\
-        %\texttt{verb|fin} & Finite verb \\
-        %\texttt{verb|infin} & Nonfinite verb \\
+        %Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        %Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
         %\bottomrule
     %\end{tabular}
-    %\caption{The optimized tag set.}
-    %\label{optimizedtagset}
+    %\caption{Evaluation of tagging and parsing the development data with the two
+        %initial tag sets.}
+    %\label{inittagseteval}
 %\end{table}
+
+\begin{table*}
+    \centering
+    \smaller[0.5]
+    \begin{tabular}{@{}llllll@{}}
+        \toprule
+        \textbf{Category} & \textbf{Feature(s)} & \textbf{MFT} &
+        \textbf{Accuracy} & \textbf{LAS} & \textbf{UAS} \\
+        \midrule
+        \emph{Baseline} & --- & 94.14\% & 97.47\% & 87.01\% & 90.19\% \\
+        Noun & Type, case \& definiteness & 89.61\% & 97.05\% & 88.81\% &
+        91.73\% \\
+        Verb & Finiteness & 93.72\% & 97.35\% & 87.30\% & 90.43\% \\
+        Adjective & Degree & 94.13\% & 97.41\% & 87.29\% & 90.44\% \\
+        Determiner & Definiteness & 94.13\% & 97.49\% & 87.30\% & 90.42\% \\
+        Pronoun & Type \& case & 94.12\% & 97.51\% & 87.30\% & 90.41\% \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of tagging and parsing with the most successful tag set
+        modification for each category.}
+    \label{respectiveresults}
+\end{table*}
+
+\begin{table}
+    \centering
+    \smaller[2]
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \textbf{Tag} & \textbf{Description} \\
+        \midrule
+        \texttt{adj|komp} & Comparative adjective \\
+        \texttt{adj|pos} & Positive adjective \\
+        \texttt{adj|sup} & Superlative adjective \\
+        \texttt{det|be} & Definite determiner \\
+        \texttt{det|ub} & Indefinite determiner \\
+        \texttt{pron|pers} & Personal pronoun \\
+        \texttt{pron|pers|akk} & Personal pronoun, accusative \\
+        \texttt{pron|pers|nom} & Personal pronoun, nominative \\
+        \texttt{pron|refl} & Reflexive pronoun \\
+        \texttt{pron|res} & Reciprocal pronoun \\
+        \texttt{pron|sp} & Interrogative pronoun \\
+        \texttt{subst|appell} & Common noun \\
+        \texttt{subst|appell|be} & Common noun, definite \\
+        \texttt{subst|appell|be|gen} & Common noun, definite, genitive \\
+        \texttt{subst|appell|ub} & Common noun, indefinite \\
+        \texttt{subst|appell|ub|gen} & Common noun, indefinite, genitive \\
+        \texttt{subst|prop} & Proper noun \\
+        \texttt{subst|prop|gen} & Proper noun, genitive \\
+        \texttt{verb|fin} & Finite verb \\
+        \texttt{verb|infin} & Nonfinite verb \\
+        \bottomrule
+    \end{tabular}
+    \caption{The optimized tag set.}
+    \label{optimizedtagset}
+\end{table}
+
+\begin{table}
+    \centering
+    \smaller[0.5]
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        \textbf{Tag set} & \textbf{MFT} & \textbf{Accuracy} &
+        \textbf{LAS} & \textbf{UAS} \\
+        \midrule
+        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        Full & 85.12\% & 93.46\% & 87.13\% & 90.32\% \\
+        Optimized & 89.20\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of tagging and parsing with the optimized tag set, compared to
+        the initial tag sets.}
+    \label{finalresults}
+\end{table}
 
 \section{Optimized Pipeline}
 \label{sec:pipeline}
