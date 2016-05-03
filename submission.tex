@@ -157,8 +157,8 @@ PoS tag sets on tagging of Swedish \cite{Meg:01,Meg:02} and English
 %improved parsing.
 
 \cite{Meg:01,Meg:02} trained and evaluated a range of PoS taggers on the
-Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a Swedish version
-of PAROLE tags, with the tag set totaling 139 tags. Furthermore, they
+Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
+on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, they
 investigated the effects of tag set size on tagging by mapping the original tag
 set into smaller subsets designed for parsing. They argue that a tag set with
 complete morphological tags may not be necessary for all NLP applications, for
@@ -167,20 +167,20 @@ tags yields the lowest tagger error rate. However, for some of the taggers,
 augmenting the tag set with more linguistically informative tags may actually
 lead to a drop in error rate. They argue that this shows that the size of the
 tag set as well as the type of information in the tags are crucial factors for
-tagger performance. However/unfortunately, they do not report results of parsing
-with the various PoS tag sets.
+tagger performance. However/unfortunately, they do not report results of
+parsing with the various PoS tag sets.
 
 Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
 performance in English, specifically the Wall Street Journal portion of Penn
 Treebank \cite{Mar:San:Mar:93}. They mapped the original tag set of Penn
 Treebank to more fine-grained tag sets using linguistic insight to investigate
-whether the additional linguistic information included in the finer-grained
-tags could assist the tagger. Experimenting with both lexically and
-syntactically conditioned modifications such as distinguishing between count
-nouns and noncount nouns as well as between transitive and intransitive verbs,
-they found that more fine-grained tag sets rarely led to improvements in tagger
-accuracy; the most successful modification yielded an improvement in tagger
-accuracy of 0.05 percentage points.
+whether additional linguistic information included in finer-grained tags could
+assist the tagger. Experimenting with both lexically and syntactically
+conditioned modifications such as distinguishing between count nouns and
+noncount nouns and between transitive and intransitive verbs, they found that
+more fine-grained tag sets rarely led to improvements in tagger accuracy; the
+most successful modification yielded an improvement in tagger accuracy of 0.05
+percentage points.
 
 Transition/overgang her ...
 
@@ -188,14 +188,15 @@ Transition/overgang her ...
 \label{sec:data}
 \subsection{The Norwegian Dependency Treebank}
 We used the newly developed Norwegian Dependency Treebank (NDT)
-\cite{Sol:Skj:Ovr:14}, which is the first publicly available treebank for
-Norwegian. It was developed at the National Library of Norway in collaboration
-with the University of Oslo, and contains manual syntactic and morphological
-annotation. The treebank contains 311 000 tokens of Bokmål and 303 000 tokens
-of Nynorsk.  The annotated texts are mostly newspaper text, but also include
-government reports, parliament transcripts and excerpts from blogs. The
-annotation process of the treebank was supported by the Oslo-Bergen Tagger
-\cite{Hag:Joh:Nok:00} and then manually corrected by annotators.
+\cite{Sol:Skj:Ovr:14},  the first publicly available treebank for Norwegian. It
+was developed at the National Library of Norway in collaboration with the
+University of Oslo, and contains manual syntactic and morphological annotation.
+The treebank contains data from both varieties of Norwegian; 311 000 tokens of
+Bokmål and 303 000 tokens of Nynorsk. The annotated texts are mostly newspaper
+text, but also include government reports, parliament transcripts and excerpts
+from blogs. The annotation process of the treebank was supported by the
+Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00} and then manually corrected by
+annotators.
 
 %Linguistic motivation, insight, utility...
 
@@ -209,8 +210,8 @@ rather coarse-grained, with broad categories such as \texttt{subst} (noun) and
 morphological features, providing information about morphological properties such as
 definiteness, number and tense. These features are used in our tag set
 modifications, where the coarse PoS tag of relevant tokens are concatenated
-with one or more of these features.  This allows us to include more linguistic
-information in the tags.
+with one or more of these features to include more linguistic information in
+the tags.
 
 \begin{table}
     \centering
@@ -240,12 +241,12 @@ information in the tags.
 \paragraph{Syntactic Annotation}
 The syntactic annotation choices in NDT are largely based on the Norwegian
 Reference Grammar \cite{Faa:Lie:Van:97}. The annotation choices are outlined in
-Table \ref{ndtannotation}, taken from \newcite{Sol:Skj:Ovr:14}, providing
-overview of the analyses of syntactic constructions that often distinguish
-dependency treebanks, such as coordination and the treatment of auxiliary and
-main verbs. The set of dependency relations contains 29 dependency relations,
-including \textsc{adv} (adverbial), \textsc{subj} (subject) and \textsc{koord}
-(coordination).
+Table \ref{ndtannotation}, taken from/courtesy of \newcite{Sol:Skj:Ovr:14},
+providing overview of the analyses of syntactic constructions that often
+distinguish dependency treebanks, such as coordination and the treatment of
+auxiliary and main verbs. The set of dependency relations comprises 29
+dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
+(subject) and \textsc{koord} (coordination).
 
 \begin{table} \centering
     %\smaller[0.5]
@@ -273,39 +274,42 @@ established, which is presented in the following.
 \paragraph{Data Set Split}
 As there was no standardized data set split of NDT due to its very recent
 development, we needed to establish a data set split
-(training/development/test) in preparation to our experiments. Our data set
-split of the treebank follows the standard 80-10-10 (training/development/test)
-split and will be distributed with the treebank and proposed as the new
-standard(?). In creating the data set split, care has been taken to preserve
-contiguous texts in the various data sets while keeping the split balanced in
-terms of genre (and source). Our proposed data set split was used in the
-Norwegian contribution to the Universal Dependencies project \cite{Ovr:Hoh:16}.
-The split will be made available at a companion website.
+(training/development/test). Our data set split of the treebank follows the
+standard 80-10-10 (training/development/test) split and will be distributed
+with the treebank and proposed as the new standard(?). In creating the data set
+split, care has been taken to preserve contiguous texts in the various data
+sets while keeping the split balanced in terms of genre (and source). Our
+proposed data set split was used in the Norwegian contribution to the Universal
+Dependencies project \cite{Ovr:Hoh:16}.  The split will be made available at a
+companion website.
 
 \paragraph{Tagger}
-For our experiments with tag set modifications, we wanted a PoS tagger that is
-both fast and accurate. There is often a trade-off between the two, as the best
-taggers tend to suffer in terms of speed due to their complexity. However, a
-tagger that achieves both close to state-of-the-art accuracy as well as very
-high speed is TnT \cite{Bra:00}. The fact that TnT was used for evaluating the
-universal tag set \cite{Pet:Das:McD:12}, served as another good indication of
-TnT being appropriate for our task. The sum of these factors led to TnT being
-the tagger of choice for our experiments.
+For our experiments with tag set modifications, we wanted a PoS tagger both
+reasonably fast and accurate. There is often a trade-off between the two
+factors/considerations, as the most accurate taggers tend to suffer in terms of
+speed due to their complexity. However, a tagger that achieves both close to
+state-of-the-art accuracy as well as very high speed is TnT \cite{Bra:00}. The
+fact that TnT was used for evaluating the universal tag set
+\cite{Pet:Das:McD:12}, served as another good indication of TnT being
+appropriate for our task. The sum of these factors led to TnT being the tagger
+of choice for our experiments.
 
 \paragraph{Parser}
 In choosing a syntactic parser for our experiments, we considered previous work
 on dependency parsing of Norwegian, specifically that of \cite{Sol:Skj:Ovr:14}.
 They found the Mate parser \cite{Boh:10} to be the most successful parser for
 the parsing of NDT. Furthermore, recent dependency parser comparisons
-\cite{Cho:Tet:Ste:15} showed that Mate performed very well on parsing of the
-English portion of the OntoNotes 5 corpus, beating a range of contemporary
-state-of-the-art parsers.
+\cite{Cho:Tet:Ste:15} showed that Mate performed very well on parsing of
+English, beating a range of contemporary state-of-the-art parsers.
 
 \paragraph{Tag Set Mapping}
-In order to alter the tag set of NDT, we created a mapping for carrying out the
-tag set modifications. We created a mapping for carrying out the tag set
-modifications that maps the relevant existing tags to new, more fine-grained
-tags including more relevant morphological features for the applicable tokens.
+In order to carrying out the tag set modifications, we created a mapping that
+maps the relevant existing tags to new, more fine-grained tags including more
+relevant morphological features for the applicable tokens. A given tag set
+modification involves specifying a tag and one or more features to be
+concatenated with said tag for all applicable tokens, i.e., tokens that are
+assigned said tag and contains the set of features in its morphological
+features.
 
 \paragraph{Baseline}
 It is common practice to compare the performance of PoS taggers to a
@@ -334,17 +338,25 @@ automatically assigned tags. In order to settle on a configuration, we
 conducted experiments with gold standard and automatically assigned tags to see
 how they differ with respect to performance. The results of our experiments
 reveal that the combination of training and testing on automatic tags is
-superior to training on gold standard tags and testing on automatic tags,
-surprisingly. Consequently, the parser was both trained and tested on
-automatically assigned tags in our experiments.
+superior to training on gold standard tags and testing on automatic tags.
+Consequently, the parser was both trained and tested on automatically assigned
+tags in our experiments.
 
-Note that it is absolutely crucial that the morphological features in the
-treebank are removed when using automatic tags, as they are still gold
-standard. For instance, if a verb token is erroneously tagged as a noun, we
-could potentially have a noun token with verbal features such as tense, which
-markedly obfuscates the training and parsing. Another important factor is that
-we want to isolate the effect of PoS tags, necessitating the exclusion of
-morphological features.
+We removed any morphological features in order to simulate a realistic setting.
+Moreover, it is crucial that we remove these features when working with
+automatically assigned tags, as the features is still gold standard.  For
+instance, if a verb token is erroneously tagged as a noun, we could potentially
+have a noun token with verbal features such as tense, which markedly obfuscates
+the training and parsing. Another important aspect is that we want to isolate
+the effect of PoS tags, necessitating the exclusion of morphological features.
+
+%Note that it is absolutely crucial that the morphological features in the
+%treebank are removed when using automatic tags, as they are still gold
+%standard. For instance, if a verb token is erroneously tagged as a noun, we
+%could potentially have a noun token with verbal features such as tense, which
+%markedly obfuscates the training and parsing. Another important factor is that
+%we want to isolate the effect of PoS tags, necessitating the exclusion of
+%morphological features.
 
 \section{Tag Set Optimization/Experiments}
 \label{sec:optimization}
