@@ -105,8 +105,10 @@ effects of PoS tag sets on downstream applications. We will consider(/noe
 annet, considerable...consider) papers that evaluate the effects of PoS tag
 set granularity on PoS tagging. This includes investigation of the effects of
 PoS tag sets on tagging of Swedish \cite{Meg:01,Meg:02} and English
-\cite{Mac:05}. Increases in tagger accuracy does not readily translate to
-improved parsing.
+\cite{Mac:05}.
+
+%Increases in tagger accuracy does not readily translate to
+%improved parsing.
 
 \cite{Meg:01,Meg:02} trained and evaluated a range of PoS taggers on the
 Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a Swedish version
@@ -122,18 +124,19 @@ tag set as well as the type of information in the tags are crucial factors for
 tagger performance. However/unfortunately, they do not report results of parsing
 with the various PoS tag sets.
 
-Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on PoS
-tagger performance in English, specifically the Penn Treebank
-\cite{Mar:San:Mar:93}. They mapped the original tag set of Penn Treebank to
-more fine-grained tag sets "in terms of" linguistic utility. the additional
-linguistic information included in the tags may assist the tagger.
-utility/motivation to investigate whether linguistically motivated tag set
-modifications can improve the tagger accuracy while increasing the linguistic
-information in the tag set. Experimenting with both morphologically and
-syntactically motivated modifications, they found that more fine-grained
-tag sets rarely led to improvements in tagger accuracy,
-where the most successful modification yielded an improvement in tagger
+Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
+performance in English, specifically the Wall Street Journal portion of Penn
+Treebank \cite{Mar:San:Mar:93}. They mapped the original tag set of Penn
+Treebank to more fine-grained tag sets using linguistic insight to investigate
+whether the additional linguistic information included in the finer-grained
+tags could assist the tagger. Experimenting with both lexically and
+syntactically conditioned modifications such as distinguishing between count
+nouns and noncount nouns as well as between transitive and intransitive verbs,
+they found that more fine-grained tag sets rarely led to improvements in tagger
+accuracy; the most successful modification yielded an improvement in tagger
 accuracy of 0.05 percentage points.
+
+Transition/overgang her ...
 
 \section{Data}
 \label{sec:data}
@@ -165,7 +168,7 @@ information in the tags.
 
 \begin{table}
     \centering
-    \smaller[0.5]
+    %\smaller[0.5]
     \begin{tabular}{@{}ll@{}}
         \toprule
         \textbf{Tag} & \textbf{Description} \\
@@ -184,7 +187,7 @@ information in the tags.
         \texttt{verb} & Verb \\
         \bottomrule
     \end{tabular}
-    \caption{Overview of the tag set of NDT.}
+    \caption{Overview of the PoS tag set of NDT.}
     \label{ndttagest}
 \end{table}
 
