@@ -24,7 +24,7 @@
 \usepackage{latexsym}
 \usepackage{booktabs}
 \usepackage{relsize}
-
+\usepackage{multirow}
 %\aclfinalcopy % Uncomment this line for the final submission
 %\def\aclpaperid{***} %  Enter the acl Paper ID here
 
@@ -97,54 +97,51 @@ Abstraction ensues.
 
 \section{Introduction}
 \label{sec:intro}
-Part-of-speech (PoS) tagging is an important preprocessing step for many NLP tasks,
-such as dependency parsing \cite{Niv:Hal:Kub:07,Haj:Cia:Joh:09}, named
+Part-of-speech (PoS) tagging is an important preprocessing step for many NLP
+tasks, such as dependency parsing \cite{Niv:Hal:Kub:07,Haj:Cia:Joh:09}, named
 entity recognition \cite{Tjo:DeM:03} and sentiment analysis
-\cite{Wil:Wie:Hof:09}. Whereas much effort has gone into the
-development of PoS-taggers -- to the effect that this task is often
-considered more or less a solved task -- considerably less effort has
-been devoted to the empirical evaluation of the PoS tag sets
-themselves. Error analysis of PoS-taggers indicate that, whereas
-tagging improvement through means of learning algorithm or feature
-engineering seems to have reached something of a plateau, linguistic
-and empirical assessment of the distinctions made in the PoS tag set may be a venue
-worth investigating further \cite{Man:11}.  Clearly, the utility of a
-PoS tag set is tightly coupled with the the downstream task for which
-it is performed. Even so, PoS tag sets are usually employed in a ``one
-size fits all'' fashion, regardless of the requirements posed by the
-task which makes use of this information.
+\cite{Wil:Wie:Hof:09}. Whereas much effort has gone into the development of
+PoS-taggers -- to the effect that this task is often considered more or less a
+solved task -- considerably less effort has been devoted to the empirical
+evaluation of the PoS tag sets themselves. Error analysis of PoS taggers
+indicate that, whereas tagging improvement through means of learning algorithm
+or feature engineering seems to have reached something of a plateau, linguistic
+and empirical assessment of the distinctions made in the PoS tag sets may be a
+venue worth investigating further \cite{Man:11}. Clearly, the utility of a PoS
+tag set is tightly coupled with the downstream task for which it is performed.
+Even so, PoS tag sets are usually employed in a ``one size fits all'' fashion,
+regardless of the requirements posed by the task which makes use of this
+information.
 
-It is well known that syntactic parsing often benefits from quite
-fine-grained morphological distinctions
-\cite{Zha:Niv:11,See:Kuh:13}. Morphology interacts with syntax though
-phenomena such as agreement and case marking, and incorporating
-information on morphological properties of words can therefore often
-improved parsing performance. However, in a realistic setting where
-the aim is to automatically parse raw text, the generation of
-morphological information will often require a separate step of
-morphological analysis that can be quite costly.
+It is well known that syntactic parsing often benefits from quite fine-grained
+morphological distinctions \cite{Zha:Niv:11,See:Kuh:13}. Morphology interacts
+with syntax though phenomena such as agreement and case marking, and
+incorporating information on morphological properties of words can therefore
+often improved parsing performance. However, in a realistic setting where the
+aim is to automatically parse raw text, the generation of morphological
+information will often require a separate step of morphological analysis that
+can be quite costly.
 
-In this paper, we optimize a PoS tag set for the task of
-data-driven dependency parsing of Norwegian. We report on a set of experiments where various morphological
-distinctions are introduced to the PoS annotations and evaluated both intrinsically, i.e. in
-terms of PoS-tagging accuracy, and extrinsically, in terms of parsing
-accuracy.  Our results show that the introduction of morphological
-distinctions not present in the original tag set, whilst compromising
-tagger accuracy, actually leads to significantly improved parsing
+In this paper, we optimize a PoS tag set for the task of data-driven dependency
+parsing of Norwegian. We report on a set of experiments where various
+morphological distinctions are introduced to the PoS annotations and evaluated
+both intrinsically, i.e., in terms of PoS tagging accuracy, and extrinsically,
+in terms of parsing accuracy. Our results show that the introduction of
+morphological distinctions not present in the original tag set, whilst
+compromising tagger accuracy, actually leads to significantly improved parsing
 accuracy. This optimization allows us to bypass the additional step of
-morphological analysis, framing the whole preprocessing problem as a
-simple tagging task.
+morphological analysis, framing the whole preprocessing problem as a simple
+tagging task.
 
-The article is structured as follows. We start out by reviewing
-previous work on tag set evaluation in Section \ref{sec:prev}, while
-Section \ref{sec:data} details the treebank that provides the initial gold
-annotations used for our experiments. Section \ref{sec:setup} describes the experimental
-setup used in our work and Section \ref{sec:optimization} goes on to
-provide the results from our tag set optimization. Finally,
-Section \ref{sec:summary} summarizes our main findings and discusses
-some avenues for future work.
+The article is structured as follows. We start out by reviewing previous work
+on tag set evaluation in Section \ref{sec:prev}, while Section \ref{sec:data}
+details the treebank that provides the initial gold annotations used for our
+experiments. Section \ref{sec:setup} describes the experimental setup used in
+our work and Section \ref{sec:optimization} goes on to provide the results from
+our tag set optimization. Finally, Section \ref{sec:summary} summarizes our
+main findings and discusses some avenues for future work.
 
-\section{Previous/Related work}
+\section{Previous Work}
 \label{sec:prev}
 There has been little previous work dedicated specifically to
 extrinsic evaluation of the effects of PoS tag sets on downstream
@@ -156,20 +153,19 @@ investigation of the effects of PoS tag sets on tagging of Swedish
 %Increases in tagger accuracy does not readily translate to
 %improved parsing.
 
-\newcite{Meg:01} and \newcite{Meg:02} trained and evaluated a range of PoS
-taggers on the Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a
-tag set based on a Swedish version of PAROLE tags totaling 139 tags.
-Furthermore, they investigated the effects of tag set size on tagging by
-mapping the original tag set into smaller subsets designed for parsing. They
-argue that a tag set with complete morphological tags may not be necessary for
-all NLP applications, for instance syntactic parsing. They found that the
-smallest tag set comprising 26 tags yields the lowest tagger error rate.
-However, for some of the taggers, augmenting the tag set with more
-linguistically informative tags may actually lead to a drop in error rate. They
-argue that this shows that the size of the tag set as well as the type of
-information in the tags are crucial factors for tagger performance.
-However/unfortunately, they do not report results of parsing with the various
-PoS tag sets.
+\newcite{Meg:02} trained and evaluated a range of PoS taggers on the
+Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
+on a Swedish version of PAROLE tags totaling 139 tags.  Furthermore, they
+investigated the effects of tag set size on tagging by mapping the original tag
+set into smaller subsets designed for parsing. They argue that a tag set with
+complete morphological tags may not be necessary for all NLP applications, for
+instance syntactic parsing. They found that the smallest tag set comprising 26
+tags yields the lowest tagger error rate.  However, for some of the taggers,
+augmenting the tag set with more linguistically informative tags may actually
+lead to a drop in error rate. They argue that this shows that the size of the
+tag set as well as the type of information in the tags are crucial factors for
+tagger performance.  However/unfortunately, they do not report results of
+parsing with the various PoS tag sets.
 
 Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
 performance in English, specifically the Wall Street Journal portion of Penn
@@ -191,7 +187,7 @@ We used the newly developed Norwegian Dependency Treebank (NDT)
 \cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
 Norwegian. It was developed at the National Library of Norway in
 collaboration with the University of Oslo, and contains manual
-syntactic and morphological annotation.  The treebank contains data
+syntactic and morphological annotation. The treebank contains data
 from both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
 tokens of Nynorsk. We will in the following only be using the Bokmål
 portion of the treebank. The annotated texts are mostly newspaper
@@ -273,6 +269,15 @@ In preparation to conducting our experiments with linguistically motivated tag
 set modifications, a concrete setup for the experiments needed to be
 established, which is presented in the following.
 
+Our approach is somewhat semi-automatic in that we use a "mix" of both manual
+annotation in our experiments. Our initial tags are gold standard, and using
+linguistic insight coupled with computational considerations, we introduce new
+features or feature combination to the tag set. These tags are run through a
+pipeline with automatically assigned tags in both training and testing, where
+the most promising modifications are used "further". Hence, the tag set
+modifications are not deterministic, nor do we try all possible combination; we
+only experiment with linguistically motivated distinctions.
+
 \paragraph{Data Set Split}
 As there was no standardized data set split of NDT due to its very recent
 development, we needed to establish a data set split
@@ -330,10 +335,30 @@ assigned PoS tags. For the training of the parser, however, we have two
 options: using either gold standard or automatically assigned tags. In order to
 settle on a configuration, we conducted experiments with gold standard and
 automatically assigned tags to see how they differ with respect to performance.
-The results of our experiments reveal that the combination of training and
-testing on automatic tags is superior to training on gold standard tags and
-testing on automatic tags.  Consequently, the parser was both trained and
-tested on automatically assigned tags in our experiments.
+The results of our experiments, shown in Table \ref{tagconfigeval}, reveal that
+the combination of training and testing on automatic tags is clearly superior
+to training on gold standard tags and testing on automatic tags. Consequently,
+the parser was both trained and tested on automatically assigned tags in our
+experiments.
+
+\begin{table}
+    \centering
+    \smaller[0.5]
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Training} & \textbf{Testing} & \textbf{LAS} & \textbf{UAS} \\
+        \midrule
+        Gold & Gold & 90.15\% & 92.51\% \\
+        Gold & Auto & 85.68\% & 88.98\% \\
+        Auto & Auto & 87.01\% & 90.19\% \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of parsing with Mate using the various tag configurations,
+        either using gold standard tags or automatically assigned from TnT.
+        \emph{Gold} denotes gold standard tags, \emph{Auto} denotes
+        automatically assigned tags from TnT.}
+    \label{tagconfigeval}
+\end{table}
 
 We removed any morphological features in order to simulate a realistic setting.
 Moreover, it is crucial that we remove these features when working with
@@ -343,12 +368,12 @@ have a noun token with verbal features such as tense, which markedly obfuscates
 the training and parsing. Another important aspect is that we want to isolate
 the effect of PoS tags, necessitating the exclusion of morphological features.
 
-In the following, we report on a set of experiments which evaluate
-increasingly fine-grained PoS tag sets. The PoS tag sets are motivated
-by morphosyntactic properties of Norwegian and are evaluated both in
-terms of tagger and parser accuracy.
+In the following, we report on a set of experiments which evaluate increasingly
+fine-grained PoS tag sets. The PoS tag sets are motivated by morphosyntactic
+properties of Norwegian and are evaluated in terms of both tagger and parser
+accuracy.
 
-\section{Tag Set Optimization/Experiments}
+\section{Tag Set Optimization}
 \label{sec:optimization}
 By introducing more fine-grained linguistically motivated distinctions in a tag
 set, we increase the linguistic information represented in the tags, which may
@@ -358,27 +383,29 @@ fine-grained tag set will most likely lead to a drop in tagger accuracy/tagging
 quality due to the increase in complexity. The best tagging does not
 necessarily lead to the best parse, and it is therefore interesting to
 investigate how the tag set modifications may affect the interplay between
-tagging and parsing. As we want to investigate how we can improve the
+tagging and parsing.
+
+As we want to investigate how we can improve the
 linguistic quality of a tag set, we will not introduce tag set modifications
 which are not linguistically motivated. We will only consider distinctions we
 deem linguistically sensible, even if we expect them to impair the
 computational tractability; investigating the interplay between these two
 considerations is ultimately our goal.
 
-\subsection{Initial/Baseline Experiments}
+\subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
 its set of morphological features in order to map the original tag set to a
 new, more fine-grained tag set (hereafter referred to as the \emph{full} tag
-set). The result of this was a total of 368 tags, which is clearly very
-fine-grained. The two initial tag sets, i.e., the original tag set comprising
-19 tags and the full tag set comprising 368 tags, thus represent two extremes
-in terms of granularity.  To evaluate these tag sets and investigate how the tag
-set granularity would affect the performance of tagging and parsing, we trained
-and evaluated TnT and Mate on the training and development data, respectively,
-on the two tag sets. In Table \ref{inittagseteval}, we report the results of
-these experiments. We see that the tagger accuracy drastically drops when going
-from the original to the full tag set. TnT reports an accuracy of 97.47\% on
-the original tag set, which is reduced to 93.48\% for the full tag set. These
+set). This resulted in a total of 368 tags, which is clearly very fine-grained.
+The two initial tag sets, i.e., the original tag set comprising 19 tags and the
+full tag set comprising 368 tags, thus represent two extremes in terms of
+granularity.  To evaluate these tag sets and investigate how the tag set
+granularity would affect the performance of tagging and parsing, we trained and
+evaluated TnT and Mate on the training and development data, respectively, on
+the two tag sets. In Table \ref{inittagseteval}, we report the results of these
+experiments. We see that the tagger accuracy drastically drops when going from
+the original to the full tag set. TnT reports an accuracy of 97.47\% on the
+original tag set, which is reduced to 93.48\% for the full tag set. These
 results confirm our hypothesis that the very high linguistic quality in the
 full, fine-grained tag set comes at the expense of drops in tagger performance.
 However, the additional linguistic information provided by the full tag set
@@ -426,7 +453,10 @@ nouns, while pronouns can be reflexive, reciprocal, personal or interrogative.
 
 \subsection{Experiments}
 "Nearly" all tag set modifications leads to a drop in tagger accuracy, as
-expected. Few exceptions...
+expected. Few exceptions... We observed increases in parser accuracy scores
+with linguistically motivated tag set modifications for all PoS tags we
+experimented with, the most improved being noun with an increase in LAS from
+the original tag set by 1.80 percentage points.
 
 \paragraph{Nouns}
 In Norwegian, nouns are assigned gender (feminine, masculine, neuter),
@@ -568,30 +598,99 @@ Like adjectives, determiners in Norwegian agree with the noun they modify in
 terms of gender, number and definiteness. Possessive pronouns are
 treated/analyzed as determiners in NDT.
 
-\begin{table}
-    \centering
-    \smaller[0.5]
-    \begin{tabular}{@{}lllll@{}}
-        \toprule
-        \textbf{Feature} & \textbf{MFT} & \textbf{Accuracy} &
-        \textbf{LAS} & \textbf{UAS} \\
-        \midrule
-        --- & \textbf{94.14\%} & 97.47\% & 87.01\% & 90.19\% \\
-        Definiteness & 94.13\% & 97.49\% & \textbf{87.30\%} &
-        \textbf{90.42\%} \\
-        Gender & 93.86\% & 97.28\% & 87.09\% & 90.31\% \\
-        Number & 94.06\% & 97.49\% & 87.04\% & 90.18\% \\
-        Type & 94.14\% & \textbf{97.61\%} & 87.00\% & 90.11\% \\
-        \bottomrule
-    \end{tabular}
-    \caption{Results of experiments with modified PoS tags for determiners.}
-    \label{detresults}
-\end{table}
+For a number of reasons, we do not report results from combinations of features
+for determiners, as the features could not be combined in any meaningful way.
+For instance, determiners in plural never have marked definiteness, hence this
+combination would only apply to determiners in singular and roughly correspond
+to the distinction on definiteness alone. Moreover, determiners in plural are
+not distinguished in terms of gender (thus ruling out the combination of number
+and gender), neither are definite determiners. Another aspect taken into
+consideration is that the most promising distinction, definiteness, applies to
+such a small number of tokens that more fine-grained distinctions would be
+overly sparse.
+
+The results from the experiments with determiners are shown in Table
+\ref{detresults}.  Introducing the type led to an increase in tagger accuracy
+by 0.14 percentage points to 97.61\%, while marginally impacting the parsing,
+with LAS of 87.00\%, 0.01 percentage points below the baseline, and UAS of
+90.11\%, 0.08 percentage points below the baseline.
+%The fact that the baseline
+%remains the same is especially worth noting, as increased tag set granularity
+%almost inevitably leads to a drop in the MFT baseline.
+The increase in tagger
+accuracy when introducing the distinction of type is noteworthy, as we expected
+the finer granularity to lead to a decrease in accuracy. This serves to
+indicate that more fine-grained distinctions for determiners, which is a quite
+disparate category in the treebank, may be quite useful for tagging. However,
+as it has negative impact on the syntactic parsing, we can conclude that the
+type of a determiner does not assist in generalizing syntactic patterns, as
+most determiners, regardless of type, appear in the same syntactic
+constructions (i.e., before a noun or noun phrase).
+
+Gender, on the other hand, improved the parsing, but complicated the tagging,
+as the various genders are often difficult to differentiate, especially so in
+the case of masculine and feminine, which share many of the same determiners.
+The number of a determiner, i.e., singular or plural, led to a small increase
+in tagger accuracy and LAS, while marginally lower UAS, 90.18\%, 0.01
+percentage points lower than that of the original tag set. Almost all
+determiners have number, and the introduction of this distinction led to small
+increases in tagger accuracy and LAS, but marginally lower UAS. The
+introduction of definiteness to the determiners led to the best parsing
+results, LAS of 87.30\% and UAS of 90.42\%, while also increasing the tagger
+accuracy slightly. The increase in LAS and UAS is rather interesting, as there
+are only 121 "determiner tokens" with marked definiteness in the development
+data. As this accounts for a very small number of tokens, coupled with the
+previously noted considerations, we did not consider further fine-grained
+modifications with definiteness. This goes to show that tokens with overt
+definiteness have noticeable impact on the syntactic parsing, and that
+distinguishing on definiteness is very beneficial.
+
+%\begin{table}
+    %\centering
+    %\smaller[0.5]
+    %\begin{tabular}{@{}lllll@{}}
+        %\toprule
+        %\textbf{Feature} & \textbf{MFT} & \textbf{Accuracy} &
+        %\textbf{LAS} & \textbf{UAS} \\
+        %\midrule
+        %--- & \textbf{94.14\%} & 97.47\% & 87.01\% & 90.19\% \\
+        %Definiteness & 94.13\% & 97.49\% & \textbf{87.30\%} &
+        %\textbf{90.42\%} \\
+        %Gender & 93.86\% & 97.28\% & 87.09\% & 90.31\% \\
+        %Number & 94.06\% & 97.49\% & 87.04\% & 90.18\% \\
+        %Type & 94.14\% & \textbf{97.61\%} & 87.00\% & 90.11\% \\
+        %\bottomrule
+    %\end{tabular}
+    %\caption{Results of experiments with modified PoS tags for determiners.}
+    %\label{detresults}
+%\end{table}
 
 \paragraph{Pronouns}
 Pronouns in Norwegian include personal, reciprocal, reflexive and
 interrogative. They can exhibit gender, number and person. Personal pronouns
 have case (accusative or nominative).
+
+The results in Table \ref{pronresults} show that number, person and type are
+the most informative features for parsing, with LAS of 87.21\%, 87.22\% and
+87.19\%, respectively. However, when combining number and person, we observe a
+drop by more than 0.2 percentage points, indicating that these features do not
+interact in any syntactically distinctive way. The most interesting observation
+is that all experiments exceed the baseline tagger accuracy, the most improved
+being the most fine-grained distinction, namely type, case and number combined,
+obtaining a tagger accuracy of 97.52\%. This shows that the introduction of
+more fine-grained distinctions for pronouns is beneficial and aids the PoS
+tagger in disambiguating ambiguous words. While case alone yields an LAS of
+87.08\%, we found that the combination of type and case, which is the most
+successful experiment in terms of parser performance, yields the second highest
+tagging accuracy of 97.51\%. The reason for this is that pronouns of different
+type and personal pronouns of different case exhibit quite different properties
+and appear in different constructions. Pronouns in nominative case (i.e.,
+subjects) primarily occur before the main verb, while pronouns in accusative
+case (i.e., objects) occur after the main verb, as Norwegian exhibits so-called
+V2 word order, requiring that the finite verb of a declarative clause appears
+in the second position, hence its name. The combination of type and number
+comes in close to the performance of type and case, with LAS of 87.27\% and UAS
+identical to that of type and case.
 
 %\begin{table}
     %\centering
@@ -619,6 +718,10 @@ have case (accusative or nominative).
     %\label{pronresults}
 %\end{table}
 
+\subsection{Optimized Tag Set}
+The most successful tag set modifications and their results are seen in Table
+\ref{respectiveresults}.
+
 \begin{table*}
     \centering
     \smaller[0.5]
@@ -640,6 +743,9 @@ have case (accusative or nominative).
         modification for each category.}
     \label{respectiveresults}
 \end{table*}
+
+An overview of the tags comprising the final, optimized tag set can be seen in
+Table \ref{optimizedtagset}.
 
 \begin{table}
     \centering
@@ -674,29 +780,51 @@ have case (accusative or nominative).
     \label{optimizedtagset}
 \end{table}
 
+Results from parsing with the optimized tag are shown in Table
+\ref{finalresults}, compared to the results obtained with the initial tag sets.
+
 \begin{table}
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}lllll@{}}
+    \begin{tabular}{@{}llllll@{}}
         \toprule
-        \textbf{Tag set} & \textbf{MFT} & \textbf{Accuracy} &
-        \textbf{LAS} & \textbf{UAS} \\
+        \textbf{Data Set} & \textbf{Tag Set} & \textbf{MFT} & \textbf{Accuracy}
+        & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
-        Optimized & 89.20\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        \multirow{2}{*}{Dev}
+        & Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        %Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
+        & Optimized & 89.20\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        \midrule
+        \multirow{2}{*}{Test}
+        & Original & 94.22\% & 97.38\% & 86.64\% & 90.07\% \\
+        %& Full & 84.27\% & 92.79\% & 87.03\% & 90.16\% \\
+        & Optimized & 88.08\% & 96.35\% & 88.55\% & 91.41\% \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
-        compared to the initial tag sets.}
+        compared to the initial tag sets. Trained and tested using
+        automatically assigned tags from TnT.}
     \label{finalresults}
 \end{table}
 
 %\section{Optimized Pipeline}
 %\label{sec:pipeline}
 
-\section{Summary/Conclusion and Future Work}
+\section{Summary and Future Work}
 \label{sec:summary}
+The improvements in parser performance with our optimized tag set indicate that
+a more fine-grained PoS tag set may assist syntactic parsers in recognizing and
+generalizing syntactic patterns, while potentially compromising the performance
+of PoS taggers.
+
+There are several aspects of this thesis that can be further explored in future
+work, including extrinsic evaluation of the effects of PoS tag sets on other
+downstream NLP applications besides parsing, such as sentiment analysis and
+named entity recognition. These applications often require tagged data, but are
+markedly different from syntactic parsing, hence the evaluation would involve
+investigating an entirely different aspect of the effects of tag set
+granularity.
 
 % \section*{Acknowledgments}
 
