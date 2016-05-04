@@ -104,15 +104,14 @@ entity recognition \cite{Tjo:DeM:03} and sentiment analysis
 development of PoS-taggers, to the effect that this task is often
 considered more or less a solved task, considerably less effort has
 been devoted to the empirical evaluation of the PoS tag sets
-themselves. Error analysis of PoS-taggers indicate that, whereas
-tagger improvement though means of learning algorithm or feature
-engineering seems to have reached something of a plateau, linguistic
-assessment of the distinctions made by the PoS tag set may be a venue
-worth investigating further \cite{Man:11}.  Clearly, the utility of a
-PoS tag set is tightly coupled with the the downstream task for which
-it is performed. Even so, PoS tag sets are usually employed in a ``one
-size fits all'' fashion, regardless of the requirements posed by the
-task which makes use of this information.
+themselves. Error analysis of PoS taggers indicate that, whereas tagger
+improvement though means of learning algorithm or feature engineering seems to
+have reached something of a plateau, linguistic assessment of the distinctions
+made by the PoS tag set may be a venue worth investigating further
+\cite{Man:11}. Clearly, the utility of a PoS tag set is tightly coupled with
+the downstream task for which it is performed. Even so, PoS tag sets are
+usually employed in a ``one size fits all'' fashion, regardless of the
+requirements posed by the task which makes use of this information.
 
 It is well known that syntactic parsing often benefits from quite
 fine-grained morphological distinctions
@@ -130,7 +129,7 @@ morphological distinctions not present in the original tag set, whilst
 compromising tagger accuracy, actually leads to significantly improved
 parsing accuracy.  In a set of experiments, various morphological
 distinctions are introduced and evaluated both intrinsically, i.e. in
-terms of PoS-tagging accuracy, and extrinsically, in terms of parsing
+terms of PoS tagging accuracy, and extrinsically, in terms of parsing
 accuracy.  Our results show that the introduction of morphological
 distinctions not present in the original tag set, whilst compromising
 tagger accuracy, actually leads to significantly improved parsing
@@ -138,14 +137,13 @@ accuracy. This optimization allows us to bypass the additional step of
 morphological analysis, framing the whole preprocessing problem as a
 simple tagging task.
 
-The article is structured as follows. We start out by reviewing
-previous work on tag set evaluation in Section \ref{sec:prev} and
-\ref{sec:data} provides an overview of the treebank used for
-experimentation. Section \ref{sec:setup} describes the experimental
-setup used in our work and Section \ref{sec:optimization} goes on to
-provide the results from our optimization experiments. Finally,
-Section \ref{sec:summary} summarizes our main findings and discusses
-some avenues for future work.
+The article is structured as follows. We start out by reviewing previous work
+on tag set evaluation in Section \ref{sec:prev} and Section \ref{sec:data}
+provides an overview of the treebank used for experimentation. Section
+\ref{sec:setup} describes the experimental setup used in our work and Section
+\ref{sec:optimization} goes on to provide the results from our optimization
+experiments. Finally, Section \ref{sec:summary} summarizes our main findings
+and discusses some avenues for future work.
 
 \section{Previous/Related work}
 \label{sec:prev}
@@ -264,7 +262,7 @@ dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
         Noun & Determiner \\
         \bottomrule
     \end{tabular}
-    \caption{Annotation choices in NDT.}
+    \caption{Syntactic annotation choices in NDT.}
     \label{ndtannotation}
 \end{table}
 
@@ -306,13 +304,13 @@ the parsing of NDT. Furthermore, recent dependency parser comparisons
 English, beating a range of contemporary state-of-the-art parsers.
 
 \paragraph{Tag Set Mapping}
-In order to carrying out the tag set modifications, we created a mapping that
-maps the relevant existing tags to new, more fine-grained tags including more
-relevant morphological features for the applicable tokens. A given tag set
-modification involves specifying a tag and one or more features to be
-concatenated with said tag for all applicable tokens, i.e., tokens that are
-assigned said tag and contains the set of features in its morphological
-features.
+In order to carry out the tag set modifications, we created a mapping that
+takes as input a set of tags and associated morphological features to be
+included in said tags. This mapping maps the relevant existing tags to new,
+more fine-grained tags including more relevant morphological features for the
+applicable tokens. This is done by concatenating the original tag with said
+features for all applicable tokens, i.e., tokens that are assigned said tag and
+contains the set of features in its morphological features.
 
 \paragraph{Baseline}
 It is common practice to compare the performance of PoS taggers to a
@@ -363,16 +361,62 @@ the effect of PoS tags, necessitating the exclusion of morphological features.
 
 \section{Tag Set Optimization/Experiments}
 \label{sec:optimization}
-With more fine-grained linguistically
-motivated distinctions, we increase the linguistic information represented in
-the tags, which may assist the tagger in disambiguating ambiguous and unknown
-words, which in turn may aid the parser in recognizing and generalizing
-syntactic patterns. However, the addition of more linguistic information to the
-tags and thus a more fine-grained tag set will most likely lead to a drop in
-tagger accuracy, due to the increase in complexity. The best tagging does not
+By introducing more fine-grained linguistically motivated distinctions in a tag
+set, we increase the linguistic information represented in the tags, which may
+assist the parser in recognizing and generalizing syntactic patterns. However,
+the addition of more linguistic information to the tags and thus a more
+fine-grained tag set will most likely lead to a drop in tagger accuracy/tagging
+quality due to the increase in complexity. The best tagging does not
 necessarily lead to the best parse, and it is therefore interesting to
 investigate how the tag set modifications may affect the interplay between
-tagging and parsing.
+tagging and parsing. As we want to investigate how we can improve the
+linguistic quality of a tag set, we will not introduce tag set modifications
+which are not linguistically motivated. We will only consider distinctions we
+deem linguistically sensible, even if we expect them to impair the
+computational tractability; investigating the interplay between these two
+considerations is ultimately our goal.
+
+\subsection{Initial/Baseline Experiments}
+In an initial round of experiments, we concatenated the tag of each token with
+its set of morphological features in order to map the original tag set to a
+new, more fine-grained tag set (hereafter referred to as the \emph{full} tag
+set). The result of this was a total of 368 tags, which is clearly very
+fine-grained. The two initial tag sets, i.e., the original tag set comprising
+19 tags and the full tag set comprising 368 tags, thus represent two extremes
+in terms of granularity.  To evaluate these tag sets and investigate how the tag
+set granularity would affect the performance of tagging and parsing, we trained
+and evaluated TnT and Mate on the training and development data, respectively,
+on the two tag sets. In Table \ref{inittagseteval}, we report the results of
+these experiments. We see that the tagger accuracy drastically drops when going
+from the original to the full tag set. The MFT baseline for the original tag
+set is 94.14\%, while it drops by almost 9 percentage points to 85.15\% for the
+full tag set. TnT reports an accuracy of 97.47\% on the original tag set, which
+is reduced to 93.48\% for the full tag set. These results confirm our
+hypothesis that the very high linguistic quality in the full, fine-grained tag
+set comes at the expense of drops in tagger performance. However, the
+additional linguistic information provided by the full tag set improves the
+parser performance. With the original tag set, Mate reports an LAS of 87.01\%
+and a UAS of 90.19\%, which increases to 87.15\% and 90.39\%, respectively,
+when using the full tag set. As we are looking for linguistically informed
+distinctions that improve the syntactic parsing, these results are promising
+and serve to indicate that additional morphological information assists the
+syntactic parsers, motivating the optimization of the existing PoS tag set.
+
+\begin{table}
+    \centering
+    \smaller[0.5]
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        \textbf{Tag set} & \textbf{MFT} & \textbf{Accuracy} &
+        \textbf{LAS} & \textbf{UAS} \\
+        \midrule
+        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of tagging and parsing with the two initial tag sets.}
+    \label{inittagseteval}
+\end{table}
 
 \subsection{Tag Set Experiments}
 We modified the tags for nouns, verbs, adjectives, determiners and pronouns in
@@ -488,17 +532,17 @@ have case (accusative or nominative).
         \textbf{LAS} & \textbf{UAS} \\
         \midrule
         Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Full & 85.12\% & 93.46\% & 87.13\% & 90.32\% \\
+        Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
         Optimized & 89.20\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Results of tagging and parsing with the optimized tag set, compared to
-        the initial tag sets.}
+    \caption{Results of tagging and parsing with the optimized tag set,
+        compared to the initial tag sets.}
     \label{finalresults}
 \end{table}
 
-\section{Optimized Pipeline}
-\label{sec:pipeline}
+%\section{Optimized Pipeline}
+%\label{sec:pipeline}
 
 \section{Summary/Conclusion and Future Work}
 \label{sec:summary}
