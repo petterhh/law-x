@@ -204,25 +204,23 @@ from both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
 tokens of Nynorsk. We will in the following only be using the Bokmål
 portion of the treebank. The annotated texts are mostly newspaper
 text, but also include government reports, parliament transcripts and
-excerpts from blogs. The annotation process of the treebank was
-supported by the rule-based Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00}
-and then manually corrected by annotators, adding syntactic dependency analysis
-to the morphosyntactic annotation.
-
-%Linguistic motivation, insight, utility...
+excerpts from blogs. The annotation process of the treebank was supported by
+the rule-based Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00} and then manually
+corrected by annotators, adding syntactic dependency analysis to the
+morphosyntactic annotation.
 
 \paragraph{Morphological Annotation}
 The morphological annotation and PoS tag set of NDT follows the Oslo-Bergen
 Tagger \cite{Hag:Joh:Nok:00,Sol:13}, which in turn is largely based on the work
 of \newcite{Faa:Lie:Van:97}. The tag set consists of 12 morphosyntactic PoS
-tags, with 7 additional tags for punctuation and symbols.  The tag set is thus
+tags, with 7 additional tags for punctuation and symbols. The tag set is thus
 rather coarse-grained, with broad categories such as \texttt{subst} (noun) and
 \texttt{verb} (verb). The PoS tags are complemented by a large set of
 morphological features, providing information about morphological properties such as
 definiteness, number and tense. These features are used in our tag set
-modifications, where the coarse PoS tag of relevant tokens are concatenated
-with one or more of these features to include more linguistic information in
-the tags.
+modifications, where the coarse PoS tag of relevant tokens is concatenated with
+one or more of these features to include more linguistic information in the
+tags.
 
 \begin{table}
     \centering
@@ -259,7 +257,8 @@ auxiliary and main verbs. The set of dependency relations comprises 29
 dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
 (subject) and \textsc{koord} (coordination).
 
-\begin{table} \centering
+\begin{table}
+    \centering
     %\smaller[0.5]
     \begin{tabular}{@{}ll@{}}
         \toprule
@@ -272,7 +271,6 @@ dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
         Noun & Determiner \\
         \bottomrule
     \end{tabular}
-    %\caption{Syntactic annotation choices in NDT.}
     \caption{Central head-dependent annotation choices in NDT.}
     \label{ndtannotation}
 \end{table}
@@ -342,17 +340,16 @@ expect them to have similar properties.
 %rarely occur, and we might therefore expect them to have similar properties.
 
 \paragraph{Tags \& Features}
-As we seek to quantify the effects of PoS tagging in a realistic
-setting, i.e. in application to raw text, we want to evaluate the parser on
-automatically assigned PoS tags. For the training of the parser,
-however, we have two options: using either gold standard or
-automatically assigned tags. In order to settle on a configuration, we
-conducted experiments with gold standard and automatically assigned
-tags to see how they differ with respect to performance. The results
-of our experiments reveal that the combination of training and testing
-on automatic tags is superior to training on gold standard tags and
-testing on automatic tags.  Consequently, the parser was both trained
-and tested on automatically assigned tags in our experiments.
+As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
+in application to raw text, we want to evaluate the parser on automatically
+assigned PoS tags. For the training of the parser, however, we have two
+options: using either gold standard or automatically assigned tags. In order to
+settle on a configuration, we conducted experiments with gold standard and
+automatically assigned tags to see how they differ with respect to performance.
+The results of our experiments reveal that the combination of training and
+testing on automatic tags is superior to training on gold standard tags and
+testing on automatic tags.  Consequently, the parser was both trained and
+tested on automatically assigned tags in our experiments.
 
 We removed any morphological features in order to simulate a realistic setting.
 Moreover, it is crucial that we remove these features when working with
@@ -362,13 +359,10 @@ have a noun token with verbal features such as tense, which markedly obfuscates
 the training and parsing. Another important aspect is that we want to isolate
 the effect of PoS tags, necessitating the exclusion of morphological features.
 
-%Note that it is absolutely crucial that the morphological features in the
-%treebank are removed when using automatic tags, as they are still gold
-%standard. For instance, if a verb token is erroneously tagged as a noun, we
-%could potentially have a noun token with verbal features such as tense, which
-%markedly obfuscates the training and parsing. Another important factor is that
-%we want to isolate the effect of PoS tags, necessitating the exclusion of
-%morphological features.
+In the following, we report on a set of experiments which evaluate
+increasingly fine-grained PoS tag sets. The PoS tag sets are motivated
+by morphosyntactic properties of Norwegian and are evaluated both in
+terms of tagger and parser accuracy.
 
 \section{Tag Set Optimization/Experiments}
 \label{sec:optimization}
@@ -399,19 +393,18 @@ set granularity would affect the performance of tagging and parsing, we trained
 and evaluated TnT and Mate on the training and development data, respectively,
 on the two tag sets. In Table \ref{inittagseteval}, we report the results of
 these experiments. We see that the tagger accuracy drastically drops when going
-from the original to the full tag set. The MFT baseline for the original tag
-set is 94.14\%, while it drops by almost 9 percentage points to 85.15\% for the
-full tag set. TnT reports an accuracy of 97.47\% on the original tag set, which
-is reduced to 93.48\% for the full tag set. These results confirm our
-hypothesis that the very high linguistic quality in the full, fine-grained tag
-set comes at the expense of drops in tagger performance. However, the
-additional linguistic information provided by the full tag set improves the
-parser performance. With the original tag set, Mate reports an LAS of 87.01\%
-and a UAS of 90.19\%, which increases to 87.15\% and 90.39\%, respectively,
-when using the full tag set. As we are looking for linguistically informed
-distinctions that improve the syntactic parsing, these results are promising
-and serve to indicate that additional morphological information assists the
-syntactic parsers, motivating the optimization of the existing PoS tag set.
+from the original to the full tag set. TnT reports an accuracy of 97.47\% on
+the original tag set, which is reduced to 93.48\% for the full tag set. These
+results confirm our hypothesis that the very high linguistic quality in the
+full, fine-grained tag set comes at the expense of drops in tagger performance.
+However, the additional linguistic information provided by the full tag set
+improves the parser performance. With the original tag set, Mate reports an LAS
+of 87.01\% and a UAS of 90.19\%, which increases to 87.15\% and 90.39\%,
+respectively, when using the full tag set. As we are looking for linguistically
+informed distinctions that improve the syntactic parsing, these results are
+promising and serve to indicate that additional morphological information
+assists the syntactic parsers, motivating the optimization of the existing PoS
+tag set.
 
 \begin{table}
     \centering
@@ -429,11 +422,6 @@ syntactic parsers, motivating the optimization of the existing PoS tag set.
     \label{inittagseteval}
 \end{table}
 
-In the following, we report on a set of experiments which evaluate
-increasingly fine-grained PoS tag sets. The PoS tag sets are motivated
-by morphosyntactic properties of Norwegian and are evaluated both in
-terms of tagger and parser accuracy.
-
 \subsection{Tag Set Experiments}
 We modified the tags for nouns, verbs, adjectives, determiners and pronouns in
 NDT by appending selected sets of morphological features to each tag in order
@@ -443,24 +431,64 @@ various combinations of them. We based our choices of combinations on how
 promising the features are and what we deem worth investigating in terms of
 linguistic utility, in order to see how the features might interact.
 
+The morphological properties of the various parts-of-speech is reflected in the
+morphological features associated with the respective PoS tags. In addition to
+morphological properties such as definiteness, tense and number, all classes
+except for verbs can be distinguished "on" type, e.g., common nouns and proper
+nouns, while pronouns can be reflexive, reciprocal, personal or interrogative.
+
+\subsection{Experiments}
 \paragraph{Nouns}
 In Norwegian, nouns are assigned gender (feminine, masculine, neuter),
 definiteness (indefinite or definite) and number (singular or plural). There
 is agreement in gender, definiteness and number between nouns and their
-modifiers (adjectives and determiners).
+modifiers (adjectives and determiners). Additionally, NDT has a separate case
+feature to distinguishing nouns in genitive case.
+
+Experimenting with nouns, we found that all tag set modifications yielded large
+increases in LAS and UAS. The most informative features are definiteness, which
+leads to an increase in LAS by 1.26 percentage points, to 88.27\%, and type,
+yielding an LAS of 88.07\%. Turning to combinations of features, we found that
+the combination of type and case, as well as type and definiteness, were the
+most promising, which led us to combine type, case and definiteness in a final
+experiment, resulting in LAS of 88.81\% and UAS of 91.73\%, constituting large
+increases from parsing with the original tag set, 1.80 percentage points
+and 1.54 percentage points, respectively.
 
 \paragraph{Verbs}
 Verbs are inflected for tense (infinitive, present, preterite, past perfect)
 in Norwegian and can additionally take on mood (imperative, indicative) and
-voice (active or passive).
+voice (active or passive). Note that voice and mood have only a single value,
+\texttt{pass} (passive) and \texttt{imp} (imperative), respectively. Verbs
+which are not passive are implicitly active, and verbs which are not imperative
+are indicative.
+
+Introducing features in isolation, mood is the only feature leading to
+increases in LAS, with a reported LAS of 87.04\%. Imperative clauses are
+fundamentally different from indicative clauses, as they lack an overt subject.
+Tense yields an LAS of 86.97\% while voice yields an LAS of 86.96\%. Combining
+mood and tense resulted in an LAS of 87.12\% and UAS of 90.31\%.
+
+In an additional experiment, we mapped the verb tenses (mood, in the case of
+imperative) to finiteness.  All verbs have finiteness, hence this distinction
+has broad coverage.  This mapping is syntactically grounded as finite verbs and
+nonfinite verbs appear in completely different syntactic construction, and
+proved to greatly improve the parsing, as we saw the overall largest parser
+accuracy scores, with 87.30\% for LAS and 90.43\% for UAS, 0.29 and 0.24
+percentage points higher than the baseline, respectively.  This coincides with
+the observations seen for Swedish in \newcite{Ovr:08}, where finiteness was found
+to be a very beneficial linguistic feature for parsing.
 
 \paragraph{Adjectives}
 Adjectives agree with the noun they modify in terms of gender, number and
-definiteness in Norwegian.
+definiteness in Norwegian. Adjectives are also inflected for degree, either
+positive, comparative or superlative.
+
 
 \paragraph{Determiners}
 Like adjectives, determiners in Norwegian agree with the noun they modify in
-terms of gender, number and definiteness.
+terms of gender, number and definiteness. Possessive pronouns are
+treated/analyzed as determiners in NDT.
 
 \paragraph{Pronouns}
 Pronouns in Norwegian include personal, reciprocal, reflexive and
