@@ -144,15 +144,23 @@ provides an overview of the treebank used for experimentation. Section
 \ref{sec:optimization} goes on to provide the results from our optimization
 experiments. Finally, Section \ref{sec:summary} summarizes our main findings
 and discusses some avenues for future work.
+The article is structured as follows. We start out by reviewing
+previous work on tag set evaluation in Section \ref{sec:prev} and
+Section \ref{sec:data} provides an overview of the treebank used for
+experimentation. Section \ref{sec:setup} describes the experimental
+setup used in our work and Section \ref{sec:optimization} goes on to
+provide the results from our optimization experiments. Finally,
+Section \ref{sec:summary} summarizes our main findings and discusses
+some avenues for future work.
 
 \section{Previous/Related work}
 \label{sec:prev}
-There is a considerable lack of previous efforts on extrinsic evaluation of the
-effects of PoS tag sets on downstream applications. We will consider(/noe
-annet, considerable...consider) papers that evaluate the effects of PoS tag
-set granularity on PoS tagging. This includes investigation of the effects of
-PoS tag sets on tagging of Swedish \cite{Meg:01,Meg:02} and English
-\cite{Mac:05}.
+There has been little previous work dedicated specifically to
+extrinsic evaluation of the effects of PoS tag sets on downstream
+applications.  There has, however, been some work that evaluates the
+effects of PoS tag set granularity on PoS tagging. This includes
+investigation of the effects of PoS tag sets on tagging of Swedish
+\cite{Meg:01,Meg:02} and English \cite{Mac:05}.
 
 %Increases in tagger accuracy does not readily translate to
 %improved parsing.
@@ -185,19 +193,21 @@ percentage points.
 
 Transition/overgang her ...
 
-\section{Data}
+\section{The Norwegian Dependency Treebank}
 \label{sec:data}
-\subsection{The Norwegian Dependency Treebank}
 We used the newly developed Norwegian Dependency Treebank (NDT)
-\cite{Sol:Skj:Ovr:14},  the first publicly available treebank for Norwegian. It
-was developed at the National Library of Norway in collaboration with the
-University of Oslo, and contains manual syntactic and morphological annotation.
-The treebank contains data from both varieties of Norwegian; 311 000 tokens of
-Bokmål and 303 000 tokens of Nynorsk. The annotated texts are mostly newspaper
-text, but also include government reports, parliament transcripts and excerpts
-from blogs. The annotation process of the treebank was supported by the
-Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00} and then manually corrected by
-annotators.
+\cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
+Norwegian. It was developed at the National Library of Norway in
+collaboration with the University of Oslo, and contains manual
+syntactic and morphological annotation.  The treebank contains data
+from both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
+tokens of Nynorsk. We will in the following only be using the Bokmål
+portion of the treebank. The annotated texts are mostly newspaper
+text, but also include government reports, parliament transcripts and
+excerpts from blogs. The annotation process of the treebank was
+supported by the rule-based Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00}
+and then manually corrected by annotators, adding syntactic dependency analysis
+to the morphosyntactic annotation.
 
 %Linguistic motivation, insight, utility...
 
@@ -262,7 +272,8 @@ dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
         Noun & Determiner \\
         \bottomrule
     \end{tabular}
-    \caption{Syntactic annotation choices in NDT.}
+    %\caption{Syntactic annotation choices in NDT.}
+    \caption{Central head-dependent annotation choices in NDT.}
     \label{ndtannotation}
 \end{table}
 
@@ -289,10 +300,9 @@ For our experiments with tag set modifications, we wanted a PoS tagger both
 reasonably fast and accurate. There is often a trade-off between the two
 factors/considerations, as the most accurate taggers tend to suffer in terms of
 speed due to their complexity. However, a tagger that achieves both close to
-state-of-the-art accuracy as well as very high speed is TnT \cite{Bra:00}. The
-fact that TnT was used for evaluating the universal tag set
-\cite{Pet:Das:McD:12}, served as another good indication of TnT being
-appropriate for our task. The sum of these factors led to TnT being the tagger
+state-of-the-art accuracy as well as very high speed is TnT \cite{Bra:00}. TnT
+was furthermore recently used to evaluate the recently proposed universal tag
+set \cite{Pet:Das:McD:12}. The sum of these factors led to TnT being the tagger
 of choice for our experiments.
 
 \paragraph{Parser}
@@ -332,16 +342,17 @@ expect them to have similar properties.
 %rarely occur, and we might therefore expect them to have similar properties.
 
 \paragraph{Tags \& Features}
-As we seek to quantify the effects of PoS tagging in a realistic setting, we
-want to run the parser on automatically assigned PoS tags. For the training of
-the parser, however, we have two options: using either gold standard or
+As we seek to quantify the effects of PoS tagging in a realistic
+setting, i.e. in application to raw text, we want to evaluate the parser on
+automatically assigned PoS tags. For the training of the parser,
+however, we have two options: using either gold standard or
 automatically assigned tags. In order to settle on a configuration, we
-conducted experiments with gold standard and automatically assigned tags to see
-how they differ with respect to performance. The results of our experiments
-reveal that the combination of training and testing on automatic tags is
-superior to training on gold standard tags and testing on automatic tags.
-Consequently, the parser was both trained and tested on automatically assigned
-tags in our experiments.
+conducted experiments with gold standard and automatically assigned
+tags to see how they differ with respect to performance. The results
+of our experiments reveal that the combination of training and testing
+on automatic tags is superior to training on gold standard tags and
+testing on automatic tags.  Consequently, the parser was both trained
+and tested on automatically assigned tags in our experiments.
 
 We removed any morphological features in order to simulate a realistic setting.
 Moreover, it is crucial that we remove these features when working with
@@ -417,6 +428,11 @@ syntactic parsers, motivating the optimization of the existing PoS tag set.
     \caption{Results of tagging and parsing with the two initial tag sets.}
     \label{inittagseteval}
 \end{table}
+
+In the following, we report on a set of experiments which evaluate
+increasingly fine-grained PoS tag sets. The PoS tag sets are motivated
+by morphosyntactic properties of Norwegian and are evaluated both in
+terms of tagger and parser accuracy.
 
 \subsection{Tag Set Experiments}
 We modified the tags for nouns, verbs, adjectives, determiners and pronouns in
