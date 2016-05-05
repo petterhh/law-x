@@ -284,6 +284,8 @@ In preparation to conducting our experiments with linguistically motivated tag
 set modifications, a concrete setup for the experiments needed to be
 established, which is presented in the following.
 
+% fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
+% står under "Tag Set Mapping".
 Our approach is somewhat semi-automatic in that we employ a "hybrid"
 combination of manual annotation and automatic labeling in our experiments. Our
 initial tags are gold standard, and using linguistic insight coupled with
@@ -328,11 +330,11 @@ of choice for our experiments.
 \paragraph{Parser}
 In choosing a syntactic parser for our experiments, we considered previous work
 on dependency parsing of Norwegian, specifically that of
-\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to be the
-most successful parser for parsing of NDT. Furthermore, recent dependency
+\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to have  
+the best performance for parsing of NDT. Furthermore, recent dependency
 parser comparisons \cite{Cho:Tet:Ste:15} showed that Mate performed very well
-on parsing of English, beating a range of contemporary state-of-the-art
-parsers. Mate was consequently selected to evaluate the tag set modifications in
+on parsing of English, outperforming a range of contemporary state-of-the-art
+parsers. We will be using Mate for gauging the effect of the tag set modifications in
 our experiments.
 
 \paragraph{Tag Set Mapping}
@@ -360,28 +362,27 @@ denoted \emph{Acc} in the following tables), while labeled attachment score
 (used in the CoNLL shared tasks) to evaluate the parsing.
 
 \paragraph{Baseline}
-It is common practice to compare the performance of PoS taggers to a
-pre-computed baseline for an initial point of comparison.  For PoS tagging, a
-commonly used baseline is the Most Frequent Tag (MFT) baseline, which we used
-in our experiments. This involves labeling each word with the tag it was
-assigned most frequently in the training. All unknown words, i.e., words not
+As a point of reference for the PoS tagging we will be reporting the commonly used
+most-frequent-tag baseline, henceforth MFT.
+This involves labeling each word with the tag it was
+assigned most frequently in the training data. All unknown words, i.e., words not
 seen in the training data, are assigned the tag most frequently assigned to
-words seen only once in the training. Unknown and infrequent words have in
-common that they rarely occur, and we might therefore expect them to have
-similar properties.
+words seen only once.  The rationale is that we might expect unknown
+and infrequent words to have similar properties given that they both occur rarely.
 
-\paragraph{Tags \& Features}
+\paragraph{Tags \& Features} % <-- fixme: rename? 
 As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
-in application to raw text, we want to evaluate the parser on automatically
-assigned PoS tags. For the training of the parser, however, we have two
+in application to raw text, we choose to evaluate the parser on automatically
+assigned PoS tags. For training, however, we have two
 options: using either gold standard or automatically assigned tags. In order to
-settle on a configuration, we conducted experiments with gold standard and
-automatically assigned tags to see how they differ with respect to performance.
+settle on a configuration, we conducted experiments with training on both gold
+standard tags and
+automatically assigned tags to see how the performance differs.
 The results of these experiments, shown in Table \ref{tagconfigeval}, reveal that
 the combination of training and testing on automatic tags is clearly superior
 to training on gold standard tags and testing on automatic tags. Consequently,
-the parser was both trained and tested on automatically assigned tags in our
-experiments.
+the parser is both trained and tested on automatically assigned tags in the
+remainder of our experiments.
 
 \begin{table}
     \centering
@@ -402,13 +403,16 @@ experiments.
     \label{tagconfigeval}
 \end{table}
 
-We removed any morphological features in order to simulate a realistic setting.
+Though some parsers make use of morphological features, % fixme: status for mate?
+we removed all morphological features beyond the PoS tags in order to simulate a realistic setting.
 Moreover, it is crucial that we remove these features when working with
-automatically assigned tags, as the features are still gold standard. For
-instance, if a verb token is erroneously tagged as a noun, we could potentially
-have a noun token with verbal features such as tense, which markedly obfuscates
-the training and parsing. Another important aspect is that we want to isolate
-the effect of PoS tags, necessitating the exclusion of morphological features.
+automatically assigned tags, as such features would be provided by the gold
+standard. 
+
+%For instance, if a verb token is erroneously tagged as a noun, we could potentially
+%have a noun token with verbal features such as tense, which markedly obfuscates
+%the training and parsing. Another important aspect is that we want to isolate
+%the effect of PoS tags, necessitating the exclusion of morphological features.
 
 In the following, we report on a set of experiments which evaluate increasingly
 fine-grained PoS tag sets. The PoS tag sets are motivated by morphosyntactic
