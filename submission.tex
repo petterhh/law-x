@@ -146,8 +146,8 @@ main findings and discusses some avenues for future work.
 There has been little previous work dedicated specifically to
 extrinsic evaluation of the effects of PoS tag sets on downstream
 applications.  There has, however, been some work that evaluates the
-effects of PoS tag set granularity on PoS tagging. This includes
-investigation of the effects of PoS tag sets on tagging of Swedish
+effects of tag set granularity on PoS tagging itself. This includes
+investigation of the effects of tag sets on PoS tagging for Swedish
 \cite{Meg:01,Meg:02} and English \cite{Mac:05}.
 
 %Increases in tagger accuracy does not readily translate to
@@ -155,24 +155,24 @@ investigation of the effects of PoS tag sets on tagging of Swedish
 
 \newcite{Meg:02} trained and evaluated a range of PoS taggers on the
 Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
-on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, they
-investigated the effects of tag set size on tagging by mapping the original tag
-set into smaller subsets designed for parsing. They argue that a tag set with
+on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects 
+of tag set size on tagging was investigated by mapping the original tag
+set into smaller subsets designed for parsing. \newcite{Meg:02} argues that a tag set with
 complete morphological tags may not be necessary for all NLP applications, for
-instance syntactic parsing. They found that the smallest tag set comprising 26
+instance syntactic parsing. The study found that the smallest tag set comprising 26
 tags yields the lowest tagger error rate.  However, for some of the taggers,
 augmenting the tag set with more linguistically informative tags may actually
-lead to a drop in error rate. They argue that this shows that the size of the
+lead to a drop in error rate. \newcite{Meg:02} argues that this shows that the size of the
 tag set as well as the type of information in the tags are crucial factors for
-tagger performance.  However/unfortunately, they do not report results of
-parsing with the various PoS tag sets.
+tagger performance.  Unfortunately, results for parsing with the various PoS
+tag sets are not reported.
 
 Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
-performance in English, specifically the Wall Street Journal portion of Penn
-Treebank \cite{Mar:San:Mar:93}. They mapped the original tag set of Penn
-Treebank comprising 45 tags to more fine-grained tag sets using linguistic
-insight to investigate whether additional linguistic information included in
-finer-grained tags could assist the tagger. Experimenting with both lexically
+performance in English, specifically the Wall Street Journal portion of the Penn
+Treebank (PTB) \cite{Mar:San:Mar:93}. Based on linguistic
+considerations \newcite{Mac:05} mapped the 45 tags of the original PTB tag set
+ to more fine-grained tag sets to investigate whether additional linguistic information 
+could assist the tagger. Experimenting with both lexically
 and syntactically conditioned modifications such as distinguishing between
 count nouns and noncount nouns and between transitive and intransitive verbs,
 they found that more fine-grained tag sets rarely led to improvements in tagger
@@ -183,6 +183,7 @@ that their results do not support the hypothesis that it is possible to achieve
 significant performance improvements in PoS tagging by utilizing a
 finer-grained tag set.
 
+% fixme:
 Transition/overgang her ...
 
 \section{The Norwegian Dependency Treebank}
