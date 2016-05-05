@@ -276,13 +276,17 @@ established, which is presented in the following.
 Our approach is somewhat semi-automatic in that we employ a "hybrid"
 combination of manual annotation and automatic labeling in our experiments. Our
 initial tags are gold standard, and using linguistic insight coupled with
-computational considerations, we introduce new features or feature combination
-to the tag set. These tags are run through a pipeline with automatically
-assigned tags in both training and testing, where the most promising
-modifications are used "further". Hence, the tag set modifications are not
-deterministic, nor do we try all possible combination; we only experiment with
-linguistically motivated distinctions. We are in reality altering the gold
-standard tags by the addition of more linguistic information.
+computational considerations, we introduce new gold standard distinctions to
+the tag set. The data sets with these tags are run through a pipeline with
+automatically assigned tags in both training and testing, where the most
+promising modifications are used "further". Hence, the tag set modifications
+are not deterministic, nor do we try all possible combination; we only
+experiment with linguistically motivated distinctions. We are in reality
+altering the gold standard tags by the addition of more linguistic information.
+
+As we want to investigate how we can improve the linguistic quality of a tag
+set, we will only consider tag set modifications we deem linguistically
+sensible.
 
 \paragraph{Data Set Split}
 As there was no standardized data set split of NDT due to its very recent
@@ -408,12 +412,12 @@ fine-grained tag set will most likely lead to a drop in tagger accuracy due to
 the increase in complexity. The best tagging does not necessarily lead to the
 best parse, hence it is interesting to investigate how linguistically informed
 tag set modifications may affect the interplay between tagging and parsing.
-%As
+%as
 %we want to investigate how we can improve the linguistic quality of a tag set,
 %we will
 %only consider tag set modifications we deem linguistically sensible.
 %we will not introduce tag set modifications which are not linguistically
-%motivated. We will only consider distinctions we deem linguistically sensible.
+%motivated. we will only consider distinctions we deem linguistically sensible.
 
 \subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
@@ -442,13 +446,13 @@ existing PoS tag set.
 \begin{table}
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}lllll@{}}
+    \begin{tabular}{@{}llll@{}}
         \toprule
-        \textbf{Tag set} & \textbf{MFT} & \textbf{Accuracy} &
+        \textbf{Tag Set} & \textbf{Acc} &
         \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
+        Original & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        Full & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the two initial tag sets.}
@@ -473,9 +477,9 @@ additionally marked with genitive case, the treebank operates with features for
 gender, definiteness, number and case.
 %with "accompanying" values
 In addition to morphological properties such as definiteness, tense and number,
-all classes except for verbs can be distinguished "on" type, e.g., common nouns
-and proper nouns, while pronouns can be reflexive, reciprocal, personal or
-interrogative.
+all classes except for verbs have a \emph{type} feature that provides
+information about the subtype, e.g., common nouns and proper nouns, while
+pronouns can be reflexive, reciprocal, personal or interrogative.
 
 %"Nearly" all tag set modifications leads to a drop in tagger accuracy, as
 %expected. Few exceptions... We observed increases in parser accuracy scores
@@ -527,7 +531,7 @@ and 1.54 percentage points, respectively.
         Case \& definiteness & 97.03\% & 88.39\% & 91.44\% \\
         Type \& case & 96.92\% & 88.46\% & 91.51\% \\
         Type \& definiteness & 96.99\% & 88.44\% & 91.48\% \\
-        Type \& number & 96.37\% & 87.95\% & 90.95\% \\
+        %Type \& number & 96.37\% & 87.95\% & 90.95\% \\
         Type, case \& definiteness & 97.05\% & \textbf{88.81\%} &
         \textbf{91.73\%} \\
         %Type, definiteness \& number & 96.46\% & 88.06\% & 91.12\% \\
@@ -593,17 +597,16 @@ Adjectives agree with the noun they modify in terms of gender, number and
 definiteness in Norwegian. Adjectives are also inflected for degree (positive,
 comparative or superlative).
 
-Table \ref{adjresults}
+In Table \ref{adjresults}, we report the results of modifying the \texttt{pron}
+tag in NDT. All features except for number led to increases in parser accuracy
+scores, the most successful of which is degree with a reported LAS of 87.29\%,
+while distinguishing adjectives on definiteness yield an LAS of 87.14\% and
+gender leads to LAS of 87.10\%.
 
-All features except for number led to increases in parser accuracy scores.
-Degree being the most promising with a reported LAS of 87.29\%, while
-distinguishing adjectives on definiteness yield an LAS of 87.14\% and gender
-leads to LAS of 87.10\%.
-
-Combining the most promising features, we found that none of the combinations
-surpass the LAS with the distinction of degree alone. Definiteness and degree
-with an LAS of 87.23\% and definiteness and number with an LAS of 87.27\% and
-UAS identical to that of degree alone.
+%Combining the most promising features, we
+%found that none of the combinations surpass the LAS with the distinction of
+%degree alone. Definiteness and degree with an LAS of 87.23\% and definiteness
+%and number with an LAS of 87.27\% and UAS identical to that of degree alone.
 
 Turning to combinations of features, definiteness and number achieve the best
 results, very close to that of degree, with 0.02 percentage points lower LAS
@@ -631,8 +634,8 @@ with the other features in any syntactically significant way.
         Definiteness \& degree & 96.81\% & 87.23\% & 90.39\% \\
         Definiteness \& gender & 96.31\% & 87.18\% & 90.39\% \\
         Definiteness \& number & 96.78\% & 87.27\% & \textbf{90.44\%} \\
-        Degree \& gender & 96.87\% & 87.00\% & 90.16\% \\
-        Degree \& number & 96.76\% & 87.13\% & 90.26\% \\
+        %Degree \& gender & 96.87\% & 87.00\% & 90.16\% \\
+        %Degree \& number & 96.76\% & 87.13\% & 90.26\% \\
         %Definiteness, degree \& number & 96.81\% & 87.14\% & 90.30\% \\
         \bottomrule
     \end{tabular}
@@ -645,16 +648,16 @@ Like adjectives, determiners in Norwegian agree with the noun they modify in
 terms of gender, number and definiteness. Possessive pronouns are
 treated/analyzed as determiners in NDT.
 
-For a number of reasons, we do not report results from combinations of features
-for determiners, as the features could not be combined in any meaningful way.
-For instance, determiners in plural never have marked definiteness, hence this
-combination would only apply to determiners in singular and roughly correspond
-to the distinction on definiteness alone. Moreover, determiners in plural are
-not distinguished in terms of gender (thus ruling out the combination of number
-and gender), neither are definite determiners. Another aspect taken into
-consideration is that the most promising distinction, definiteness, applies to
-such a small number of tokens that more fine-grained distinctions would be
-overly sparse.
+%For a number of reasons, we do not report results from combinations of features
+%for determiners, as the features could not be combined in any meaningful way.
+%For instance, determiners in plural never have marked definiteness, hence this
+%combination would only apply to determiners in singular and roughly correspond
+%to the distinction on definiteness alone. Moreover, determiners in plural are
+%not distinguished in terms of gender (thus ruling out the combination of number
+%and gender), neither are definite determiners. Another aspect taken into
+%consideration is that the most promising distinction, definiteness, applies to
+%such a small number of tokens that more fine-grained distinctions would be
+%overly sparse.
 
 The results from the experiments with determiners are shown in Table
 \ref{detresults}.  Introducing the distinction of type led to an increase in
@@ -679,12 +682,11 @@ percentage points lower than that of the original tag set. The
 introduction of definiteness to the determiners led to the best parsing
 results, LAS of 87.30\% and UAS of 90.42\%, while also increasing the tagger
 accuracy slightly. The increase in LAS and UAS is rather interesting, as there
-are only 121 "determiner tokens" with marked definiteness in the development
-data. As this accounts for a very small number of tokens, coupled with the
-previously noted considerations, we did not consider further fine-grained
-modifications with definiteness. This goes to show that tokens with overt
-definiteness have noticeable impact on the syntactic parsing, and that
-distinguishing on definiteness is very beneficial.
+are only 121 determiner tokens with marked definiteness in the development
+data. As this accounts for a very small number of tokens, we did not consider
+further fine-grained modifications with definiteness. This goes to show that
+tokens with overt definiteness have noticeable impact on the syntactic parsing,
+and that distinguishing on definiteness is very beneficial.
 
 \begin{table}
     \centering
@@ -714,22 +716,22 @@ the most informative features for parsing, with LAS of 87.21\%, 87.22\% and
 87.19\%, respectively. However, when combining number and person, we observe a
 drop by more than 0.2 percentage points, indicating that these features do not
 interact in any syntactically distinctive way. The most interesting observation
-is that all experiments exceed the baseline tagger accuracy, the most improved
-being the most fine-grained distinction, namely type, case and number combined,
-obtaining a tagger accuracy of 97.52\%. This shows that the introduction of
-more fine-grained distinctions for pronouns is beneficial and aids the PoS
-tagger in disambiguating ambiguous words. While case alone yields an LAS of
-87.08\%, we found that the combination of type and case, which is the most
-successful experiment in terms of parser performance, yields the second highest
-tagging accuracy of 97.51\%. The reason for this is that pronouns of different
-type and personal pronouns of different case exhibit quite different properties
-and appear in different constructions. Pronouns in nominative case (i.e.,
-subjects) primarily occur before the main verb, while pronouns in accusative
-case (i.e., objects) occur after the main verb, as Norwegian exhibits so-called
-V2 word order, requiring that the finite verb of a declarative clause appears
-in the second position, hence its name. The combination of type and number
-comes in close to the performance of type and case, with LAS of 87.27\% and UAS
-identical to that of type and case.
+is that all experiments exceed the tagging accuracy of the original tag set,
+the most improved being the most fine-grained distinction, namely type, case
+and number combined, obtaining a tagger accuracy of 97.52\%. This shows that
+the introduction of more fine-grained distinctions for pronouns is beneficial
+and aids the PoS tagger in disambiguating ambiguous words. While case alone
+yields an LAS of 87.08\%, we found that the combination of type and case, which
+is the most successful experiment in terms of parser performance, yields the
+second highest tagging accuracy of 97.51\%. The reason for this is that
+pronouns of different type and personal pronouns of different case exhibit
+quite different properties and appear in different constructions. Pronouns in
+nominative case (i.e., subjects) primarily occur before the main verb, while
+pronouns in accusative case (i.e., objects) occur after the main verb, as
+Norwegian exhibits so-called V2 word order, requiring that the finite verb of a
+declarative clause appears in the second position, hence its name. The
+combination of type and number comes in close to the performance of type and
+case, with LAS of 87.27\% and UAS identical to that of type and case.
 
 \begin{table}
     \centering
@@ -756,24 +758,20 @@ identical to that of type and case.
 \end{table}
 
 \subsection{Optimized Tag Set}
-The most successful tag set modifications and their results are seen in Table
-\ref{respectiveresults}.
-
-\begin{table*}
+\begin{table*}[ht]
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}llllll@{}}
+    \begin{tabular}{@{}lllll@{}}
         \toprule
-        \textbf{Category} & \textbf{Feature(s)} & \textbf{MFT} &
-        \textbf{Accuracy} & \textbf{LAS} & \textbf{UAS} \\
+        \textbf{Category} & \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} &
+        \textbf{UAS} \\
         \midrule
-        \emph{Baseline} & --- & 94.14\% & 97.47\% & 87.01\% & 90.19\% \\
-        Noun & Type, case \& definiteness & 89.61\% & 97.05\% & 88.81\% &
-        91.73\% \\
-        Verb & Finiteness & 93.72\% & 97.35\% & 87.30\% & 90.43\% \\
-        Adjective & Degree & 94.13\% & 97.41\% & 87.29\% & 90.44\% \\
-        Determiner & Definiteness & 94.13\% & 97.49\% & 87.30\% & 90.42\% \\
-        Pronoun & Type \& case & 94.12\% & 97.51\% & 87.30\% & 90.41\% \\
+        \emph{Baseline} & --- & 97.47\% & 87.01\% & 90.19\% \\
+        Noun & Type, case \& definiteness & 97.05\% & 88.81\% & 91.73\% \\
+        Verb & Finiteness & 97.35\% & 87.30\% & 90.43\% \\
+        Adjective & Degree & 97.41\% & 87.29\% & 90.44\% \\
+        Determiner & Definiteness & 97.49\% & 87.30\% & 90.42\% \\
+        Pronoun & Type \& case & 97.51\% & 87.30\% & 90.41\% \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the most successful tag set
@@ -781,8 +779,28 @@ The most successful tag set modifications and their results are seen in Table
     \label{respectiveresults}
 \end{table*}
 
-An overview of the tags comprising the final, optimized tag set can be seen in
-Table \ref{optimizedtagset}.
+The most successful tag set modification for each PoS and their results are
+seen in Table \ref{respectiveresults}. Nouns benefit by far the most from the
+introduction of more fine-grained linguistically motivated distinctions, with
+an LAS of 88.81\% and UAS of 91.73\%. We observe that the most promising tag
+set modifications for verbs, adjectives, determiners and pronouns all reach LAS
+of \textasciitilde 87.30\% and UAS of \textasciitilde 90.40\%. To investigate
+the overall effect of these tag set modifications, we tested each of the
+improvements in parser accuracy scores from baseline for statistical
+significance using Dan Bikel's randomized parsing evaluation comparator
+script\footnote{Available as \texttt{compare.pl} at
+    \url{http://ilk.uvt.nl/conll/software.html}}, as used in the CoNLL shared
+tasks. For the most successful tag set modification for each of the categories
+seen in Table \ref{respectiveresults}, the difference in LAS from the original
+tag set is statistically significant at significance level 0.05 (\emph{p}-value
+< 0.05), as are all differences in UAS, except for verbs with finiteness
+(\emph{p}-value 0.15) and pronouns with type and case (\emph{p}-value 0.06).
+
+An overview of the tags in the optimized tag set can be seen in Table
+\ref{optimizedtagset}, comprising three new tags for adjectives, two for
+determiners, six for pronouns, seven for nouns and two for verbs, totaling 20
+tags. Appending these to the original tag set comprising 19 tags, we reach a
+total of 39 tags for NDT.
 
 \begin{table}
     \centering
@@ -803,10 +821,10 @@ Table \ref{optimizedtagset}.
         \texttt{pron|res} & Reciprocal pronoun \\
         \texttt{pron|sp} & Interrogative pronoun \\
         \texttt{subst|appell} & Common noun \\
-        \texttt{subst|appell|be} & Common noun, definite \\
-        \texttt{subst|appell|be|gen} & Common noun, definite, genitive \\
-        \texttt{subst|appell|ub} & Common noun, indefinite \\
-        \texttt{subst|appell|ub|gen} & Common noun, indefinite, genitive \\
+        \texttt{subst|appell|be} & Common noun, def. \\
+        \texttt{subst|appell|be|gen} & Common noun, def., genitive \\
+        \texttt{subst|appell|ub} & Common noun, indef. \\
+        \texttt{subst|appell|ub|gen} & Common noun, indef., genitive \\
         \texttt{subst|prop} & Proper noun \\
         \texttt{subst|prop|gen} & Proper noun, genitive \\
         \texttt{verb|fin} & Finite verb \\
@@ -817,33 +835,41 @@ Table \ref{optimizedtagset}.
     \label{optimizedtagset}
 \end{table}
 
-Results from parsing with the optimized tag are shown in Table
-\ref{finalresults}, compared to the results obtained with the initial tag sets.
+\paragraph{Final Evaluation}
+In Table \ref{finalresults}, we show the results of parsing with the optimized
+tag set on the held-out test set, compared to the results obtained with the
+original tag set. We see significant improvements from the original tag set on
+both the development data and the held-out test data set. The improvement in
+LAS on the development data is 1.86 percentage points, while 1.91 percentage
+points on the held-out test data. These results indicate that the additional
+linguistic information in the tags of our optimized tag set greatly aids
+syntactic parsing and that optimizing an existing PoS tag set for a downstream
+application can be useful and beneficial.
 
-\begin{table*}
+\begin{table}
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}llllll@{}}
+    \begin{tabular}{@{}lllll@{}}
         \toprule
-        \textbf{Data Set} & \textbf{Tag Set} & \textbf{MFT} & \textbf{Accuracy}
+        \textbf{Data} & \textbf{Tag Set} & \textbf{Acc}
         & \textbf{LAS} & \textbf{UAS} \\
         \midrule
         \multirow{2}{*}{Dev}
-        & Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        & Original & \textbf{97.47\%} & 87.01\% & 90.19\% \\
         %Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
-        & Optimized & 89.20\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        & Optimized & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
         \midrule
         \multirow{2}{*}{Test}
-        & Original & \textbf{94.22\%} & \textbf{97.38\%} & 86.64\% & 90.07\% \\
+        & Original & \textbf{97.30\%} & 86.64\% & 90.07\% \\
         %& Full & 84.27\% & 92.79\% & 87.03\% & 90.16\% \\
-        & Optimized & 88.08\% & 96.35\% & \textbf{88.55\%} & \textbf{91.41\%} \\
+        & Optimized & 96.35\% & \textbf{88.55\%} & \textbf{91.41\%} \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
         compared to the initial tag sets. Trained and tested using
         automatically assigned tags from TnT.}
     \label{finalresults}
-\end{table*}
+\end{table}
 
 %\section{Optimized Pipeline}
 %\label{sec:pipeline}
