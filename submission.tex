@@ -163,7 +163,7 @@ investigation of the effects of tag sets on PoS tagging for Swedish
 
 \newcite{Meg:02} trained and evaluated a range of PoS taggers on the
 Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
-on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects 
+on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects
 of tag set size on tagging was investigated by mapping the original tag
 set into smaller subsets designed for parsing. \newcite{Meg:02} argues that a tag set with
 complete morphological tags may not be necessary for all NLP applications, for
@@ -179,7 +179,7 @@ Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
 performance in English, specifically the Wall Street Journal portion of the Penn
 Treebank (PTB) \cite{Mar:San:Mar:93}. Based on linguistic
 considerations \newcite{Mac:05} mapped the 45 tags of the original PTB tag set
- to more fine-grained tag sets to investigate whether additional linguistic information 
+ to more fine-grained tag sets to investigate whether additional linguistic information
 could assist the tagger. Experimenting with both lexically
 and syntactically conditioned modifications such as distinguishing between
 count nouns and noncount nouns and between transitive and intransitive verbs,
@@ -199,8 +199,8 @@ Transition/overgang her ...
 Our experiments our based on the newly developed Norwegian Dependency Treebank (NDT)
 \cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
 Norwegian. It was developed at the National Library of Norway in
-collaboration with the University of Oslo, and contains manually coded 
-syntactic and morphological annotation for 
+collaboration with the University of Oslo, and contains manually coded
+syntactic and morphological annotation for
 both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
 tokens of Nynorsk. This paper only report results for Bokmål, the main variant.
 The treebanked material mostly comprise newspaper
@@ -219,10 +219,10 @@ tags outlined in Table \ref{ndttagset}, with 7 additional tags for punctuation
 and symbols. The tag set is thus rather coarse-grained, with broad categories
 such as \texttt{subst} (noun) and \texttt{verb} (verb). The PoS tags are
 complemented by a large set of morphological features, providing information
-about morphological properties such as definiteness, number and tense. 
+about morphological properties such as definiteness, number and tense.
 Selected subsets of these
 features are used in our tag set modifications, where the coarse PoS tag of
-relevant tokens is concatenated with one or more features to include 
+relevant tokens is concatenated with one or more features to include
 more linguistic information in the tags.
 
 \begin{table}
@@ -353,9 +353,9 @@ producing new gold standard annotations of higher quality.
 \paragraph{Evaluation}
 To evaluate tagging and parsing with the various tag set modifications in our
 experiments, we employed commonly used evaluation metrics. Tagging is evaluated
-in terms of accuracy (reported by the TnT-included \texttt{tnt-diff} script),
-while labeled attachment score (LAS) and unlabeled attachment score (UAS) are
-computed by the
+in terms of accuracy (reported by the TnT-included \texttt{tnt-diff} script;
+denoted \emph{Acc} in the following tables), while labeled attachment score
+(LAS) and unlabeled attachment score (UAS) are computed by the
 \texttt{eval.pl}\footnote{\url{http://ilk.uvt.nl/conll/software.html}} script
 (used in the CoNLL shared tasks) to evaluate the parsing.
 
@@ -443,32 +443,35 @@ granularity. To evaluate the initial tag sets and investigate how the tag set
 granularity would affect the performance of tagging and parsing, we ran
 baseline experiments with the two tag sets. In Table \ref{inittagseteval}, we
 report the results of these experiments. We see that the tagger accuracy
-drastically drops when going from the original to the full tag set. TnT reports
-an accuracy of 97.47\% on the original tag set, which is reduced to 93.48\% for
-the full tag set. These results confirm our hypothesis that the very high
-linguistic quality in the full, fine-grained tag set comes at the expense of
-drops in tagger performance.  However, the additional linguistic information
-provided by the full tag set improves the parser performance. With the original
-tag set, Mate reports an LAS of 87.01\% and a UAS of 90.19\%, which increases
-to 87.15\% and 90.39\%, respectively, using the full tag set. As we are looking
-for linguistically informed distinctions that improve the syntactic parsing,
-these results are promising and serve to indicate that additional linguistic
+drastically drops when going from the original to the full tag set. The MFT
+baseline for the original tag set is 94.14\%, while it drops by almost 9
+percentage points to 85.15\% for the full tag set. TnT reports an accuracy of
+97.47\% on the original tag set, which is reduced to 93.48\% for the full tag
+set. These results confirm our hypothesis that the very high linguistic quality
+in the full, fine-grained tag set comes at the expense of drops in tagger
+performance.  However, the additional linguistic information provided by the
+full tag set improves the parser performance. With the original tag set, Mate
+reports an LAS of 87.01\% and a UAS of 90.19\%, which increases to 87.15\% and
+90.39\%, respectively, using the full tag set. As we are looking for
+linguistically informed distinctions that improve the syntactic parsing, these
+results are promising and serve to indicate that additional linguistic
 information assists the syntactic parsers, motivating the optimization of the
 existing PoS tag set.
 
 \begin{table}
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}llll@{}}
+    \begin{tabular}{@{}lllll@{}}
         \toprule
-        \textbf{Tag Set} & \textbf{Acc} &
+        \textbf{Tag Set} & \textbf{MFT} & \textbf{Acc} &
         \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        Original & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Full & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
+        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Results of tagging and parsing with the two initial tag sets.}
+    \caption{Results of tagging and parsing with the two initial tag sets.
+        \emph{Acc} denotes tagger accuracy.}
     \label{inittagseteval}
 \end{table}
 
@@ -774,17 +777,18 @@ case, with LAS of 87.27\% and UAS identical to that of type and case.
 \begin{table*}[ht]
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}lllll@{}}
+    \begin{tabular}{@{}llllll@{}}
         \toprule
-        \textbf{Category} & \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} &
-        \textbf{UAS} \\
+        \textbf{Category} & \textbf{Feature(s)} & \textbf{MFT} &
+        \textbf{Acc} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        \emph{Baseline} & --- & 97.47\% & 87.01\% & 90.19\% \\
-        Noun & Type, case \& definiteness & 97.05\% & 88.81\% & 91.73\% \\
-        Verb & Finiteness & 97.35\% & 87.30\% & 90.43\% \\
-        Adjective & Degree & 97.41\% & 87.29\% & 90.44\% \\
-        Determiner & Definiteness & 97.49\% & 87.30\% & 90.42\% \\
-        Pronoun & Type \& case & 97.51\% & 87.30\% & 90.41\% \\
+        \emph{Original} & --- & 94.14\% & 97.47\% & 87.01\% & 90.19\% \\
+        Noun & Type, case \& definiteness & 89.61\% & 97.05\% & 88.81\% &
+        91.73\% \\
+        Verb & Finiteness & 93.72\% & 97.35\% & 87.30\% & 90.43\% \\
+        Adjective & Degree & 94.13\% & 97.41\% & 87.29\% & 90.44\% \\
+        Determiner & Definiteness & 94.13\% & 97.49\% & 87.30\% & 90.42\% \\
+        Pronoun & Type \& case & 94.12\% & 97.51\% & 87.30\% & 90.41\% \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the most successful tag set
@@ -862,20 +866,20 @@ application can be useful and beneficial.
 \begin{table}
     \centering
     \smaller[0.5]
-    \begin{tabular}{@{}lllll@{}}
+    \begin{tabular}{@{}llllll@{}}
         \toprule
-        \textbf{Data} & \textbf{Tag Set} & \textbf{Acc}
-        & \textbf{LAS} & \textbf{UAS} \\
+        \textbf{Data} & \textbf{Tag Set} & \textbf{MFT} & \textbf{Acc} &
+        \textbf{LAS} & \textbf{UAS} \\
         \midrule
         \multirow{2}{*}{Dev}
-        & Original & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        & Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
         %Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
-        & Optimized & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        & Optimized & 85.15\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
         \midrule
         \multirow{2}{*}{Test}
-        & Original & \textbf{97.30\%} & 86.64\% & 90.07\% \\
+        & Original & \textbf{94.22\%} & \textbf{97.30\%} & 86.64\% & 90.07\% \\
         %& Full & 84.27\% & 92.79\% & 87.03\% & 90.16\% \\
-        & Optimized & 96.35\% & \textbf{88.55\%} & \textbf{91.41\%} \\
+        & Optimized & 88.08\% & 96.35\% & \textbf{88.55\%} & \textbf{91.41\%} \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
