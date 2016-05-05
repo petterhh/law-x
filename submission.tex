@@ -95,9 +95,9 @@ This paper reports on a suite of experiments that evaluates how the linguistic
 granularity of part-of-speech tag sets impacts the performance of tagging and
 syntactic dependency parsing. Our results show that parsing accuracy can be
 significantly improved by introducing more fine-grained morphological
-information in the tag set, even when tagger accuracy goes down as a result of
-the increased complexity of the tagging task. Our taggers and parsers are
-trained and tested using the annotations of the Norwegian Dependency Treebank.
+information in the tag set, even if tagger accuracy is compromised. Our taggers
+and parsers are  trained and tested using the annotations of the Norwegian
+Dependency Treebank. 
 
 \end{abstract}
 
@@ -295,21 +295,23 @@ set, we will only consider tag set modifications we deem linguistically
 sensible.
 
 \paragraph{Data Set Split}
-As there was no standardized data set split of NDT due to its very recent
-development, we needed to establish a data set split
-(training/development/test). Our data set split of the treebank follows the
-standard 80-10-10 (training/development/test) split and will be distributed
-with the treebank and proposed as the new standard(?). In creating the data set
-split, care has been taken to preserve contiguous texts in the various data
-sets while keeping the split balanced in terms of genre. Our
-proposed data set split was used in the Norwegian contribution to the Universal
-Dependencies project \cite{Ovr:Hoh:16}. The split will be made available at a
-companion website. In our experiments, we train on the training data and
-evaluate on the development data, before finally evaluating our optimized tag
-set on the held-out test data set.
+As there was no existing standardized data set split of NDT due to its recent
+development, we first needed to define separate sections for training, development and
+testing. Our proposed sectioning of the treebank follows a 
+standard 80-10-10 split. In establishing the  
+split, care has been taken to preserve contiguous texts in the various 
+sections while also keeping them balanced in terms of genre. 
+
+Our defined split into sections for training, development testing, and held-out
+testing will be distributed with the future releases of the treebank, but 
+details for replicating the split will also be made available at a companion website
+for the final version of the paper. 
+% Our proposed split has already been used in the Norwegian contribution to the
+% Universal Dependencies project \cite{Ovr:Hoh:16}. 
 
 \paragraph{Tagger}
-For our experiments with tag set modifications, we sought a PoS tagger both
+As our experiments during development required many repeated cycles of training and
+testing for the different modified tag sets, we sought a PoS tagger that is both
 reasonably fast and accurate. There is a often a considerable trade-off between
 the two factors, as the most accurate taggers tend to suffer in terms of speed
 due to their complexity. However, a tagger that achieves both close to
