@@ -151,80 +151,61 @@ main findings and discusses some avenues for future work.
 
 \section{Previous Work}
 \label{sec:prev}
-There has been little previous work dedicated specifically to
-extrinsic evaluation of the effects of PoS tag sets on downstream
-applications.  There has, however, been some work that evaluates the
-effects of tag set granularity on PoS tagging itself. This includes
-investigation of the effects of tag sets on PoS tagging for Swedish
-\cite{Meg:01,Meg:02} and English \cite{Mac:05}.
-
-%Increases in tagger accuracy does not readily translate to
-%improved parsing.
+There has been little previous work dedicated specifically to extrinsic
+evaluation of the effects of PoS tag sets on downstream applications.  There
+has, however, been some work that evaluates the effects of tag set granularity
+on PoS tagging itself. This includes investigation of the effects of tag sets
+on PoS tagging for Swedish \cite{Meg:01,Meg:02} and English \cite{Mac:05}.
 
 \newcite{Meg:02} trained and evaluated a range of PoS taggers on the
 Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
 on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects
-of tag set size on tagging was investigated by mapping the original tag
-set into smaller subsets designed for parsing. \newcite{Meg:02} argues that a tag set with
-complete morphological tags may not be necessary for all NLP applications, for
-instance syntactic parsing. The study found that the smallest tag set comprising 26
-tags yields the lowest tagger error rate.  However, for some of the taggers,
-augmenting the tag set with more linguistically informative tags may actually
-lead to a drop in error rate. \newcite{Meg:02} argues that this shows that the size of the
-tag set as well as the type of information in the tags are crucial factors for
-tagger performance.  Unfortunately, results for parsing with the various PoS
-tag sets are not reported.
+of tag set size on tagging was investigated by mapping the original tag set
+into smaller subsets designed for parsing. \newcite{Meg:02} argues that a tag
+set with complete morphological tags may not be necessary for all NLP
+applications, for instance syntactic parsing. The study found that the smallest
+tag set comprising 26 tags yields the lowest tagger error rate. However, for
+some of the taggers, augmenting the tag set with more linguistically
+informative tags may actually lead to a drop in error rate. \newcite{Meg:02}
+argues that this shows that the size of the tag set as well as the type of
+information in the tags are crucial factors for tagger performance.
+Unfortunately, results for parsing with the various PoS tag sets are not
+reported.
 
 Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
-performance in English, specifically the Wall Street Journal portion of the Penn
-Treebank (PTB) \cite{Mar:San:Mar:93}. Based on linguistic
-considerations \newcite{Mac:05} mapped the 45 tags of the original PTB tag set
- to more fine-grained tag sets to investigate whether additional linguistic information
-could assist the tagger. Experimenting with both lexically
-and syntactically conditioned modifications such as distinguishing between
-count nouns and noncount nouns and between transitive and intransitive verbs,
-they found that more fine-grained tag sets rarely led to improvements in tagger
-accuracy; the most successful modification yielded an improvement in tagger
-accuracy of 0.05 percentage points.  They did not find any statistically
-significant improvements using linguistically informed distinctions, arguing
-that their results do not support the hypothesis that it is possible to achieve
+performance in English, specifically the Wall Street Journal portion of the
+Penn Treebank (PTB) \cite{Mar:San:Mar:93}. Based on linguistic considerations,
+\newcite{Mac:05} mapped the 45 tags of the original PTB tag set to more
+fine-grained tag sets to investigate whether additional linguistic information
+could assist the tagger. Experimenting with both lexically and syntactically
+conditioned modifications such as distinguishing between count nouns and
+noncount nouns and between transitive and intransitive verbs, they found that
+more fine-grained tag sets rarely led to improvements in tagger accuracy; the
+most successful modification yielded an improvement in tagger accuracy of 0.05
+percentage points.  They did not find any statistically significant
+improvements using linguistically informed distinctions, arguing that their
+results do not support the hypothesis that it is possible to achieve
 significant performance improvements in PoS tagging by utilizing a
 finer-grained tag set.
 
 % fixme:
-Transition/overgang her ...
+%Transition/overgang her ...
 
 \section{The Norwegian Dependency Treebank}
 \label{sec:data}
-Our experiments our based on the newly developed Norwegian Dependency Treebank (NDT)
-\cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
-Norwegian. It was developed at the National Library of Norway in
-collaboration with the University of Oslo, and contains manually coded
-syntactic and morphological annotation for
-both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
-tokens of Nynorsk. This paper only report results for Bokmål, the main variant.
-The treebanked material mostly comprise newspaper
-text, but also include government reports, parliament transcripts and
-blog excerpts. The annotation process was supported by
-the rule-based Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00} and then manually
-corrected by annotators, adding syntactic dependency analysis to the
-morphosyntactic annotation.
+Our experiments are based on the newly developed Norwegian Dependency Treebank
+(NDT) \cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
+Norwegian. It was developed at the National Library of Norway in collaboration
+with the University of Oslo, and contains manually coded syntactic and
+morphological annotation for both varieties of Norwegian; 311 000 tokens of
+Bokmål and 303 000 tokens of Nynorsk. This paper only reports results for
+Bokmål, the main variety. The treebanked material mostly comprise newspaper
+text, but also include government reports, parliament transcripts and blog
+excerpts. The annotation process was supported by the rule-based Oslo-Bergen
+Tagger \cite{Hag:Joh:Nok:00} and then manually corrected by annotators, adding
+syntactic dependency analysis to the morphosyntactic annotation.
 
 \paragraph{Morphological Annotation}
-The morphological annotation and PoS tag set of NDT is based on the same
-inventory as used by the Oslo-Bergen
-Tagger \cite{Hag:Joh:Nok:00,Sol:13}, which in turn is largely based on the work
-of \newcite{Faa:Lie:Van:97}. The tag set consists of 12 morphosyntactic PoS
-tags outlined in Table \ref{ndttagset}, with 7 additional tags for punctuation
-and symbols. The tag set is thus rather coarse-grained, with broad categories
-such as \texttt{subst} (noun) and \texttt{verb} (verb). The PoS tags are
-complemented by a large set of morphological features, providing information
-about morphological properties such as definiteness, number and tense.
-Selected subsets of these
-features are used in our tag set modifications, where the coarse PoS tag of
-relevant tokens is concatenated with one or more features to include
-more linguistic information in the tags.
-
 \begin{table}
     \centering
     \smaller[0.5]
@@ -246,20 +227,25 @@ more linguistic information in the tags.
         \texttt{verb} & Verb \\
         \bottomrule
     \end{tabular}
-    \caption{Overview of the original PoS tag set of NDT (excluding punctuation tags).}
+    \caption{Overview of the original PoS tag set of NDT (excluding punctuation
+        tags).}
     \label{ndttagset}
 \end{table}
 
-\paragraph{Syntactic Annotation}
-The syntactic annotation choices in NDT are largely based on the Norwegian
-Reference Grammar \cite{Faa:Lie:Van:97}. Some central annotation choices are outlined in
-Table \ref{ndtannotation}, taken from of \newcite{Sol:Skj:Ovr:14},
-providing overview of the analyses of syntactic constructions that often
-distinguish dependency treebanks, such as coordination and the treatment of
-auxiliary and main verbs. The annotations comprise 29
-dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
-(subject) and \textsc{koord} (coordination).
+The morphological annotation and PoS tag set of NDT is based on the same
+inventory as used by the Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00,Sol:13}, which
+in turn is largely based on the work of \newcite{Faa:Lie:Van:97}. The tag set
+consists of 12 morphosyntactic PoS tags outlined in Table \ref{ndttagset}, with
+7 additional tags for punctuation and symbols. The tag set is thus rather
+coarse-grained, with broad categories such as \texttt{subst} (noun) and
+\texttt{verb} (verb). The PoS tags are complemented by a large set of
+morphological features, providing information about morphological properties
+such as definiteness, number and tense.  Selected subsets of these features are
+used in our tag set modifications, where the coarse PoS tag of relevant tokens
+is concatenated with one or more features to include more linguistic
+information in the tags.
 
+\paragraph{Syntactic Annotation}
 \begin{table}
     \centering
     \smaller[0.5]
@@ -277,6 +263,15 @@ dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
     \caption{Central head-dependent annotation choices in NDT.}
     \label{ndtannotation}
 \end{table}
+
+The syntactic annotation choices in NDT are largely based on the Norwegian
+Reference Grammar \cite{Faa:Lie:Van:97}. Some central annotation choices are outlined in
+Table \ref{ndtannotation}, taken from of \newcite{Sol:Skj:Ovr:14},
+providing overview of the analyses of syntactic constructions that often
+distinguish dependency treebanks, such as coordination and the treatment of
+auxiliary and main verbs. The annotations comprise 29
+dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
+(subject) and \textsc{koord} (coordination).
 
 \section{Experimental Setup}
 \label{sec:setup}
