@@ -97,7 +97,7 @@ syntactic dependency parsing. Our results show that parsing accuracy can be
 significantly improved by introducing more fine-grained morphological
 information in the tag set, even if tagger accuracy is compromised. Our taggers
 and parsers are  trained and tested using the annotations of the Norwegian
-Dependency Treebank. 
+Dependency Treebank.
 
 \end{abstract}
 
@@ -279,37 +279,21 @@ In preparation to conducting our experiments with linguistically motivated tag
 set modifications, a concrete setup for the experiments needed to be
 established, which is presented in the following.
 
-% fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
-% står under "Tag Set Mapping".
-Our approach is somewhat semi-automatic in that we employ a "hybrid"
-combination of manual annotation and automatic labeling in our experiments. Our
-initial tags are gold standard, and using linguistic insight coupled with
-computational considerations, we introduce new gold standard distinctions to
-the tag set. The data sets with these tags are run through a pipeline with
-automatically assigned tags in both training and testing, where the most
-promising modifications are used "further". Hence, the tag set modifications
-are not deterministic, nor do we try all possible combination; we only
-experiment with linguistically motivated distinctions. We are in reality
-altering the gold standard tags by the addition of more linguistic information.
-
-As we want to investigate how we can improve the linguistic quality of a tag
-set, we will only consider tag set modifications we deem linguistically
-sensible.
 
 \paragraph{Data Set Split}
 As there was no existing standardized data set split of NDT due to its recent
 development, we first needed to define separate sections for training, development and
-testing. Our proposed sectioning of the treebank follows a 
-standard 80-10-10 split. In establishing the  
-split, care has been taken to preserve contiguous texts in the various 
-sections while also keeping them balanced in terms of genre. 
+testing. Our proposed sectioning of the treebank follows a
+standard 80-10-10 split. In establishing the
+split, care has been taken to preserve contiguous texts in the various
+sections while also keeping them balanced in terms of genre.
 
 Our defined split into sections for training, development testing, and held-out
-testing will be distributed with the future releases of the treebank, but 
+testing will be distributed with the future releases of the treebank, but
 details for replicating the split will also be made available at a companion website
-for the final version of the paper. 
+for the final version of the paper.
 % Our proposed split has already been used in the Norwegian contribution to the
-% Universal Dependencies project \cite{Ovr:Hoh:16}. 
+% Universal Dependencies project \cite{Ovr:Hoh:16}.
 
 \paragraph{Tagger}
 As our experiments during development required many repeated cycles of training and
@@ -325,7 +309,7 @@ of choice for our experiments.
 \paragraph{Parser}
 In choosing a syntactic parser for our experiments, we considered previous work
 on dependency parsing of Norwegian, specifically that of
-\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to have  
+\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to have
 the best performance for parsing of NDT. Furthermore, recent dependency
 parser comparisons \cite{Cho:Tet:Ste:15} showed that Mate performed very well
 on parsing of English, outperforming a range of contemporary state-of-the-art
@@ -342,6 +326,22 @@ in the gold standard data. Hence, we are in actuality altering the gold
 standard tags by the addition of more relevant linguistic information,
 producing new gold standard annotations of higher quality.
 
+% fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
+% står under "Tag Set Mapping".
+Our approach is somewhat semi-automatic in that we employ a "hybrid"
+combination of manual annotation and automatic labeling in our experiments. Our
+initial tags are gold standard, and using linguistic insight coupled with
+computational considerations, we introduce new gold standard distinctions to
+the tag set. The data sets with these tags are run through a pipeline with
+automatically assigned tags in both training and testing, where the most
+promising modifications are used "further". Hence, the tag set modifications
+are not deterministic, nor do we try all possible combination; we only
+experiment with linguistically motivated distinctions. We are in reality
+altering the gold standard tags by the addition of more linguistic information.
+
+As we want to investigate how we can improve the linguistic quality of a tag
+set, we will only consider tag set modifications we deem linguistically
+sensible.
 %This is done by concatenating the original tag with the
 %specified features for all applicable tokens
 
@@ -357,23 +357,22 @@ denoted \emph{Acc} in the following tables), while labeled attachment score
 (used in the CoNLL shared tasks) to evaluate the parsing.
 
 \paragraph{Baseline}
-As a point of reference for the PoS tagging we will be reporting the commonly used
-most-frequent-tag baseline, henceforth MFT.
-This involves labeling each word with the tag it was
-assigned most frequently in the training data. All unknown words, i.e., words not
-seen in the training data, are assigned the tag most frequently assigned to
-words seen only once.  The rationale is that we might expect unknown
-and infrequent words to have similar properties given that they both occur rarely.
+As a point of reference for the PoS tagging, we will be reporting the commonly
+used most-frequent-tag baseline, henceforth MFT. This involves labeling each
+word with the tag it was assigned most frequently in the training data. All
+unknown words, i.e., words not seen in the training data, are assigned the tag
+most frequently assigned to words seen only once. The rationale is that we
+might expect unknown and infrequent words to have similar properties given that
+they both occur rarely.
 
-\paragraph{Tags \& Features} % <-- fixme: rename? 
+\paragraph{Tags \& Features} % <-- fixme: rename?
 As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
 in application to raw text, we choose to evaluate the parser on automatically
-assigned PoS tags. For training, however, we have two
-options: using either gold standard or automatically assigned tags. In order to
-settle on a configuration, we conducted experiments with training on both gold
-standard tags and
-automatically assigned tags to see how the performance differs.
-The results of these experiments, shown in Table \ref{tagconfigeval}, reveal that
+assigned PoS tags. For training, however, we have two options: using either
+gold standard or automatically assigned tags. In order to settle on a
+configuration, we conducted experiments with training on both gold standard
+tags and automatically assigned tags to see how the performance differs. The
+results of these experiments, shown in Table \ref{tagconfigeval}, reveal that
 the combination of training and testing on automatic tags is clearly superior
 to training on gold standard tags and testing on automatic tags. Consequently,
 the parser is both trained and tested on automatically assigned tags in the
@@ -399,10 +398,10 @@ remainder of our experiments.
 \end{table}
 
 Though some parsers make use of morphological features, % fixme: status for mate?
-we removed all morphological features beyond the PoS tags in order to simulate a realistic setting.
-Moreover, it is crucial that we remove these features when working with
-automatically assigned tags, as such features would be provided by the gold
-standard. 
+we removed all morphological features beyond the PoS tags in order to simulate
+a realistic setting.  Moreover, it is crucial that we remove these features
+when working with automatically assigned tags, as such features would be
+provided by the gold standard.
 
 %For instance, if a verb token is erroneously tagged as a noun, we could potentially
 %have a noun token with verbal features such as tense, which markedly obfuscates
