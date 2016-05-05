@@ -188,31 +188,33 @@ Transition/overgang her ...
 
 \section{The Norwegian Dependency Treebank}
 \label{sec:data}
-We used the newly developed Norwegian Dependency Treebank (NDT)
+Our experiments our based on the newly developed Norwegian Dependency Treebank (NDT)
 \cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
 Norwegian. It was developed at the National Library of Norway in
-collaboration with the University of Oslo, and contains manual
-syntactic and morphological annotation. The treebank contains data
-from both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
-tokens of Nynorsk. We will in the following only be using the Bokmål
-portion of the treebank. The annotated texts are mostly newspaper
+collaboration with the University of Oslo, and contains manually coded 
+syntactic and morphological annotation for 
+both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
+tokens of Nynorsk. This paper only report results for Bokmål, the main variant.
+The treebanked material mostly comprise newspaper
 text, but also include government reports, parliament transcripts and
-excerpts from blogs. The annotation process of the treebank was supported by
+blog excerpts. The annotation process was supported by
 the rule-based Oslo-Bergen Tagger \cite{Hag:Joh:Nok:00} and then manually
 corrected by annotators, adding syntactic dependency analysis to the
 morphosyntactic annotation.
 
 \paragraph{Morphological Annotation}
-The morphological annotation and PoS tag set of NDT follows the Oslo-Bergen
+The morphological annotation and PoS tag set of NDT is based on the same
+inventory as used by the Oslo-Bergen
 Tagger \cite{Hag:Joh:Nok:00,Sol:13}, which in turn is largely based on the work
 of \newcite{Faa:Lie:Van:97}. The tag set consists of 12 morphosyntactic PoS
 tags outlined in Table \ref{ndttagset}, with 7 additional tags for punctuation
 and symbols. The tag set is thus rather coarse-grained, with broad categories
 such as \texttt{subst} (noun) and \texttt{verb} (verb). The PoS tags are
 complemented by a large set of morphological features, providing information
-about morphological properties such as definiteness, number and tense. These
+about morphological properties such as definiteness, number and tense. 
+Selected subsets of these
 features are used in our tag set modifications, where the coarse PoS tag of
-relevant tokens is concatenated with one or more of these features to include
+relevant tokens is concatenated with one or more features to include 
 more linguistic information in the tags.
 
 \begin{table}
@@ -236,17 +238,17 @@ more linguistic information in the tags.
         \texttt{verb} & Verb \\
         \bottomrule
     \end{tabular}
-    \caption{Overview of the PoS tag set of NDT.}
+    \caption{Overview of the original PoS tag set of NDT (excluding punctuation tags).}
     \label{ndttagset}
 \end{table}
 
 \paragraph{Syntactic Annotation}
 The syntactic annotation choices in NDT are largely based on the Norwegian
-Reference Grammar \cite{Faa:Lie:Van:97}. The annotation choices are outlined in
-Table \ref{ndtannotation}, taken from/courtesy of \newcite{Sol:Skj:Ovr:14},
+Reference Grammar \cite{Faa:Lie:Van:97}. Some central annotation choices are outlined in
+Table \ref{ndtannotation}, taken from of \newcite{Sol:Skj:Ovr:14},
 providing overview of the analyses of syntactic constructions that often
 distinguish dependency treebanks, such as coordination and the treatment of
-auxiliary and main verbs. The set of dependency relations comprises 29
+auxiliary and main verbs. The annotations comprise 29
 dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
 (subject) and \textsc{koord} (coordination).
 
