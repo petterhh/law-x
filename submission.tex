@@ -163,7 +163,7 @@ investigation of the effects of tag sets on PoS tagging for Swedish
 
 \newcite{Meg:02} trained and evaluated a range of PoS taggers on the
 Stockholm-Umeå Corpus (SUC) \cite{Gus:Har:06}, annotated with a tag set based
-on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects 
+on a Swedish version of PAROLE tags totaling 139 tags. Furthermore, the effects
 of tag set size on tagging was investigated by mapping the original tag
 set into smaller subsets designed for parsing. \newcite{Meg:02} argues that a tag set with
 complete morphological tags may not be necessary for all NLP applications, for
@@ -179,7 +179,7 @@ Similarly, \newcite{Mac:05} investigated the effects of PoS tag sets on tagger
 performance in English, specifically the Wall Street Journal portion of the Penn
 Treebank (PTB) \cite{Mar:San:Mar:93}. Based on linguistic
 considerations \newcite{Mac:05} mapped the 45 tags of the original PTB tag set
- to more fine-grained tag sets to investigate whether additional linguistic information 
+ to more fine-grained tag sets to investigate whether additional linguistic information
 could assist the tagger. Experimenting with both lexically
 and syntactically conditioned modifications such as distinguishing between
 count nouns and noncount nouns and between transitive and intransitive verbs,
@@ -199,8 +199,8 @@ Transition/overgang her ...
 Our experiments our based on the newly developed Norwegian Dependency Treebank (NDT)
 \cite{Sol:Skj:Ovr:14}, the first publicly available treebank for
 Norwegian. It was developed at the National Library of Norway in
-collaboration with the University of Oslo, and contains manually coded 
-syntactic and morphological annotation for 
+collaboration with the University of Oslo, and contains manually coded
+syntactic and morphological annotation for
 both varieties of Norwegian; 311 000 tokens of Bokmål and 303 000
 tokens of Nynorsk. This paper only report results for Bokmål, the main variant.
 The treebanked material mostly comprise newspaper
@@ -219,10 +219,10 @@ tags outlined in Table \ref{ndttagset}, with 7 additional tags for punctuation
 and symbols. The tag set is thus rather coarse-grained, with broad categories
 such as \texttt{subst} (noun) and \texttt{verb} (verb). The PoS tags are
 complemented by a large set of morphological features, providing information
-about morphological properties such as definiteness, number and tense. 
+about morphological properties such as definiteness, number and tense.
 Selected subsets of these
 features are used in our tag set modifications, where the coarse PoS tag of
-relevant tokens is concatenated with one or more features to include 
+relevant tokens is concatenated with one or more features to include
 more linguistic information in the tags.
 
 \begin{table}
@@ -351,9 +351,9 @@ producing new gold standard annotations of higher quality.
 \paragraph{Evaluation}
 To evaluate tagging and parsing with the various tag set modifications in our
 experiments, we employed commonly used evaluation metrics. Tagging is evaluated
-in terms of accuracy (reported by the TnT-included \texttt{tnt-diff} script),
-while labeled attachment score (LAS) and unlabeled attachment score (UAS) are
-computed by the
+in terms of accuracy (reported by the TnT-included \texttt{tnt-diff} script;
+denoted \emph{Acc} in the following tables), while labeled attachment score
+(LAS) and unlabeled attachment score (UAS) are computed by the
 \texttt{eval.pl}\footnote{\url{http://ilk.uvt.nl/conll/software.html}} script
 (used in the CoNLL shared tasks) to evaluate the parsing.
 
@@ -468,7 +468,8 @@ existing PoS tag set.
         Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Results of tagging and parsing with the two initial tag sets.}
+    \caption{Results of tagging and parsing with the two initial tag sets.
+        \emph{Acc} denotes tagger accuracy.}
     \label{inittagseteval}
 \end{table}
 
