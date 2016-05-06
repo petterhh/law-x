@@ -419,33 +419,33 @@ accuracy.
 \label{sec:optimization}
 By introducing more fine-grained linguistically motivated distinctions in a tag
 set, we increase the linguistic information represented in the tags, which may
-assist the parser in recognizing and generalizing syntactic patterns. 
-We would then also increase the complexity of the tagging task though,  
-which can be expected to lead to a drop in tagger accuracy. 
+assist the parser in recognizing and generalizing syntactic patterns.
+We would then also increase the complexity of the tagging task though,
+which can be expected to lead to a drop in tagger accuracy.
 However, the best tagging, evaluated in isolation, does not necessarily lead to the
 best parse, hence it is interesting to investigate how tag set modifications
-may affect this interplay. 
+may affect this interplay.
 
 
 \subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
 its full set of morphological features, thereby mapping the original tag set to a
 new maximally fine-grained tag set given the annotations available in the
-treebank. This resulted in a total of 368 tags, 
-hereafter referred to as the \emph{full} tag set.  
+treebank. This resulted in a total of 368 tags,
+hereafter referred to as the \emph{full} tag set.
 The two initial tag sets, i.e., the original tag set comprising 19 tags and the
 full tag set comprising 368 tags, thus represent two extremes in terms of
-granularity. 
-To establish some initial points of reference for how tag set granularity affects the 
+granularity.
+To establish some initial points of reference for how tag set granularity affects the
 performance of tagging and parsing on NDT, we trained and tested a full pipeline with both of
-these intital tags sets. The results are reported in Table \ref{inittagseteval}.
+these initial tags sets. The results are reported in Table \ref{inittagseteval}.
 Unsurprisingly, we see that the tagger accuracy
 plummets when we move from the original to the full tag set. The MFT
 baseline for the original tag set is 94.14\%, while it drops by almost 9
 percentage points to 85.15\% for the full tag set. TnT reports an accuracy of
 97.47\% on the original tag set, which is reduced to 93.48\% for the full tag
-set. These results confirm our hypothesis that the very high level linguistic
-information 
+set. These results confirm our hypothesis that the very high level of linguistic
+information
 in the full, fine-grained tag set comes at the expense of reduced tagger
 performance.  In spite of this, however, we see that the additional information
 in the full tag set still improves the parser performance. With the original tag set, Mate
@@ -471,7 +471,7 @@ existing PoS tag set.
     \caption{Results of tagging and parsing our development section of NDT with
       the two initial tag sets. From left to right we report the tagger
       accuracy of the most-frequent-tag baseline, the tagger accuracy of TnT,
-      and labeled / unlabeled attachment scores for the Mate parser.} 
+      and labeled / unlabeled attachment scores for the Mate parser.}
     \label{inittagseteval}
 \end{table}
 
@@ -484,7 +484,6 @@ For each tag in turn, we first experiment with each of the available features in
 isolation before testing various combinations in order to see how the features
 might interact. We base our choices of combinations on how promising the
 features are and what we deem worth investigating in terms of linguistic utility.
-
 
 The morphological properties of the various parts-of-speech are reflected in
 the morphological features associated with the respective PoS tags. For
