@@ -419,43 +419,41 @@ accuracy.
 \label{sec:optimization}
 By introducing more fine-grained linguistically motivated distinctions in a tag
 set, we increase the linguistic information represented in the tags, which may
-assist the parser in recognizing and generalizing syntactic patterns. However,
-the addition of more linguistic information to the tags and thus a more
-fine-grained tag set will most likely lead to a drop in tagger accuracy due to
-the increase in complexity. The best tagging does not necessarily lead to the
-best parse, hence it is interesting to investigate how linguistically informed
-tag set modifications may affect the interplay between tagging and parsing.
-%as
-%we want to investigate how we can improve the linguistic quality of a tag set,
-%we will
-%only consider tag set modifications we deem linguistically sensible.
-%we will not introduce tag set modifications which are not linguistically
-%motivated. we will only consider distinctions we deem linguistically sensible.
+assist the parser in recognizing and generalizing syntactic patterns. 
+We would then also increase the complexity of the tagging task though,  
+which can be expected to lead to a drop in tagger accuracy. 
+However, the best tagging, evaluated in isolation, does not necessarily lead to the
+best parse, hence it is interesting to investigate how tag set modifications
+may affect this interplay. 
+
 
 \subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
-its set of morphological features in order to map the original tag set to a
-new, more fine-grained tag set (hereafter referred to as the \emph{full} tag
-set). This resulted in a total of 368 tags, which is clearly very fine-grained.
+its full set of morphological features, thereby mapping the original tag set to a
+new maximally fine-grained tag set given the annotations available in the
+treebank. This resulted in a total of 368 tags, 
+hereafter referred to as the \emph{full} tag set.  
 The two initial tag sets, i.e., the original tag set comprising 19 tags and the
 full tag set comprising 368 tags, thus represent two extremes in terms of
-granularity. To evaluate the initial tag sets and investigate how the tag set
-granularity would affect the performance of tagging and parsing, we ran
-baseline experiments with the two tag sets. In Table \ref{inittagseteval}, we
-report the results of these experiments. We see that the tagger accuracy
-drastically drops when going from the original to the full tag set. The MFT
+granularity. 
+To establish some initial points of reference for how tag set granularity affects the 
+performance of tagging and parsing on NDT, we trained and tested a full pipeline with both of
+these intital tags sets. The results are reported in Table \ref{inittagseteval}.
+Unsurprisingly, we see that the tagger accuracy
+plummets when we move from the original to the full tag set. The MFT
 baseline for the original tag set is 94.14\%, while it drops by almost 9
 percentage points to 85.15\% for the full tag set. TnT reports an accuracy of
 97.47\% on the original tag set, which is reduced to 93.48\% for the full tag
-set. These results confirm our hypothesis that the very high linguistic quality
-in the full, fine-grained tag set comes at the expense of drops in tagger
-performance.  However, the additional linguistic information provided by the
-full tag set improves the parser performance. With the original tag set, Mate
-reports an LAS of 87.01\% and a UAS of 90.19\%, which increases to 87.15\% and
+set. These results confirm our hypothesis that the very high level linguistic
+information 
+in the full, fine-grained tag set comes at the expense of reduced tagger
+performance.  In spite of this, however, we see that the additional information
+in the full tag set still improves the parser performance. With the original tag set, Mate
+yields 87.01\% LAS and 90.19\% UAS, which increases to 87.15\% and
 90.39\%, respectively, using the full tag set. As we are looking for
 linguistically informed distinctions that improve the syntactic parsing, these
-results are promising and serve to indicate that additional linguistic
-information assists the syntactic parsers, motivating the optimization of the
+results are promising and indicate that additional linguistic
+information assists syntactic parsing, motivating the optimization of the
 existing PoS tag set.
 
 \begin{table}
@@ -470,21 +468,23 @@ existing PoS tag set.
         Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Results of tagging and parsing with the two initial tag sets.
-        \emph{Acc} denotes tagger accuracy.}
+    \caption{Results of tagging and parsing our development section of NDT with
+      the two initial tag sets. From left to right we report the tagger
+      accuracy of the most-frequent-tag baseline, the tagger accuracy of TnT,
+      and labeled / unlabeled attachment scores for the Mate parser.} 
     \label{inittagseteval}
 \end{table}
 
 \subsection{Tag Set Experiments}
-We modify the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
+We modified the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
 adjectives (\texttt{adj}), determiners (\texttt{det}) and pronouns
 (\texttt{pron}) in NDT by appending selected sets of morphological features to
 each tag in order to increase the linguistic information expressed by the tags.
-For each tag, we first experiment with each of the available features in
-isolation before employing various combinations of them. We base our choices of
-combinations on how promising the features are and what we deem worth
-investigating in terms of linguistic utility, in order to see how the features
-might interact.
+For each tag in turn, we first experiment with each of the available features in
+isolation before testing various combinations in order to see how the features
+might interact. We base our choices of combinations on how promising the
+features are and what we deem worth investigating in terms of linguistic utility.
+
 
 The morphological properties of the various parts-of-speech are reflected in
 the morphological features associated with the respective PoS tags. For
