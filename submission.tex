@@ -438,7 +438,7 @@ full tag set comprising 368 tags, thus represent two extremes in terms of
 granularity.
 To establish some initial points of reference for how tag set granularity affects the
 performance of tagging and parsing on NDT, we trained and tested a full pipeline with both of
-these initial tags sets. The results are reported in Table \ref{inittagseteval}.
+these intital tags sets. The results are reported in Table \ref{inittagseteval}.
 Unsurprisingly, we see that the tagger accuracy
 plummets when we move from the original to the full tag set. The MFT
 baseline for the original tag set is 94.14\%, while it drops by almost 9
@@ -476,14 +476,18 @@ existing PoS tag set.
 \end{table}
 
 \subsection{Tag Set Experiments}
-We modified the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
+We modify the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
 adjectives (\texttt{adj}), determiners (\texttt{det}) and pronouns
 (\texttt{pron}) in NDT by appending selected sets of morphological features to
 each tag in order to increase the linguistic information expressed by the tags.
-For each tag in turn, we first experiment with each of the available features in
-isolation before testing various combinations in order to see how the features
-might interact. We base our choices of combinations on how promising the
-features are and what we deem worth investigating in terms of linguistic utility.
+For each tag, we in turn first experiment with each of the available features in
+isolation before testing various combinations. We base our choices
+of combinations on how promising the features are and what we deem worth
+For each tag, we first experiment with each of the available features in
+isolation before employing various combinations of them. We base our choices of
+combinations on how promising the features are and what we deem worth
+investigating in terms of linguistic utility, in order to see how the features
+might interact.
 
 The morphological properties of the various parts-of-speech are reflected in
 the morphological features associated with the respective PoS tags. For
