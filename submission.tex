@@ -109,7 +109,7 @@ Part-of-speech (PoS) tagging is an important preprocessing step for many NLP
 tasks, such as dependency parsing \cite{Niv:Hal:Kub:07,Haj:Cia:Joh:09}, named
 entity recognition \cite{Tjo:DeM:03} and sentiment analysis
 \cite{Wil:Wie:Hof:09}. Whereas much effort has gone into the development of
-PoS-taggers -- to the effect that this task is often considered more or less a
+PoS taggers -- to the effect that this task is often considered more or less a
 solved task -- considerably less effort has been devoted to the empirical
 evaluation of the PoS tag sets themselves. Error analysis of PoS taggers
 indicate that, whereas tagging improvement through means of learning algorithm
@@ -182,14 +182,17 @@ conditioned modifications such as distinguishing between count nouns and
 noncount nouns and between transitive and intransitive verbs, they found that
 more fine-grained tag sets rarely led to improvements in tagger accuracy; the
 most successful modification yielded an improvement in tagger accuracy of 0.05
-percentage points.  They did not find any statistically significant
+percentage points. They did not find any statistically significant
 improvements using linguistically informed distinctions, arguing that their
 results do not support the hypothesis that it is possible to achieve
 significant performance improvements in PoS tagging by utilizing a
 finer-grained tag set.
 
-% fixme:
-%Transition/overgang her ...
+We argue, however, that it is possible to significantly improve the performance
+of the downstream application of syntactic parsing by introducing
+linguistically informed, syntactically informative distinctions in a tag set.
+We will now turn to the data that provided the basis for our experiments and
+outline its morphological and syntactic annotation choices.
 
 \section{The Norwegian Dependency Treebank}
 \label{sec:data}
@@ -265,13 +268,13 @@ information in the tags.
 \end{table}
 
 The syntactic annotation choices in NDT are largely based on the Norwegian
-Reference Grammar \cite{Faa:Lie:Van:97}. Some central annotation choices are outlined in
-Table \ref{ndtannotation}, taken from of \newcite{Sol:Skj:Ovr:14},
+Reference Grammar \cite{Faa:Lie:Van:97}. Some central annotation choices are
+outlined in Table \ref{ndtannotation}, taken from \newcite{Sol:Skj:Ovr:14},
 providing overview of the analyses of syntactic constructions that often
 distinguish dependency treebanks, such as coordination and the treatment of
-auxiliary and main verbs. The annotations comprise 29
-dependency relations, including \textsc{adv} (adverbial), \textsc{subj}
-(subject) and \textsc{koord} (coordination).
+auxiliary and main verbs. The annotations comprise 29 dependency relations,
+including \textsc{adv} (adverbial), \textsc{subj} (subject) and \textsc{koord}
+(coordination).
 
 \section{Experimental Setup}
 \label{sec:setup}
@@ -282,11 +285,11 @@ established, which is presented in the following.
 
 \paragraph{Data Set Split}
 As there was no existing standardized data set split of NDT due to its recent
-development, we first needed to define separate sections for training, development and
-testing. Our proposed sectioning of the treebank follows a
-standard 80-10-10 split. In establishing the
-split, care has been taken to preserve contiguous texts in the various
-sections while also keeping them balanced in terms of genre.
+development, we first needed to define separate sections for training,
+development and testing. Our proposed sectioning of the treebank follows a
+standard 80-10-10 split. In establishing the split, care has been taken to
+preserve contiguous texts in the various sections while also keeping them
+balanced in terms of genre.
 
 Our defined split into sections for training, development testing, and held-out
 testing will be distributed with the future releases of the treebank, but
@@ -563,17 +566,16 @@ the treebank, \texttt{pass} (passive) and \texttt{imp} (imperative),
 respectively.  Verbs which are not passive are implicitly active, and verbs
 which are not imperative are indicative.
 
-
 Table \ref{verbresults} presents the results from tagging and parsing with
-modified verb tags. Introducing features in isolation, mood is the only feature
-leading to an increase in LAS, with a reported LAS of 87.04\%. Imperative
-clauses are fundamentally different from indicative clauses, as they lack an
-overt subject.  Although voice is a very distinguishing property for verbs, and
-passive verbs appear in clauses very different from those with active verbs,
-introducing this distinction in the tag set leads to a drop in LAS of 0.05
-percentage points.  Distinguishing between the various tenses yields an LAS of
-86.97\%. Combining the two most promising features, mood and tense, resulted in
-an LAS of 87.12\% and UAS of 90.31\%.
+modified verb tags. Imperative clauses are fundamentally different from
+indicative clauses, as they lack an overt subject, which is reflected in the
+fact that mood is the only feature leading to an increase in LAS, with a
+reported LAS of 87.04\% Although voice is a very distinguishing property for
+verbs, and passive verbs appear in clauses very different from those with
+active verbs, introducing this distinction in the tag set leads to a drop in
+LAS of 0.05 percentage points.  Distinguishing between the various tenses
+yields an LAS of 86.97\%. Combining the two most promising features, mood and
+tense, resulted in an LAS of 87.12\% and UAS of 90.31\%.
 
 In an additional experiment, we mapped the verb tenses (and mood, in the case
 of imperative) to finiteness. All verbs have finiteness, hence this distinction
@@ -682,10 +684,9 @@ distinction of type is noteworthy, as we expected the finer granularity to lead
 to a decrease in accuracy. This serves to indicate that more fine-grained
 distinctions for determiners, which is a quite disparate category in the
 treebank, may be quite useful for tagging. However, as it has negative impact
-on the syntactic parsing, we can conclude that the type of a determiner does
-not assist in generalizing syntactic patterns, as most determiners, regardless
-of type, appear in the same syntactic constructions (i.e., before a noun or
-noun phrase).
+on parsing, we can conclude that the type of a determiner does not assist in
+generalizing syntactic patterns. Most determiners, regardless of type, appear
+in the same syntactic constructions (i.e., before a noun or noun phrase).
 
 Gender, on the other hand, improved the parsing, but complicated the tagging,
 as the various genders are often difficult to differentiate, especially so in
