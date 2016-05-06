@@ -320,34 +320,13 @@ parsers. We will be using Mate for gauging the effects of the tag set
 modifications in our experiments.
 
 \paragraph{Tag Set Mapping}
-The tag set modifications are realized by mapping the existing tags to new,
-more fine-grained tags "based" on associated morphological features to be
-included in specified tags. The procedure maps the relevant existing tags to
-new, more fine-grained tags including more relevant morphological features for
-the applicable tokens, i.e., tokens that are assigned said tag and feature(s)
-in the gold standard data. Hence, we are in actuality altering the gold
-standard tags by the addition of more relevant linguistic information,
-producing new gold standard annotations of higher quality.
-
-% fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
-% står under "Tag Set Mapping".
-Our approach is somewhat semi-automatic in that we employ a "hybrid"
-combination of manual annotation and automatic labeling in our experiments. Our
-initial tags are gold standard, and using linguistic insight coupled with
-computational considerations, we introduce new gold standard distinctions to
-the tag set. The data sets with these tags are run through a pipeline with
-automatically assigned tags in both training and testing, where the most
-promising modifications are used "further". Hence, the tag set modifications
-are not deterministic, nor do we try all possible combination; we only
-experiment with linguistically motivated distinctions.
-
-As we want to investigate how we can improve the linguistic quality of a tag
-set, we will only consider tag set modifications we deem linguistically
-sensible.
-%This is done by concatenating the original tag with the
-%specified features for all applicable tokens
-
-%contains the set of features in its morphological features.
+The tag set modifications are realized through a mapping procedure that
+concatenates the existing tag with one or more specified features for all
+applicable tokens, i.e., tokens annotated with said tag and feature(s) in the
+gold standard data.
+%A given tag set modification involves the specification of
+%a tag and the desired features we want to append to the existing,
+%coarse-grained tag.
 
 \paragraph{Evaluation}
 To evaluate tagging and parsing with the various tag set modifications in our
@@ -426,6 +405,25 @@ However, the best tagging, evaluated in isolation, does not necessarily lead to 
 best parse, hence it is interesting to investigate how tag set modifications
 may affect this interplay.
 
+Hence, we are in actuality altering the gold
+standard tags by the addition of more relevant linguistic information,
+producing new gold standard annotations of higher quality.
+
+% fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
+% står under "Tag Set Mapping".
+Our approach is somewhat semi-automatic in that we employ a "hybrid"
+combination of manual annotation and automatic labeling in our experiments. Our
+initial tags are gold standard, and using linguistic insight coupled with
+computational considerations, we introduce new gold standard distinctions to
+the tag set. The data sets with these tags are run through a pipeline with
+automatically assigned tags in both training and testing, where the most
+promising modifications are used "further". Hence, the tag set modifications
+are not deterministic, nor do we try all possible combination; we only
+experiment with linguistically motivated distinctions.
+
+As we want to investigate how we can improve the linguistic quality of a tag
+set, we will only consider tag set modifications we deem linguistically
+sensible.
 
 \subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
