@@ -320,10 +320,12 @@ parsers. We will be using Mate for gauging the effects of the tag set
 modifications in our experiments.
 
 \paragraph{Tag Set Mapping}
-The tag set modifications are realized through a mapping procedure that
-concatenates the existing tag with one or more specified features for all
-applicable tokens, i.e., tokens annotated with said tag and feature(s) in the
-gold standard data.
+Based only on information already available in the gold annotations of the
+treebank, the tag set modifications are realized through a mapping procedure that
+concatenates existing tags with one or more specified morphological features for all
+applicable tokens.
+ %, i.e., tokens annotated with said tag and feature(s) in the
+% gold standard data.
 %A given tag set modification involves the specification of
 %a tag and the desired features we want to append to the existing,
 %coarse-grained tag.
@@ -882,7 +884,7 @@ existing PoS tag set for a downstream application can be useful and beneficial.
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
-        compared to the initial tag sets. Trained and tested using
+        compared to the original coarse tag set. Trained and tested using
         automatically assigned tags from TnT.}
     \label{finalresults}
 \end{table}
@@ -896,7 +898,7 @@ This paper has reported on a range of experiments with injecting more
 fine-grained morphological distinctions into an existing PoS tag set, and then
 empirically evaluating the effects both (intrinsically) in terms of tagging
 accuracy and (extrinsically) in terms of parsing accuracy. Our experimental
-results -- based on the annotations of the Norwegian Dependency Treebank using
+results -- based on the annotations of the Norwegian Dependency Treebank and using
 the TnT PoS tagger and the Mate dependency parser -- show that the enriched tag
 set leads to significantly improved parsing accuracy, even though PoS tagging
 accuracy in isolation is reduced. The modified tag sets in our experiments are
