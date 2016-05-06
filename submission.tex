@@ -721,7 +721,7 @@ parsing and that distinguishing on definiteness is very useful.
 \paragraph{Pronouns}
 Pronouns in Norwegian are personal, reciprocal, reflexive and interrogative.
 They can furthermore exhibit gender, number and person, while personal pronouns
-can be distinguished case (accusative or nominative).
+can be distinguished on case (either accusative or nominative).
 
 The results in Table \ref{pronresults} show that number, person and type are
 the most informative features for parsing, with LAS of 87.21\%, 87.22\% and
@@ -731,19 +731,19 @@ interact in any syntactically distinctive way. The most interesting observation
 is that all experiments exceed the tagging accuracy of the original tag set,
 the most improved being the most fine-grained distinction, namely type, case
 and number combined, obtaining a tagger accuracy of 97.52\%. This shows that
-the introduction of more fine-grained distinctions for pronouns is beneficial
-and aids the PoS tagger in disambiguating ambiguous words. While case alone
-yields an LAS of 87.08\%, we found that the combination of type and case, which
-is the most successful experiment in terms of parser performance, yields the
-second highest tagging accuracy of 97.51\%. The reason for this is that
-pronouns of different type and personal pronouns of different case exhibit
-quite different properties and appear in different constructions. Pronouns in
-nominative case (i.e., subjects) primarily occur before the main verb, while
-pronouns in accusative case (i.e., objects) occur after the main verb, as
-Norwegian exhibits so-called V2 word order, requiring that the finite verb of a
-declarative clause appears in the second position, hence its name. The
-combination of type and number comes in close to the performance of type and
-case, with LAS of 87.27\% and UAS identical to that of type and case.
+the introduction of more fine-grained distinctions for pronouns aids the PoS
+tagger in disambiguating ambiguous words. While case alone yields an LAS of
+87.08\%, we found that the combination of type and case, which is the most
+successful experiment in terms of parser performance, yields the second highest
+tagging accuracy of 97.51\%. Pronouns of different type and personal pronouns
+of different case exhibit quite different properties and appear in different
+constructions. Pronouns in nominative case (i.e., subjects) primarily occur
+before the main verb, while pronouns in accusative case (i.e., objects) occur
+after the main verb, as Norwegian exhibits so-called V2 word order, requiring
+that the finite verb of a declarative clause appears in the second position,
+hence its name. The combination of type and number comes in close to the
+performance of type and case, with LAS of 87.27\% and UAS identical to that of
+type and case.
 
 \begin{table}
     \centering
