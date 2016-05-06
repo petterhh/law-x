@@ -312,12 +312,12 @@ of choice for our experiments.
 \paragraph{Parser}
 In choosing a syntactic parser for our experiments, we considered previous work
 on dependency parsing of Norwegian, specifically that of
-\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to have
-the best performance for parsing of NDT. Furthermore, recent dependency
-parser comparisons \cite{Cho:Tet:Ste:15} showed that Mate performed very well
-on parsing of English, outperforming a range of contemporary state-of-the-art
-parsers. We will be using Mate for gauging the effect of the tag set modifications in
-our experiments.
+\newcite{Sol:Skj:Ovr:14}, who found the Mate parser \cite{Boh:10} to have the
+best performance for parsing of NDT. Furthermore, recent dependency parser
+comparisons \cite{Cho:Tet:Ste:15} showed that Mate performed very well on
+parsing of English, outperforming a range of contemporary state-of-the-art
+parsers. We will be using Mate for gauging the effects of the tag set
+modifications in our experiments.
 
 \paragraph{Tag Set Mapping}
 The tag set modifications are realized by mapping the existing tags to new,
@@ -339,8 +339,7 @@ the tag set. The data sets with these tags are run through a pipeline with
 automatically assigned tags in both training and testing, where the most
 promising modifications are used "further". Hence, the tag set modifications
 are not deterministic, nor do we try all possible combination; we only
-experiment with linguistically motivated distinctions. We are in reality
-altering the gold standard tags by the addition of more linguistic information.
+experiment with linguistically motivated distinctions.
 
 As we want to investigate how we can improve the linguistic quality of a tag
 set, we will only consider tag set modifications we deem linguistically
@@ -482,7 +481,7 @@ adjectives (\texttt{adj}), determiners (\texttt{det}) and pronouns
 (\texttt{pron}) in NDT by appending selected sets of morphological features to
 each tag in order to increase the linguistic information expressed by the tags.
 For each tag, we first experimented with each of the available features in
-isolation before employing various combinations of them. We based our choices
+isolation before employing various combinations of them. We base our choices
 of combinations on how promising the features are and what we deem worth
 investigating in terms of linguistic utility, in order to see how the features
 might interact.
