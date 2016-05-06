@@ -792,22 +792,24 @@ type and case.
     \label{respectiveresults}
 \end{table*}
 
-The most successful tag set modification for each PoS and their results are
-seen in Table \ref{respectiveresults}. Nouns benefit by far the most from the
-introduction of more fine-grained linguistically motivated distinctions, with
-an LAS of 88.81\% and UAS of 91.73\%. We observe that the most promising tag
-set modifications for verbs, adjectives, determiners and pronouns all reach LAS
-of \textasciitilde 87.30\% and UAS of \textasciitilde 90.40\%. To investigate
-the overall effect of these tag set modifications, we tested each of the
-improvements in parser accuracy scores from baseline for statistical
-significance using Dan Bikel's randomized parsing evaluation comparator
-script\footnote{Available as \texttt{compare.pl} at
-    \url{http://ilk.uvt.nl/conll/software.html}}, as used in the CoNLL shared
-tasks. For the most successful tag set modification for each of the categories
-seen in Table \ref{respectiveresults}, the difference in LAS from the original
-tag set is statistically significant at significance level 0.05 (\emph{p}-value
-< 0.05), as are all differences in UAS, except for verbs with finiteness
-(\emph{p}-value 0.15) and pronouns with type and case (\emph{p}-value 0.06).
+The most successful tag set modification for each PoS and the results from
+tagging and parsing with the respective modifications are seen in Table
+\ref{respectiveresults}. Nouns benefit by far the most from the introduction of
+more fine-grained linguistically motivated distinctions, with an LAS of 88.81\%
+and UAS of 91.73\% when distinguishing on type, case and definiteness. We
+observe that the most promising tag set modifications for verbs, adjectives,
+determiners and pronouns all reach LAS of \textasciitilde 87.30\% and UAS of
+\textasciitilde 90.40\%. To investigate the overall effect of these tag set
+modifications, we tested each of the improvements in parser accuracy scores
+from that of the original tag set for statistical significance using Dan
+Bikel's randomized parsing evaluation comparator script\footnote{Available as
+    \texttt{compare.pl} at \url{http://ilk.uvt.nl/conll/software.html}}, as
+used in the CoNLL shared tasks. For the most successful tag set modification
+for each of the categories seen in Table \ref{respectiveresults}, the
+difference in LAS from the original tag set is statistically significant at
+significance level 0.05 (\emph{p}-value < 0.05), as are all differences in UAS,
+except for verbs with finiteness (\emph{p}-value 0.15) and pronouns with type
+and case (\emph{p}-value 0.06).
 
 An overview of the tags in the optimized tag set can be seen in Table
 \ref{optimizedtagset}, comprising three new tags for adjectives, two for
@@ -850,14 +852,14 @@ total of 39 tags for NDT.
 
 \paragraph{Final Evaluation}
 In Table \ref{finalresults}, we show the results of parsing with the optimized
-tag set on the held-out test set, compared to the results obtained with the
-original tag set. We see significant improvements from the original tag set on
-both the development data and the held-out test data set. The improvement in
-LAS on the development data is 1.86 percentage points, while 1.91 percentage
-points on the held-out test data. These results indicate that the additional
-linguistic information in the tags of our optimized tag set greatly aids
-syntactic parsing and that optimizing an existing PoS tag set for a downstream
-application can be useful and beneficial.
+tag set on the held-out test data and the development data, compared to the
+results obtained with the original tag set. We see significant improvements
+from the original tag set on both the development data and the held-out test
+data set. The improvement in LAS on the development data is 1.86 percentage
+points, while 1.91 percentage points on the held-out test data. These results
+indicate that the additional linguistic information in the tags of our
+optimized tag set greatly aids syntactic parsing and that optimizing an
+existing PoS tag set for a downstream application can be useful and beneficial.
 
 \begin{table}
     \centering
