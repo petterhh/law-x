@@ -476,58 +476,51 @@ existing PoS tag set.
 \end{table}
 
 \subsection{Tag Set Experiments}
-We modified the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
+We modify the tags for nouns (\texttt{subst}), verbs (\texttt{verb}),
 adjectives (\texttt{adj}), determiners (\texttt{det}) and pronouns
 (\texttt{pron}) in NDT by appending selected sets of morphological features to
 each tag in order to increase the linguistic information expressed by the tags.
-For each tag, we first experimented with each of the available features in
-isolation before employing various combinations of them. We base our choices
-of combinations on how promising the features are and what we deem worth
+For each tag, we first experiment with each of the available features in
+isolation before employing various combinations of them. We base our choices of
+combinations on how promising the features are and what we deem worth
 investigating in terms of linguistic utility, in order to see how the features
 might interact.
 
 The morphological properties of the various parts-of-speech are reflected in
 the morphological features associated with the respective PoS tags. For
 instance, as nouns in Norwegian can take on gender, definiteness and number,
-additionally marked with genitive case, the treebank operates with features for
-gender, definiteness, number and case.
-%with "accompanying" values
-In addition to morphological properties such as definiteness, tense and number,
-all classes except for verbs have a \emph{type} feature that provides
-information about the subtype, e.g., common nouns and proper nouns, while
-pronouns can be reflexive, reciprocal, personal or interrogative.
-
-%"Nearly" all tag set modifications leads to a drop in tagger accuracy, as
-%expected. Few exceptions... We observed increases in parser accuracy scores
-%with linguistically motivated tag set modifications for all PoS tags we
-%experimented with, the most improved being noun with an increase in LAS from
-%the original tag set by 1.80 percentage points.
+the treebank operates with features for gender, definiteness and number
+complementing the \texttt{subst} tag. In addition to morphological properties
+such as definiteness, tense and number, all classes except for verbs have a
+\emph{type} feature that provides information about the subtype of the PoS,
+e.g., whether a noun is common or proper.
 
 \paragraph{Nouns}
 In Norwegian, nouns are assigned gender (feminine, masculine or neuter),
-definiteness (definite or indefinite) and number (singular or plural). There
-is agreement in gender, definiteness and number between nouns and their
-modifiers (adjectives and determiners). Additionally, NDT has a separate case
-feature for distinguishing nouns in genitive case.
+definiteness (definite or indefinite) and number (singular or plural). There is
+agreement in gender, definiteness and number between nouns and their modifiers
+(adjectives and determiners). Additionally, NDT has a separate \emph{case}
+feature for distinguishing nouns in genitive case. Genitive case marks
+possession, hence nouns marked with genitive case are quite different from
+other nouns, taking a noun phrase as complement. Distinguishing on type is
+useful and informative, as evident by the presence of separate tags for proper
+and common nouns in many tag sets, such as those of Penn Treebank and
+Stockholm-Umeå corpus.
 
-As nouns constitute the largest class in the treebank by far, the effects are
-greatest for noun tokens in terms of overall change in performance. The results
-of experimenting with tag set modifications for nouns are shown in Table
-\ref{substresults}, and reveal that, apart from case, none of the tag set
-modifications improves the tagging. However, they all give rise to increases in
-parser accuracy scores. Genitive case marks possession, hence nouns marked with
-genitive case are quite different from other nouns, taking a noun phrase as
-complement. Distinguishing on type is useful and informative, as evident by the
-presence of separate tags for proper and common nouns in many tag sets, such as
-those of Penn Treebank and Stockholm-Umeå corpus.
-
+%As nouns constitute the largest class in the treebank by far, the effects of
+%the tag set modifications are greatest for noun tokens in terms of overall
+%change in performance.
+The results of experimenting with tag set modifications
+for nouns are shown in Table \ref{substresults} and reveal that, apart from
+case, none of the tag set modifications improve the tagging. However, they all
+give rise to increases in parser accuracy scores.
 The most informative features are definiteness, which
 leads to an increase in LAS by 1.26 percentage points to 88.27\%, and type,
 yielding an LAS of 88.07\%. Turning to combinations of features, we found that
 the combination of type and case, as well as type and definiteness, were the
 most promising, which led us to combine type, case and definiteness in a final
 experiment, resulting in LAS of 88.81\% and UAS of 91.73\%, constituting large
-increases from parsing with the original tag set, by 1.80 percentage points
+improvements from parsing with the original tag set, of 1.80 percentage points
 and 1.54 percentage points, respectively.
 
 \begin{table}
@@ -558,10 +551,11 @@ and 1.54 percentage points, respectively.
 \end{table}
 
 \paragraph{Verbs}
-Verbs are inflected for tense (infinitive, present, preterite, past perfect) in
-Norwegian and additionally exhibit mood (imperative, indicative) and voice
-(active or passive). Note that both voice and mood have only a single value in
-the treebank, \texttt{pass} (passive) and \texttt{imp} (imperative),
+Verbs are inflected for tense (infinitive, present, preterite or past perfect)
+in Norwegian and additionally exhibit mood (imperative or indicative; also
+conjunctive, however, it is very uncommon and does not occur in the treebank)
+and voice (active or passive). Note that both voice and mood have only a single
+value in the treebank; \texttt{pass} (passive) and \texttt{imp} (imperative),
 respectively.  Verbs which are not passive are implicitly active, and verbs
 which are not imperative are indicative.
 
