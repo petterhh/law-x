@@ -892,20 +892,23 @@ existing PoS tag set for a downstream application can be useful and beneficial.
 %\section{Optimized Pipeline}
 %\label{sec:pipeline}
 
-\section{Summary and Future Work}
+\section{Summary}
 \label{sec:summary}
-The improvements in parser performance with our optimized tag set indicate that
-a more fine-grained PoS tag set may assist syntactic parsers in recognizing and
-generalizing syntactic patterns, while potentially compromising the performance
-of PoS taggers.
-
-There are several aspects of this thesis that can be further explored in future
-work, including extrinsic evaluation of the effects of PoS tag sets on other
-downstream NLP applications besides parsing, such as sentiment analysis and
-named entity recognition. These applications often require tagged data, but are
-markedly different from syntactic parsing, hence the evaluation would involve
-investigating an entirely different aspect of the effects of tag set
-granularity.
+This paper has reported on a range of experiments with injecting more
+fine-grained morphological distinctions into an existing PoS tag set, and then
+empirically evaluating the effects both (intrinsically) in terms of tagging
+accuracy and (extrinsically) in terms of parsing accuracy. Our experimental
+results -- based on the annotations of the Norwegian Dependency Treebank using
+the TnT PoS tagger and the Mate dependency parser -- show that the enriched tag
+set leads to significantly improved parsing accuracy, even though PoS tagging
+accuracy in isolation is reduced. The modified tag sets in our experiments are
+defined as combinations of PoS tags and morphological features already
+available in the gold annotations of the treebank. The best performing tag
+configuration is in effect a PoS tag set optimized for dependency parsing of
+Norwegian. However, by using another task for the extrinsic evaluation one can
+of course optimize a tag set specifically for other downstream applications
+instead, such as sentiment analysis, named entity recognition or any other task
+making use of tagged data.
 
 % \section*{Acknowledgments}
 
