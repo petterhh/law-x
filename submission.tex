@@ -556,29 +556,29 @@ in Norwegian and additionally exhibit mood (imperative or indicative; also
 conjunctive, however, it is very uncommon and does not occur in the treebank)
 and voice (active or passive). Note that both voice and mood have only a single
 value in the treebank; \texttt{pass} (passive) and \texttt{imp} (imperative),
-respectively.  Verbs which are not passive are implicitly active, and verbs
-which are not imperative are indicative.
+respectively. Verbs which are not passive are implicitly active, and verbs
+which are not imperative are in indicative mood.
 
 Table \ref{verbresults} presents the results from tagging and parsing with
 modified verb tags. Imperative clauses are fundamentally different from
-indicative clauses, as they lack an overt subject, which is reflected in the
+indicative clauses as they lack an overt subject, which is reflected in the
 fact that mood is the only feature leading to an increase in LAS, with a
-reported LAS of 87.04\% Although voice is a very distinguishing property for
-verbs, and passive verbs appear in clauses very different from those with
-active verbs, introducing this distinction in the tag set leads to a drop in
-LAS of 0.05 percentage points.  Distinguishing between the various tenses
-yields an LAS of 86.97\%. Combining the two most promising features, mood and
-tense, resulted in an LAS of 87.12\% and UAS of 90.31\%.
+reported LAS of 87.04\%. Although voice is a very distinguishing property for
+verbs, and passive clauses are very different from active clauses, introducing
+this distinction in the tag set leads to a drop in LAS of 0.05 percentage
+points, while distinguishing between the various tenses yields an LAS of
+86.97\%. Combining the two most promising features of mood and tense resulted
+in an LAS of 87.12\% and UAS of 90.31\%.
 
 In an additional experiment, we mapped the verb tenses (and mood, in the case
 of imperative) to finiteness. All verbs have finiteness, hence this distinction
 has broad coverage. This mapping is syntactically grounded as finite verbs and
 nonfinite verbs appear in completely different syntactic constructions, and
-proved to greatly improve the parsing, as we saw the overall largest parser
-accuracy scores, with 87.30\% for LAS and 90.43\% for UAS, 0.29 and 0.24
-percentage points higher than the baseline, respectively. This coincides with
-the observations seen for Swedish in \newcite{Ovr:08}, where finiteness was
-found to be a very beneficial linguistic feature for parsing.
+proved to greatly improve the parsing, as we saw the highest parser accuracy
+scores of 87.30\% for LAS and 90.43\% for UAS, 0.29 and 0.24 percentage points
+higher than the baseline, respectively. This coincides with the observations
+seen for Swedish in \newcite{Ovr:08}, where finiteness was found
+to be a very beneficial linguistic feature for parsing.
 
 \begin{table}
     \centering
