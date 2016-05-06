@@ -603,14 +603,14 @@ to be a very beneficial linguistic feature for parsing.
 
 \paragraph{Adjectives}
 Adjectives agree with the noun they modify in terms of gender, number and
-definiteness in Norwegian. Adjectives are also inflected for degree (positive,
-comparative or superlative).
+definiteness in Norwegian. Furthermore, adjectives are inflected for
+degree (positive, comparative or superlative).
 
 In Table \ref{adjresults}, we report the results of modifying the \texttt{pron}
-tag in NDT. All features except for number led to increases in parser accuracy
+tag in NDT. All features except for number lead to increases in parser accuracy
 scores, the most successful of which is degree with a reported LAS of 87.29\%,
-while distinguishing adjectives on definiteness yield an LAS of 87.14\% and
-gender leads to LAS of 87.10\%.
+while distinguishing adjectives on definiteness yields an LAS of 87.14\% and
+introducing the distinction of gender leads to LAS of 87.10\%.
 
 %Combining the most promising features, we
 %found that none of the combinations surpass the LAS with the distinction of
@@ -618,13 +618,13 @@ gender leads to LAS of 87.10\%.
 %and number with an LAS of 87.27\% and UAS identical to that of degree alone.
 
 Turning to combinations of features, definiteness and number achieve the best
-results, very close to that of degree, with 0.02 percentage points lower LAS
-and identical UAS. Adjectives agree with their head noun and determiner in
-definiteness and number, making this an expected improvement. The combination
-of definiteness and degree is also quite promising, obtaining LAS of 87.23\%
-and UAS of 90.39\%. It is interesting that none of the combinations surpass the
-experiment with degree alone, which indicates that degree does not interact
-with the other features in any syntactically significant way.
+parser accuracy scores, very close to those of degree, with 0.02 percentage
+points lower LAS and identical UAS. Adjectives agree with their head noun and
+determiner in definiteness and number, making this an expected improvement. The
+combination of definiteness and degree is also quite promising, obtaining LAS
+of 87.23\% and UAS of 90.39\%. It is interesting that none of the combinations
+surpass the experiment with degree alone, which indicates that degree does not
+interact with the other features in any syntactically significant way.
 
 \begin{table}
     \centering
@@ -654,11 +654,12 @@ with the other features in any syntactically significant way.
 
 \paragraph{Determiners}
 Like adjectives, determiners in Norwegian agree with the noun they modify in
-terms of gender, number and definiteness. Possessive pronouns are
-treated/analyzed as determiners in NDT.
+terms of gender, number and definiteness. We do not report results from
+combinations of features for determiners, as the features could not be combined
+in any meaningful way.
+%VPossessive pronouns are
+%treated/analyzed as determiners in NDT.
 
-%For a number of reasons, we do not report results from combinations of features
-%for determiners, as the features could not be combined in any meaningful way.
 %For instance, determiners in plural never have marked definiteness, hence this
 %combination would only apply to determiners in singular and roughly correspond
 %to the distinction on definiteness alone. Moreover, determiners in plural are
@@ -669,32 +670,35 @@ treated/analyzed as determiners in NDT.
 %overly sparse.
 
 The results from the experiments with determiners are shown in Table
-\ref{detresults}.  Introducing the distinction of type led to an increase in
-tagger accuracy by 0.14 percentage points to 97.61\%, while marginally
+\ref{detresults}. Introducing the distinction of type (demonstrative,
+amplifier, quantifier, possessive or interrogative) led to an increase in
+tagger accuracy of 0.14 percentage points to 97.61\%, while marginally
 impacting the parsing, with LAS of 87.00\%, 0.01 percentage points below that
 of the original tag set.  The increase in tagger accuracy when introducing the
 distinction of type is noteworthy, as we expected the finer granularity to lead
 to a decrease in accuracy. This serves to indicate that more fine-grained
 distinctions for determiners, which is a quite disparate category in the
-treebank, may be quite useful for tagging. However, as it has negative impact
-on parsing, we can conclude that the type of a determiner does not assist in
-generalizing syntactic patterns. Most determiners, regardless of type, appear
-in the same syntactic constructions (i.e., before a noun or noun phrase).
+treebank, may be quite useful for tagging.
 
-Gender, on the other hand, improved the parsing, but complicated the tagging,
-as the various genders are often difficult to differentiate, especially so in
-the case of masculine and feminine, which share many of the same determiners.
-The number of a determiner, i.e., singular or plural, led to a small increase
-in tagger accuracy and LAS, while marginally lower UAS, 90.18\%, 0.01
-percentage points lower than that of the original tag set. The
+%However, as it has negative impact
+%on parsing, we can conclude that the type of a determiner does not assist in
+%generalizing syntactic patterns. Most determiners, regardless of type, appear
+%in the same syntactic constructions (i.e., before a noun or noun phrase).
+
+Gender, on the other hand, improved the parsing (87.09\% LAS), but complicated
+the tagging, as the various genders are often difficult to differentiate,
+especially so in the case of masculine and feminine, which share many of the
+same determiners. The number of a determiner, i.e., singular or plural, led to
+a small increase in tagger accuracy and LAS, while marginally lower UAS of
+90.18\%, 0.01 percentage points lower than that of the original tag set. The
 introduction of definiteness to the determiners led to the best parsing
 results, LAS of 87.30\% and UAS of 90.42\%, while also increasing the tagger
 accuracy slightly. The increase in LAS and UAS is rather interesting, as there
 are only 121 determiner tokens with marked definiteness in the development
 data. As this accounts for a very small number of tokens, we did not consider
-further fine-grained modifications with definiteness. This goes to show that
-tokens with overt definiteness have noticeable impact on the syntactic parsing,
-and that distinguishing on definiteness is very beneficial.
+further fine-grained modifications with definiteness. This serves to indicate
+that tokens with overt definiteness have noticeable impact on the syntactic
+parsing and that distinguishing on definiteness is very useful.
 
 \begin{table}
     \centering
@@ -715,9 +719,9 @@ and that distinguishing on definiteness is very beneficial.
 \end{table}
 
 \paragraph{Pronouns}
-Pronouns in Norwegian include personal, reciprocal, reflexive and
-interrogative. They can exhibit gender, number and person. Personal pronouns
-have case (accusative or nominative).
+Pronouns in Norwegian are personal, reciprocal, reflexive and interrogative.
+They can furthermore exhibit gender, number and person, while personal pronouns
+can be distinguished case (accusative or nominative).
 
 The results in Table \ref{pronresults} show that number, person and type are
 the most informative features for parsing, with LAS of 87.21\%, 87.22\% and
