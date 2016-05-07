@@ -510,22 +510,6 @@ useful and informative, as evident by the presence of separate tags for proper
 and common nouns in many tag sets, such as those of Penn Treebank and
 Stockholm-Umeå corpus.
 
-%As nouns constitute the largest class in the treebank by far, the effects of
-%the tag set modifications are greatest for noun tokens in terms of overall
-%change in performance.
-The results of experimenting with tag set modifications
-for nouns are shown in Table \ref{substresults} and reveal that, apart from
-case, none of the tag set modifications improve the tagging. However, they all
-give rise to increases in parser accuracy scores.
-The most informative features are definiteness, which
-leads to an increase in LAS by 1.26 percentage points to 88.27\%, and type,
-yielding an LAS of 88.07\%. Turning to combinations of features, we found that
-the combination of type and case, as well as type and definiteness, were the
-most promising, which led us to combine type, case and definiteness in a final
-experiment, resulting in LAS of 88.81\% and UAS of 91.73\%, constituting large
-improvements from parsing with the original tag set, of 1.80 percentage points
-and 1.54 percentage points, respectively.
-
 \begin{table}
     \centering
     \smaller[1]
@@ -553,6 +537,19 @@ and 1.54 percentage points, respectively.
     \label{substresults}
 \end{table}
 
+The results of experimenting with tag set modifications
+for nouns are shown in Table \ref{substresults} and reveal that, apart from
+case, none of the tag set modifications improve the tagging. However, they all
+give rise to increases in parser accuracy scores.
+The most informative features are definiteness, which
+leads to an increase in LAS by 1.26 percentage points to 88.27\%, and type,
+yielding an LAS of 88.07\%. Turning to combinations of features, we found that
+the combination of type and case, as well as type and definiteness, were the
+most promising, which led us to combine type, case and definiteness in a final
+experiment, resulting in LAS of 88.81\% and UAS of 91.73\%, constituting large
+improvements from parsing with the original tag set, of 1.80 percentage points
+and 1.54 percentage points, respectively.
+
 \paragraph{Verbs}
 Verbs are inflected for tense (infinitive, present, preterite or past perfect)
 in Norwegian and additionally exhibit mood (imperative or indicative; also
@@ -572,16 +569,6 @@ this distinction in the tag set leads to a drop in LAS of 0.05 percentage
 points, while distinguishing between the various tenses yields an LAS of
 86.97\%. Combining the two most promising features of mood and tense resulted
 in an LAS of 87.12\% and UAS of 90.31\%.
-
-In an additional experiment, we mapped the verb tenses (and mood, in the case
-of imperative) to finiteness. All verbs have finiteness, hence this distinction
-has broad coverage. This mapping is syntactically grounded as finite verbs and
-nonfinite verbs appear in completely different syntactic constructions, and
-proved to greatly improve the parsing, as we saw the highest parser accuracy
-scores of 87.30\% for LAS and 90.43\% for UAS, 0.29 and 0.24 percentage points
-higher than the baseline, respectively. This coincides with the observations
-seen for Swedish in \newcite{Ovr:08}, where finiteness was found
-to be a very beneficial linguistic feature for parsing.
 
 \begin{table}
     \centering
@@ -603,6 +590,16 @@ to be a very beneficial linguistic feature for parsing.
     \caption{Results of experiments with modified PoS tags for verbs.}
     \label{verbresults}
 \end{table}
+
+In an additional experiment, we mapped the verb tenses (and mood, in the case
+of imperative) to finiteness. All verbs have finiteness, hence this distinction
+has broad coverage. This mapping is syntactically grounded as finite verbs and
+nonfinite verbs appear in completely different syntactic constructions, and
+proved to greatly improve the parsing, as we saw the highest parser accuracy
+scores of 87.30\% for LAS and 90.43\% for UAS, 0.29 and 0.24 percentage points
+higher than the baseline, respectively. This coincides with the observations
+seen for Swedish in \newcite{Ovr:08}, where finiteness was found
+to be a very beneficial linguistic feature for parsing.
 
 \paragraph{Adjectives}
 Adjectives agree with the noun they modify in terms of gender, number and
@@ -814,12 +811,6 @@ significance level 0.05 (\emph{p}-value < 0.05), as are all differences in UAS,
 except for verbs with finiteness (\emph{p}-value 0.15) and pronouns with type
 and case (\emph{p}-value 0.06).
 
-An overview of the tags in the optimized tag set can be seen in Table
-\ref{optimizedtagset}, comprising three new tags for adjectives, two for
-determiners, six for pronouns, seven for nouns and two for verbs, totaling 20
-tags. Appending these to the original tag set comprising 19 tags, we reach a
-total of 39 tags for NDT.
-
 \begin{table}
     \centering
     \smaller[0.5]
@@ -852,6 +843,12 @@ total of 39 tags for NDT.
     \caption{Overview of the optimized tag set.}
     \label{optimizedtagset}
 \end{table}
+
+An overview of the tags in the optimized tag set can be seen in Table
+\ref{optimizedtagset}, comprising three new tags for adjectives, two for
+determiners, six for pronouns, seven for nouns and two for verbs, totaling 20
+tags. Appending these to the original tag set comprising 19 tags, we reach a
+total of 39 tags for NDT.
 
 \paragraph{Final Evaluation}
 In Table \ref{finalresults}, we show the results of parsing with the optimized
