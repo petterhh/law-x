@@ -371,9 +371,9 @@ remainder of our experiments.\footnote{Though some parsers also make use of
         \toprule
         \textbf{Training} & \textbf{Testing} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        Gold & Gold & 90.15\% & 92.51\% \\
-        Gold & Auto & 85.68\% & 88.98\% \\
-        Auto & Auto & 87.01\% & 90.19\% \\
+        Gold & Gold & 90.15 & 92.51 \\
+        Gold & Auto & 85.68 & 88.98 \\
+        Auto & Auto & 87.01 & 90.19 \\
         \bottomrule
     \end{tabular}
     \caption{Results of parsing with Mate using various configurations of PoS
@@ -415,9 +415,9 @@ modifications we deem linguistically sensible.
 
 The hope is that the introduction of more fine-grained linguistically motivated
 distinctions in the tag set may assist the parser in recognizing and
-generalizing syntactic patterns.  However, this would also increase the
-complexity of the tagging task, which can be expected to lead to a drop in
-tagger accuracy.  The best tagging, evaluated in isolation, does not
+generalizing syntactic patterns.  This would also increase the
+complexity of the tagging task though, which can be expected to lead to a drop in
+tagger accuracy. However, the best tagging, evaluated in isolation, does not
 necessarily lead to the best parse, hence the aim of this section is to
 investigate how tag set modifications affect this interplay.
 
@@ -455,7 +455,7 @@ plummets when we move from the original to the full tag set. While the MFT
 tagging baseline for the original tag set is 94.14\%, it drops by almost 9
 percentage points to 85.15\% for the full tag set. TnT yields
 97.47\% accuracy on the original tag set, which drops to 93.48\% for the full tag
-set. These results confirm our hypothesis that the high level linguistic
+set. These results confirm our hypothesis that the high level of linguistic
 information
 in the full, fine-grained tag set comes at the expense of reduced tagger
 performance.  In spite of this, however, we see that the additional information
@@ -474,8 +474,8 @@ tag set.
         \textbf{Tag Set} & \textbf{MFT} & \textbf{Acc} &
         \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Full & 85.15\% & 93.48\% & \textbf{87.15\%} & \textbf{90.39\%} \\
+        Original & \textbf{94.14} & \textbf{97.47} & 87.01 & 90.19 \\
+        Full & 85.15 & 93.48 & \textbf{87.15} & \textbf{90.39} \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing our development section of NDT with
@@ -529,19 +529,19 @@ Stockholm-Umeå corpus.
         \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} & \textbf{UAS}
         \\
         \midrule
-        --- & 97.47\% & 87.01\% & 90.19\% \\
-        Case & \textbf{97.48\%} & 87.63\% & 90.72\% \\
-        Definiteness & 97.00\% & 88.27\% & 91.42\% \\
-        Gender & 96.09\% & 87.21\% & 90.36\% \\
-        Number & 96.37\% & 87.97\% & 91.00\% \\
-        Type & 96.92\% & 88.07\% & 91.11\% \\
-        Case \& definiteness & 97.03\% & 88.39\% & 91.44\% \\
-        Type \& case & 96.92\% & 88.46\% & 91.51\% \\
-        Type \& definiteness & 96.99\% & 88.44\% & 91.48\% \\
-        %Type \& number & 96.37\% & 87.95\% & 90.95\% \\
-        Type, case \& definiteness & 97.05\% & \textbf{88.81\%} &
-        \textbf{91.73\%} \\
-        %Type, definiteness \& number & 96.46\% & 88.06\% & 91.12\% \\
+        --- & 97.47 & 87.01 & 90.19 \\
+        Case & \textbf{97.48} & 87.63 & 90.72 \\
+        Definiteness & 97.00 & 88.27 & 91.42 \\
+        Gender & 96.09 & 87.21 & 90.36 \\
+        Number & 96.37 & 87.97 & 91.00 \\
+        Type & 96.92 & 88.07 & 91.11 \\
+        Case \& definiteness & 97.03 & 88.39 & 91.44 \\
+        Type \& case & 96.92 & 88.46 & 91.51 \\
+        Type \& definiteness & 96.99 & 88.44 & 91.48 \\
+        %Type \& number & 96.37 & 87.95 & 90.95 \\
+        Type, case \& definiteness & 97.05 & \textbf{88.81} &
+        \textbf{91.73} \\
+        %Type, definiteness \& number & 96.46 & 88.06 & 91.12 \\
         \bottomrule
     \end{tabular}
     \caption{Tagging and parsing with modified PoS tags for nouns. The first
@@ -589,14 +589,14 @@ in an LAS of 87.12\% and UAS of 90.31\%.
         \toprule
         \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        --- & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Mood & 97.43\% & 87.04\% & 90.19\% \\
-        Tense & 97.30\% & 86.97\% & 90.18\% \\
-        Voice & 97.45\% & 86.96\% & 90.09\% \\
-        Mood \& tense & 97.31\% & 87.12\% & 90.31\% \\
-        Voice \& tense & 97.28\% & 86.99\% & 90.15\% \\
-        Mood, tense \& voice & 97.27\% & 86.83\% & 90.05\% \\
-        Finiteness & 97.35\% & \textbf{87.30\%} & \textbf{90.43\%} \\
+        --- & \textbf{97.47} & 87.01 & 90.19 \\
+        Mood & 97.43 & 87.04 & 90.19 \\
+        Tense & 97.30 & 86.97 & 90.18 \\
+        Voice & 97.45 & 86.96 & 90.09 \\
+        Mood \& tense & 97.31 & 87.12 & 90.31 \\
+        Voice \& tense & 97.28 & 86.99 & 90.15 \\
+        Mood, tense \& voice & 97.27 & 86.83 & 90.05 \\
+        Finiteness & 97.35 & \textbf{87.30} & \textbf{90.43} \\
         \bottomrule
     \end{tabular}
     \caption{Tagging and parsing with modified PoS tags for verbs.}
@@ -646,18 +646,18 @@ interact with the other features in any syntactically significant way.
         \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} & \textbf{UAS}
         \\
         \midrule
-        --- & \textbf{97.47\%} & 87.01\% & 90.19\% \\
-        Definiteness & 96.84\% & 87.14\% & 90.29\% \\
-        Degree & 97.41\% & \textbf{87.29\%} & \textbf{90.44\%} \\
-        Gender & 96.89\% & 87.10\% & 90.25\% \\
-        Number & 96.71\% & 86.99\% & 90.10\% \\
-        Type & 97.40\% & 87.11\% & 90.25\% \\
-        Definiteness \& degree & 96.81\% & 87.23\% & 90.39\% \\
-        Definiteness \& gender & 96.31\% & 87.18\% & 90.39\% \\
-        Definiteness \& number & 96.78\% & 87.27\% & \textbf{90.44\%} \\
-        %Degree \& gender & 96.87\% & 87.00\% & 90.16\% \\
-        %Degree \& number & 96.76\% & 87.13\% & 90.26\% \\
-        %Definiteness, degree \& number & 96.81\% & 87.14\% & 90.30\% \\
+        --- & \textbf{97.47} & 87.01 & 90.19 \\
+        Definiteness & 96.84 & 87.14 & 90.29 \\
+        Degree & 97.41 & \textbf{87.29} & \textbf{90.44} \\
+        Gender & 96.89 & 87.10 & 90.25 \\
+        Number & 96.71 & 86.99 & 90.10 \\
+        Type & 97.40 & 87.11 & 90.25 \\
+        Definiteness \& degree & 96.81 & 87.23 & 90.39 \\
+        Definiteness \& gender & 96.31 & 87.18 & 90.39 \\
+        Definiteness \& number & 96.78 & 87.27 & \textbf{90.44} \\
+        %Degree \& gender & 96.87 & 87.00 & 90.16 \\
+        %Degree \& number & 96.76 & 87.13 & 90.26 \\
+        %Definiteness, degree \& number & 96.81 & 87.14 & 90.30 \\
         \bottomrule
     \end{tabular}
     \caption{Tagging and parsing with modified PoS tags for adjectives.}
@@ -719,11 +719,11 @@ parsing and that distinguishing on definiteness is very useful.
         \toprule
         \textbf{Feature} & \textbf{Acc} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        --- & 97.47\% & 87.01\% & 90.19\% \\
-        Definiteness & 97.49\% & \textbf{87.30\%} & \textbf{90.42\%} \\
-        Gender & 97.28\% & 87.09\% & 90.31\% \\
-        Number & 97.49\% & 87.04\% & 90.18\% \\
-        Type & \textbf{97.61\%} & 87.00\% & 90.11\% \\
+        --- & 97.47 & 87.01 & 90.19 \\
+        Definiteness & 97.49 & \textbf{87.30} & \textbf{90.42} \\
+        Gender & 97.28 & 87.09 & 90.31 \\
+        Number & 97.49 & 87.04 & 90.18 \\
+        Type & \textbf{97.61} & 87.00 & 90.11 \\
         \bottomrule
     \end{tabular}
     \caption{Tagging and parsing with modified PoS tags for determiners.}
@@ -765,17 +765,17 @@ type and case.
         \toprule
         \textbf{Feature(s)} & \textbf{Acc} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        --- & 97.47\% & 87.01\% & 90.19\% \\
-        Case & 97.50\% & 87.08\% & 90.21\% \\
-        Gender & 97.48\% & 87.06\% & 90.23\% \\
-        Number & 97.49\% & 87.21\% & 90.33\% \\
-        Person & 97.49\% & 87.22\% & 90.32\% \\
-        Type & 97.48\% & 87.19\% & 90.40\% \\
-        Number \& person & 97.49\% & 96.98\% & 90.16\% \\
-        Type \& case & 97.51\% & \textbf{87.30\%} & \textbf{90.41\%} \\
-        Type \& number & 97.49\% & 87.27\% & \textbf{90.41\%} \\
-        Type \& person & 97.49\% & 87.00\% & 90.14\% \\
-        Type, case \& number & \textbf{97.52\%} & 87.11\% & 90.36\% \\
+        --- & 97.47 & 87.01 & 90.19 \\
+        Case & 97.50 & 87.08 & 90.21 \\
+        Gender & 97.48 & 87.06 & 90.23 \\
+        Number & 97.49 & 87.21 & 90.33 \\
+        Person & 97.49 & 87.22 & 90.32 \\
+        Type & 97.48 & 87.19 & 90.40 \\
+        Number \& person & 97.49 & 96.98 & 90.16 \\
+        Type \& case & 97.51 & \textbf{87.30} & \textbf{90.41} \\
+        Type \& number & 97.49 & 87.27 & \textbf{90.41} \\
+        Type \& person & 97.49 & 87.00 & 90.14 \\
+        Type, case \& number & \textbf{97.52} & 87.11 & 90.36 \\
         \bottomrule
     \end{tabular}
     \caption{Tagging and parsing with modified PoS tags for pronouns.}
@@ -791,13 +791,13 @@ type and case.
         \textbf{Category} & \textbf{Feature(s)} & \textbf{MFT} &
         \textbf{Acc} & \textbf{LAS} & \textbf{UAS} \\
         \midrule
-        \emph{Original} & --- & 94.14\% & 97.47\% & 87.01\% & 90.19\% \\
-        Noun & Type, case \& definiteness & 89.61\% & 97.05\% & 88.81\% &
-        91.73\% \\
-        Verb & Finiteness & 93.72\% & 97.35\% & 87.30\% & 90.43\% \\
-        Adjective & Degree & 94.13\% & 97.41\% & 87.29\% & 90.44\% \\
-        Determiner & Definiteness & 94.13\% & 97.49\% & 87.30\% & 90.42\% \\
-        Pronoun & Type \& case & 94.12\% & 97.51\% & 87.30\% & 90.41\% \\
+        \emph{Original} & --- & 94.14 & 97.47 & 87.01 & 90.19 \\
+        Noun & Type, case \& definiteness & 89.61 & 97.05 & 88.81 &
+        91.73 \\
+        Verb & Finiteness & 93.72 & 97.35 & 87.30 & 90.43 \\
+        Adjective & Degree & 94.13 & 97.41 & 87.29 & 90.44 \\
+        Determiner & Definiteness & 94.13 & 97.49 & 87.30 & 90.42 \\
+        Pronoun & Type \& case & 94.12 & 97.51 & 87.30 & 90.41 \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the most successful tag set
@@ -837,8 +837,8 @@ and case (\emph{p}-value 0.06).
         \texttt{det|be} & Definite determiner \\
         \texttt{det|ub} & Indefinite determiner \\
         \texttt{pron|pers} & Personal pronoun \\
-        \texttt{pron|pers|akk} & Personal pronoun, accusative \\
-        \texttt{pron|pers|nom} & Personal pronoun, nominative \\
+        \texttt{pron|pers|akk} & Personal pron., accusative \\
+        \texttt{pron|pers|nom} & Personal pron., nominative \\
         \texttt{pron|refl} & Reflexive pronoun \\
         \texttt{pron|res} & Reciprocal pronoun \\
         \texttt{pron|sp} & Interrogative pronoun \\
@@ -846,7 +846,7 @@ and case (\emph{p}-value 0.06).
         \texttt{subst|appell|be} & Common noun, def. \\
         \texttt{subst|appell|be|gen} & Common noun, def., genitive \\
         \texttt{subst|appell|ub} & Common noun, indef. \\
-        \texttt{subst|appell|ub|gen} & Common noun, indef., genitive \\
+        \texttt{subst|appell|ub|gen} & Common noun, indef., gen. \\
         \texttt{subst|prop} & Proper noun \\
         \texttt{subst|prop|gen} & Proper noun, genitive \\
         \texttt{verb|fin} & Finite verb \\
@@ -883,14 +883,14 @@ existing PoS tag set for a downstream application can be useful and beneficial.
         \textbf{LAS} & \textbf{UAS} \\
         \midrule
         \multirow{2}{*}{Dev}
-        & Original & \textbf{94.14\%} & \textbf{97.47\%} & 87.01\% & 90.19\% \\
+        & Original & \textbf{94.14} & \textbf{97.47} & 87.01 & 90.19 \\
         %Full & 85.15\% & 93.48\% & 87.15\% & 90.39\% \\
-        & Optimized & 85.15\% & 96.85\% & \textbf{88.87\%} & \textbf{91.78\%} \\
+        & Optimized & 85.15 & 96.85 & \textbf{88.87} & \textbf{91.78} \\
         \midrule
         \multirow{2}{*}{Test}
-        & Original & \textbf{94.22\%} & \textbf{97.30\%} & 86.64\% & 90.07\% \\
-        %& Full & 84.27\% & 92.79\% & 87.03\% & 90.16\% \\
-        & Optimized & 88.08\% & 96.35\% & \textbf{88.55\%} & \textbf{91.41\%} \\
+        & Original & \textbf{94.22} & \textbf{97.30} & 86.64 & 90.07 \\
+        %& Full & 84.27\% & 92.79\% & 87.03\% & 90.16 \\
+        & Optimized & 88.08 & 96.35 & \textbf{88.55} & \textbf{91.41} \\
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
