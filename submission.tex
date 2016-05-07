@@ -134,8 +134,8 @@ In this paper, we optimize a PoS tag set for the task of data-driven dependency
 parsing of Norwegian. We report on a set of experiments where various
 morphological distinctions are introduced to the PoS annotations and evaluated
 both intrinsically, i.e., in terms of PoS tagging accuracy, and extrinsically,
-in terms of parsing accuracy. Our results show that the introduction of
-morphological distinctions not present in the original tag set, whilst
+in terms of syntactic parsing accuracy. Our results show that the introduction
+of morphological distinctions not present in the original tag set, whilst
 compromising tagger accuracy, actually leads to significantly improved parsing
 accuracy. This optimization also allows us to bypass the additional step of
 morphological analysis, framing the whole preprocessing problem as a simple
@@ -188,11 +188,12 @@ results do not support the hypothesis that it is possible to achieve
 significant performance improvements in PoS tagging by utilizing a
 finer-grained tag set.
 
-In the current paper, we argue that it is nevertheless possible to significantly improve the performance
-of the downstream application of syntactic parsing by introducing
-linguistically informed, syntactically informative distinctions to a tag set.
-In the following section we first turn to the treebank that provides the basis for our experiments and
-outline its morphological and syntactic annotation choices.
+In the current paper, we argue that it is nevertheless possible to
+significantly improve the performance of the downstream application of
+syntactic parsing by introducing linguistically informed, syntactically
+informative distinctions to a tag set. In the following section, we first turn
+to the treebank that provides the basis for our experiments and outline its
+morphological and syntactic annotation choices.
 
 \section{The Norwegian Dependency Treebank}
 \label{sec:data}
@@ -348,12 +349,12 @@ most frequently assigned to words seen only once. The rationale is that we
 might expect unknown and infrequent words to have similar properties given that
 they both occur rarely.
 
-\paragraph{Predicted vs gold tags}
+\paragraph{Predicted vs. Gold Tags}
 As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
 in application to raw text, we choose to evaluate the parser on automatically
 predicted PoS tags. For training, however, we have two options: using either
 gold standard tags or automatically predicted tags. In order to settle on a
-configuration, we conducted experiments with training on both gold tags 
+configuration, we conducted experiments with training on both gold tags
 and predicted tags to see how the performance differs. The
 results of these experiments, shown in Table \ref{tagconfigeval}, reveal that
 the combination of training and testing on predicted tags is clearly superior
@@ -402,7 +403,7 @@ The modified tag sets used in the experiments reported in this section are
 defined as combinations of PoS tags and morphological features already
 available in the gold annotations of the treebank. In effect, we redefine the
 tags comprising the gold standard as provided by NDT. The best performing
-configuration can be seen as tag set specifically optimized for dependency
+configuration can be seen as a tag set specifically optimized for dependency
 parsing. Note that the tag selection process itself can be seen as
 semi-automatic; while we for each introduced distinction empirically evaluate
 its impact on parsing performance -- as to see whether it is worth including in
@@ -416,7 +417,7 @@ The hope is that the introduction of more fine-grained linguistically motivated
 distinctions in the tag set may assist the parser in recognizing and
 generalizing syntactic patterns.  However, this would also increase the
 complexity of the tagging task, which can be expected to lead to a drop in
-tagger accuracy.  However, the best tagging, evaluated in isolation, does not
+tagger accuracy.  The best tagging, evaluated in isolation, does not
 necessarily lead to the best parse, hence the aim of this section is to
 investigate how tag set modifications affect this interplay.
 
@@ -452,7 +453,7 @@ these initial tags sets. The results are reported in Table \ref{inittagseteval}.
 Unsurprisingly, we see that the tagger accuracy
 plummets when we move from the original to the full tag set. While the MFT
 tagging baseline for the original tag set is 94.14\%, it drops by almost 9
-percentage points to 85.15\% for the full tag set. TnT yields 
+percentage points to 85.15\% for the full tag set. TnT yields
 97.47\% accuracy on the original tag set, which drops to 93.48\% for the full tag
 set. These results confirm our hypothesis that the high level linguistic
 information
@@ -491,10 +492,10 @@ adjectives (\texttt{adj}), determiners (\texttt{det}) and pronouns
 (\texttt{pron}) in NDT by appending selected sets of morphological features to
 each tag in order to increase the linguistic information expressed by the tags.
 For each tag, we in turn first experiment with each of the available features in
-isolation before testing various combinations. We base our choices
-of combinations on how promising the features are and what we deem worth
-For each tag, we first experiment with each of the available features in
-isolation before employing various combinations of them. We base our choices of
+isolation before testing various combinations.
+%We base our choices
+%of combinations on how promising the features are and what we deem worth
+We base our choices of
 combinations on how promising the features are and what we deem worth
 investigating in terms of linguistic utility, in order to see how the features
 might interact.
@@ -730,9 +731,10 @@ parsing and that distinguishing on definiteness is very useful.
 \end{table}
 
 \paragraph{Pronouns}
-Pronouns in Norwegian are personal, reciprocal, reflexive and interrogative.
-They can furthermore exhibit gender, number and person, while personal pronouns
-can be distinguished on case (either accusative or nominative).
+Pronouns in Norwegian include personal, reciprocal, reflexive and
+interrogative.  They can furthermore exhibit gender, number and person, while
+personal pronouns can be distinguished on case (either accusative or
+nominative).
 
 The results in Table \ref{pronresults} show that number, person and type are
 the most informative features for parsing, with LAS of 87.21\%, 87.22\% and
@@ -812,7 +814,7 @@ observe that the most promising tag set modifications for verbs, adjectives,
 determiners and pronouns all reach LAS of \textasciitilde 87.30\% and UAS of
 \textasciitilde 90.40\%. To investigate the overall effect of these tag set
 modifications, we tested each of the improvements in parser accuracy scores
-from that of the original tag set for statistical significance using Dan
+from those of the original tag set for statistical significance using Dan
 Bikel's randomized parsing evaluation comparator script\footnote{Available as
     \texttt{compare.pl} at \url{http://ilk.uvt.nl/conll/software.html}}, as
 used in the CoNLL shared tasks. For the most successful tag set modification
