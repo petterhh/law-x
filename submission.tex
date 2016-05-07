@@ -137,7 +137,7 @@ both intrinsically, i.e., in terms of PoS tagging accuracy, and extrinsically,
 in terms of parsing accuracy. Our results show that the introduction of
 morphological distinctions not present in the original tag set, whilst
 compromising tagger accuracy, actually leads to significantly improved parsing
-accuracy. This optimization allows us to bypass the additional step of
+accuracy. This optimization also allows us to bypass the additional step of
 morphological analysis, framing the whole preprocessing problem as a simple
 tagging task.
 
@@ -351,7 +351,7 @@ they both occur rarely.
 \paragraph{Predicted vs gold tags}
 As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
 in application to raw text, we choose to evaluate the parser on automatically
-assigned PoS tags. For training, however, we have two options: using either
+predicted PoS tags. For training, however, we have two options: using either
 gold standard tags or automatically predicted tags. In order to settle on a
 configuration, we conducted experiments with training on both gold tags 
 and predicted tags to see how the performance differs. The
@@ -402,7 +402,7 @@ The modified tag sets used in the experiments reported in this section are
 defined as combinations of PoS tags and morphological features already
 available in the gold annotations of the treebank. In effect, we redefine the
 tags comprising the gold standard as provided by NDT. The best performing
-configuration can be seens as tag set specifically optimized for dependency
+configuration can be seen as tag set specifically optimized for dependency
 parsing. Note that the tag selection process itself can be seen as
 semi-automatic; while we for each introduced distinction empirically evaluate
 its impact on parsing performance -- as to see whether it is worth including in
@@ -412,14 +412,13 @@ Although our expressed goal is to identify a tag set optimized for the
 downstream task of dependency parsing, we will only consider tag set
 modifications we deem linguistically sensible.
 
-By introducing more fine-grained linguistically motivated distinctions in the tag
-set, we increase the linguistic information represented in the tags, which may
-assist the parser in recognizing and generalizing syntactic patterns.
-However, this would also increase the complexity of the tagging task, 
-which can be expected to lead to a drop in tagger accuracy.
-However, the best tagging, evaluated in isolation, does not necessarily lead to the
-best parse, hence it is interesting to investigate how tag set modifications
-affect this interplay.
+The hope is that the introduction of more fine-grained linguistically motivated
+distinctions in the tag set may assist the parser in recognizing and
+generalizing syntactic patterns.  However, this would also increase the
+complexity of the tagging task, which can be expected to lead to a drop in
+tagger accuracy.  However, the best tagging, evaluated in isolation, does not
+necessarily lead to the best parse, hence the aim of this section is to
+investigate how tag set modifications affect this interplay.
 
 % Hence, we are in actuality altering the gold
 % standard tags by the addition of more relevant linguistic information,
@@ -461,10 +460,9 @@ in the full, fine-grained tag set comes at the expense of reduced tagger
 performance.  In spite of this, however, we see that the additional information
 in the full tag set still improves the parser performance. With the original tag set, Mate
 yields 87.01\% LAS and 90.19\% UAS, which increases to 87.15\% and
-90.39\%, respectively, using the full tag set. As we are looking for
-linguistically informed distinctions that improve the syntactic parsing, these
-results are promising and indicate that additional linguistic
-information assists syntactic parsing, motivating the optimization of the
+90.39\%, respectively, using the full tag set. These
+preliminary results are promising in that thay indicate that additional linguistic
+information assists syntactic parser, motivating further optimization of the
 existing PoS tag set.
 
 \begin{table}
@@ -545,7 +543,8 @@ Stockholm-Umeå corpus.
         %Type, definiteness \& number & 96.46\% & 88.06\% & 91.12\% \\
         \bottomrule
     \end{tabular}
-    \caption{Results of experiments with modified PoS tags for nouns.}
+    \caption{Tagging and parsing with modified PoS tags for nouns. The first
+      row corresponds to using the original tag set unmodified.}
     \label{substresults}
 \end{table}
 
@@ -599,7 +598,7 @@ in an LAS of 87.12\% and UAS of 90.31\%.
         Finiteness & 97.35\% & \textbf{87.30\%} & \textbf{90.43\%} \\
         \bottomrule
     \end{tabular}
-    \caption{Results of experiments with modified PoS tags for verbs.}
+    \caption{Tagging and parsing with modified PoS tags for verbs.}
     \label{verbresults}
 \end{table}
 
@@ -660,7 +659,7 @@ interact with the other features in any syntactically significant way.
         %Definiteness, degree \& number & 96.81\% & 87.14\% & 90.30\% \\
         \bottomrule
     \end{tabular}
-    \caption{Results of experiments with modified PoS tags for adjectives.}
+    \caption{Tagging and parsing with modified PoS tags for adjectives.}
     \label{adjresults}
 \end{table}
 
@@ -726,7 +725,7 @@ parsing and that distinguishing on definiteness is very useful.
         Type & \textbf{97.61\%} & 87.00\% & 90.11\% \\
         \bottomrule
     \end{tabular}
-    \caption{Results of experiments with modified PoS tags for determiners.}
+    \caption{Tagging and parsing with modified PoS tags for determiners.}
     \label{detresults}
 \end{table}
 
@@ -777,7 +776,7 @@ type and case.
         Type, case \& number & \textbf{97.52\%} & 87.11\% & 90.36\% \\
         \bottomrule
     \end{tabular}
-    \caption{Results of experiments with modified PoS tags for pronouns.}
+    \caption{Tagging and parsing with modified PoS tags for pronouns.}
     \label{pronresults}
 \end{table}
 
@@ -893,8 +892,8 @@ existing PoS tag set for a downstream application can be useful and beneficial.
         \bottomrule
     \end{tabular}
     \caption{Results of tagging and parsing with the optimized tag set,
-        compared to the original coarse tag set. Trained and tested using
-        automatically assigned tags from TnT.}
+        compared to the original NDT coarse tag set. The parser is both trained and tested using
+        automatically predicted tags from TnT.}
     \label{finalresults}
 \end{table}
 
