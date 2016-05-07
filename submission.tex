@@ -348,18 +348,20 @@ most frequently assigned to words seen only once. The rationale is that we
 might expect unknown and infrequent words to have similar properties given that
 they both occur rarely.
 
-\paragraph{Tags \& Features} % <-- fixme: rename?
+\paragraph{Predicted vs gold tags}
 As we seek to quantify the effects of PoS tagging in a realistic setting, i.e.,
 in application to raw text, we choose to evaluate the parser on automatically
 assigned PoS tags. For training, however, we have two options: using either
-gold standard or automatically assigned tags. In order to settle on a
-configuration, we conducted experiments with training on both gold standard
-tags and automatically assigned tags to see how the performance differs. The
+gold standard tags or automatically predicted tags. In order to settle on a
+configuration, we conducted experiments with training on both gold tags 
+and predicted tags to see how the performance differs. The
 results of these experiments, shown in Table \ref{tagconfigeval}, reveal that
-the combination of training and testing on automatic tags is clearly superior
-to training on gold standard tags and testing on automatic tags. Consequently,
-the parser is both trained and tested on automatically assigned tags in the
-remainder of our experiments.
+the combination of training and testing on predicted tags is clearly superior
+to training on gold standard tags and testing on predicted tags. Consequently,
+the parser is both trained and tested on automatically predicted tags in the
+remainder of our experiments.\footnote{Though some parsers also make use of
+  morphological features, we removed all morphological features beyond the PoS
+  tags in order to simulate a realistic setting.}
 
 \begin{table}
     \centering
@@ -373,64 +375,73 @@ remainder of our experiments.
         Auto & Auto & 87.01\% & 90.19\% \\
         \bottomrule
     \end{tabular}
-    \caption{Results of parsing with Mate using the various tag configurations,
-        either using gold standard tags or automatically assigned from TnT.
-        \emph{Gold} denotes gold standard tags, \emph{Auto} denotes
-        automatically assigned tags from TnT.}
+    \caption{Results of parsing with Mate using various configurations of PoS
+      tag sources in training and testing: \emph{Gold} denotes gold standard
+      tags and \emph{Auto} denotes tags automatically predicted by TnT.}
     \label{tagconfigeval}
 \end{table}
 
-Though some parsers make use of morphological features, % fixme: status for mate?
-we removed all morphological features beyond the PoS tags in order to simulate
-a realistic setting.  Moreover, it is crucial that we remove these features
-when working with automatically assigned tags, as such features would be
-provided by the gold standard.
+% Moreover, it is crucial that we remove these features
+% when working with automatically assigned tags, as such features would be
+% provided by the gold standard.
 
 %For instance, if a verb token is erroneously tagged as a noun, we could potentially
 %have a noun token with verbal features such as tense, which markedly obfuscates
 %the training and parsing. Another important aspect is that we want to isolate
 %the effect of PoS tags, necessitating the exclusion of morphological features.
 
-In the following, we report on a set of experiments which evaluate increasingly
-fine-grained PoS tag sets. The PoS tag sets are motivated by morphosyntactic
-properties of Norwegian and are evaluated in terms of both tagger and parser
-accuracy.
+% In the following, we report on a set of experiments which evaluate increasingly
+% fine-grained PoS tag sets. The PoS tag sets are motivated by morphosyntactic
+% properties of Norwegian and are evaluated in terms of both tagger and parser
+% accuracy.
 
 \section{Tag Set Optimization}
 \label{sec:optimization}
-By introducing more fine-grained linguistically motivated distinctions in a tag
+
+The modified tag sets used in the experiments reported in this section are
+defined as combinations of PoS tags and morphological features already
+available in the gold annotations of the treebank. In effect, we redefine the
+tags comprising the gold standard as provided by NDT. The best performing
+configuration can be seens as tag set specifically optimized for dependency
+parsing. Note that the tag selection process itself can be seen as
+semi-automatic; while we for each introduced distinction empirically evaluate
+its impact on parsing performance -- as to see whether it is worth including in
+the final configuration -- the process is manually guided by linguistic
+considerations regarding which combinations to evaluate in the first place.
+Although our expressed goal is to identify a tag set optimized for the
+downstream task of dependency parsing, we will only consider tag set
+modifications we deem linguistically sensible.
+
+By introducing more fine-grained linguistically motivated distinctions in the tag
 set, we increase the linguistic information represented in the tags, which may
 assist the parser in recognizing and generalizing syntactic patterns.
-We would then also increase the complexity of the tagging task though,
+However, this would also increase the complexity of the tagging task, 
 which can be expected to lead to a drop in tagger accuracy.
 However, the best tagging, evaluated in isolation, does not necessarily lead to the
 best parse, hence it is interesting to investigate how tag set modifications
-may affect this interplay.
+affect this interplay.
 
-Hence, we are in actuality altering the gold
-standard tags by the addition of more relevant linguistic information,
-producing new gold standard annotations of higher quality.
+% Hence, we are in actuality altering the gold
+% standard tags by the addition of more relevant linguistic information,
+% producing new gold standard annotations of higher quality.
 
 % fixme: tror nok dette bør flyttes og kortes ned. kan bakes inn med det som
 % står under "Tag Set Mapping".
-Our approach is somewhat semi-automatic in that we employ a "hybrid"
-combination of manual annotation and automatic labeling in our experiments. Our
-initial tags are gold standard, and using linguistic insight coupled with
-computational considerations, we introduce new gold standard distinctions to
-the tag set. The data sets with these tags are run through a pipeline with
-automatically assigned tags in both training and testing, where the most
-promising modifications are used "further". Hence, the tag set modifications
-are not deterministic, nor do we try all possible combination; we only
-experiment with linguistically motivated distinctions.
+% Our approach is somewhat semi-automatic in that we employ a "hybrid"
+% combination of manual annotation and automatic labeling in our experiments. Our
+% initial tags are gold standard, and using linguistic insight coupled with
+% computational considerations, we introduce new gold standard distinctions to
+% the tag set. The data sets with these tags are run through a pipeline with
+% automatically assigned tags in both training and testing, where the most
+% promising modifications are used "further". Hence, the tag set modifications
+% are not deterministic, nor do we try all possible combination; we only
+% experiment with linguistically motivated distinctions.
 
-As we want to investigate how we can improve the linguistic quality of a tag
-set, we will only consider tag set modifications we deem linguistically
-sensible.
 
 \subsection{Baseline Experiments}
 In an initial round of experiments, we concatenated the tag of each token with
 its full set of morphological features, thereby mapping the original tag set to a
-new maximally fine-grained tag set given the annotations available in the
+new maximally fine-grained tag set, given the annotations available in the
 treebank. This resulted in a total of 368 tags,
 hereafter referred to as the \emph{full} tag set.
 The two initial tag sets, i.e., the original tag set comprising 19 tags and the
