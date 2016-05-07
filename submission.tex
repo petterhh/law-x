@@ -188,10 +188,10 @@ results do not support the hypothesis that it is possible to achieve
 significant performance improvements in PoS tagging by utilizing a
 finer-grained tag set.
 
-We argue, however, that it is possible to significantly improve the performance
+In the current paper, we argue that it is neverthelesss possible to significantly improve the performance
 of the downstream application of syntactic parsing by introducing
 linguistically informed, syntactically informative distinctions to a tag set.
-We will now turn to the data that provided the basis for our experiments and
+In the following section we first turn to the treebank that provides the basis for our experiments and
 outline its morphological and syntactic annotation choices.
 
 \section{The Norwegian Dependency Treebank}
@@ -205,8 +205,8 @@ Bokmål and 303 000 tokens of Nynorsk. This paper only reports results for
 Bokmål, the main variety. The treebanked material mostly comprise newspaper
 text, but also include government reports, parliament transcripts and blog
 excerpts. The annotation process was supported by the rule-based Oslo-Bergen
-Tagger \cite{Hag:Joh:Nok:00} and then manually corrected by annotators, adding
-syntactic dependency analysis to the morphosyntactic annotation.
+Tagger \cite{Hag:Joh:Nok:00} and then manually corrected by human annotators, also adding
+syntactic dependency analyses to the morphosyntactic annotation.
 
 \paragraph{Morphological Annotation}
 \begin{table}
@@ -440,8 +440,8 @@ To establish some initial points of reference for how tag set granularity affect
 performance of tagging and parsing on NDT, we trained and tested a full pipeline with both of
 these intital tags sets. The results are reported in Table \ref{inittagseteval}.
 Unsurprisingly, we see that the tagger accuracy
-plummets when we move from the original to the full tag set. The MFT
-baseline for the original tag set is 94.14\%, while it drops by almost 9
+plummets when we move from the original to the full tag set. While the MFT
+tagging baseline for the original tag set is 94.14\%, it drops by almost 9
 percentage points to 85.15\% for the full tag set. TnT reports an accuracy of
 97.47\% on the original tag set, which is reduced to 93.48\% for the full tag
 set. These results confirm our hypothesis that the very high level linguistic
